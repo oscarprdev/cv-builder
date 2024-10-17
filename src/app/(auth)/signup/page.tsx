@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { signupAction } from '~/app/actions/signup.action';
 import AuthForm from '~/components/organisms/AuthForm/AuthForm';
 
-export default function Home() {
+export default function SignUp() {
 	return (
 		<>
 			<AuthForm
