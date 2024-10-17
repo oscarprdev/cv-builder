@@ -21,7 +21,7 @@ describe('Button', () => {
 			render(<Settings />);
 			const link = screen.getByRole('link');
 			screen.getByTestId('settings-icon');
-			expect(link.getAttribute('href')).toBe(Dashboard.args.href);
+			expect(link.getAttribute('href')).toBe(Settings.args.href);
 		});
 	});
 
@@ -30,7 +30,7 @@ describe('Button', () => {
 			render(<Support />);
 			const link = screen.getByRole('link');
 			screen.getByTestId('support-icon');
-			expect(link.getAttribute('href')).toBe(Dashboard.args.href);
+			expect(link.getAttribute('href')).toBe(Support.args.href);
 		});
 	});
 
@@ -39,7 +39,7 @@ describe('Button', () => {
 			render(<Feed />);
 			const link = screen.getByRole('link');
 			screen.getByTestId('feed-icon');
-			expect(link.getAttribute('href')).toBe(Dashboard.args.href);
+			expect(link.getAttribute('href')).toBe(Feed.args.href);
 		});
 	});
 
@@ -48,7 +48,7 @@ describe('Button', () => {
 			render(<Messages />);
 			const link = screen.getByRole('link');
 			screen.getByTestId('messages-icon');
-			expect(link.getAttribute('href')).toBe(Dashboard.args.href);
+			expect(link.getAttribute('href')).toBe(Messages.args.href);
 		});
 	});
 });

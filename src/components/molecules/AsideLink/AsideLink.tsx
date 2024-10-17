@@ -8,10 +8,18 @@ import { cn } from '~/lib/utils/cn';
 
 const linksMap: Record<string, React.ReactNode> = {
 	['/dashboard']: <House data-testid="dashboard-icon" size={18} className="hidden md:block" />,
-	['/settings']: <Settings data-testid="settings-icon" size={18} className="hidden md:block" />,
-	['/support']: <CircleHelp data-testid="support-icon" size={18} className="hidden md:block" />,
-	['/feed']: <ScanSearch data-testid="feed-icon" size={18} className="hidden md:block" />,
-	['/messages']: <Mails data-testid="messages-icon" size={18} className="hidden md:block" />,
+	['/dashboard/settings']: (
+		<Settings data-testid="settings-icon" size={18} className="hidden md:block" />
+	),
+	['/dashboard/support']: (
+		<CircleHelp data-testid="support-icon" size={18} className="hidden md:block" />
+	),
+	['/dashboard/feed']: (
+		<ScanSearch data-testid="feed-icon" size={18} className="hidden md:block" />
+	),
+	['/dashboard/messages']: (
+		<Mails data-testid="messages-icon" size={18} className="hidden md:block" />
+	),
 };
 
 const AsideLink = ({ href, label }: { href: string; label: string }) => {
@@ -20,7 +28,7 @@ const AsideLink = ({ href, label }: { href: string; label: string }) => {
 
 	return (
 		<Link
-			href={'/dashboard'}
+			href={href}
 			className={cn(
 				isActive
 					? 'bg-muted-foreground font-bold text-white'

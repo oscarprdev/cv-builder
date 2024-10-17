@@ -36,6 +36,7 @@ const AuthForm = ({
 
 	return (
 		<form
+			data-testid="auth-form"
 			action={handleSubmit}
 			className="flex w-full animate-fade-up flex-col gap-5 opacity-0">
 			<div className="flex flex-col gap-2">

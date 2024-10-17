@@ -22,28 +22,28 @@ export const Dashboard: Story = {
 
 export const Settings: Story = {
 	args: {
-		href: '/settings',
+		href: '/dashboard/settings',
 		label: 'Settings',
 	},
 };
 
 export const Support: Story = {
 	args: {
-		href: '/support',
+		href: '/dashboard/support',
 		label: 'Support',
 	},
 };
 
 export const Feed: Story = {
 	args: {
-		href: '/feed',
+		href: '/dashboard/feed',
 		label: 'Feed',
 	},
 };
 
 export const Messages: Story = {
 	args: {
-		href: '/messages',
+		href: '/dashboard/messages',
 		label: 'Messages',
 	},
 };

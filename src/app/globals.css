@@ -16,7 +16,7 @@ body {
 	:root {
 		--radius: 5px;
 		--background: #161618;
-		--background-light: #1f1f21;
+		--background-light: #1b1b1d;
 		--foreground: #fefefe;
 		--card: 0 0% 3.9%;
 		--card-foreground: 0 0% 98%;
@@ -27,7 +27,7 @@ body {
 		--secondary: 0 0% 14.9%;
 		--secondary-foreground: 0 0% 98%;
 		--muted: #a5a5a7;
-		--muted-foreground: #7d7d7f;
+		--muted-foreground: #636365;
 		--accent: #adfa3f;
 		--accent-foreground: 0 0% 98%;
 		--destructive: #f6453d;
