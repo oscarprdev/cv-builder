@@ -12,7 +12,7 @@ export default function Home() {
 				submitText="Log In"
 				successRoute="/dashboard"
 			/>
-			<label className="text-xs text-muted-foreground">
+			<label className="mt-5 text-xs text-muted-foreground">
 				Don&apos;t have an account?
 				<Link href="/signup" className="ml-2 text-muted hover:text-white hover:underline">
 					Sign Up

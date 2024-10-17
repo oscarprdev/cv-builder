@@ -37,7 +37,7 @@ const AuthForm = ({
 	return (
 		<form
 			action={handleSubmit}
-			className="flex w-full animate-fade-up flex-col gap-5 p-10 opacity-0">
+			className="flex w-full animate-fade-up flex-col gap-5 opacity-0">
 			<div className="flex flex-col gap-2">
 				<h3 className="text-2xl font-bold">{header}</h3>
 				<h4 className="text-sm">{subHeader}</h4>
