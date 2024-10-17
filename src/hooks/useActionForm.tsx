@@ -5,16 +5,16 @@ import { Either, errorResponse, isError } from '~/lib/utils/either';
 
 type UseActionFormInput = {
 	action: (formData: FormData) => Promise<Either<string, string>>;
-	successRoute: string;
-	isValidated: boolean;
+	canSubmit: boolean;
+	successRoute?: string;
 };
 
-export const useActionForm = ({ action, successRoute, isValidated }: UseActionFormInput) => {
+export const useActionForm = ({ action, successRoute, canSubmit }: UseActionFormInput) => {
 	const router = useRouter();
 
 	const { mutate, isPending } = useMutation({
 		mutationFn: async (formData: FormData) => {
-			if (!isValidated) return errorResponse('Credentials are not valid');
+			if (!canSubmit) return errorResponse('Credentials are not valid');
 
 			return await action(formData);
 		},
@@ -23,13 +23,14 @@ export const useActionForm = ({ action, successRoute, isValidated }: UseActionFo
 				toast.error(data.error);
 			} else {
 				toast.success(data.success);
-				router.push(successRoute);
+
+				if (successRoute) router.push(successRoute);
 			}
 		},
 	});
 
 	return {
-		mutate,
+		handleSubmit: mutate,
 		isPending,
 	};
 };

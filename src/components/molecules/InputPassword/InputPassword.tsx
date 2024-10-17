@@ -4,7 +4,7 @@ import React from 'react';
 import { Input } from '~/components/atoms/input/input';
 import { cn } from '~/lib/utils/cn';
 
-const InputPasswordForm = ({
+const InputPassword = ({
 	onListenPasswordValidations,
 	disabled,
 }: {
@@ -104,4 +104,4 @@ const InputPasswordForm = ({
 	);
 };
 
-export default InputPasswordForm;
+export default InputPassword;

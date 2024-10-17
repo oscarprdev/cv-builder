@@ -1,6 +1,5 @@
 import SubmitButton from './SubmitButton';
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 
 const meta = {
 	title: 'SubmitButton',
@@ -17,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		isPending: false,
+		disabled: false,
 		text: 'Submit',
 	},
 };
@@ -24,6 +24,15 @@ export const Default: Story = {
 export const Pending: Story = {
 	args: {
 		isPending: true,
+		disabled: false,
+		text: 'Submit',
+	},
+};
+
+export const Disabled: Story = {
+	args: {
+		isPending: false,
+		disabled: true,
 		text: 'Submit',
 	},
 };

@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 
-const { Default, Pending } = composeStories(stories);
+const { Default, Pending, Disabled } = composeStories(stories);
 
 describe('Button', () => {
 	describe('Default', () => {
@@ -25,6 +25,15 @@ describe('Button', () => {
 			const loaderIcon = await screen.findByTestId('loader-icon');
 
 			expect(loaderIcon.classList).toContain('animate-spin');
+			expect(button.getAttribute('disabled')).not.toBeUndefined();
+		});
+	});
+
+	describe('Disabled', () => {
+		it('Should render successfulyy', async () => {
+			render(<Disabled />);
+
+			const button = screen.getByRole('button');
 			expect(button.getAttribute('disabled')).not.toBeUndefined();
 		});
 	});

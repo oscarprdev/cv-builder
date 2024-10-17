@@ -22,9 +22,8 @@ describe('Auth Form', () => {
 					successRoute="/dashboard"
 					header="Welcome back"
 					subHeader="Sign in to your account"
-					submitText="Log In">
-					<label>children</label>
-				</AuthForm>
+					submitText="Log In"
+				/>
 				<Toaster />
 			</QueryProvider>
 		);

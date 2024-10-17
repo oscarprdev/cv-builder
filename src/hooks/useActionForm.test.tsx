@@ -40,13 +40,13 @@ describe('useActionForm', () => {
 				useActionForm({
 					action: mockAction,
 					successRoute,
-					isValidated: true,
+					canSubmit: true,
 				}),
 			{ wrapper }
 		);
 
 		await act(async () => {
-			await result.current.mutate(new FormData());
+			await result.current.handleSubmit(new FormData());
 		});
 
 		expect(mockAction).toHaveBeenCalled();
@@ -60,13 +60,13 @@ describe('useActionForm', () => {
 				useActionForm({
 					action: mockAction,
 					successRoute,
-					isValidated: false,
+					canSubmit: false,
 				}),
 			{ wrapper }
 		);
 
 		await act(async () => {
-			await result.current.mutate(new FormData());
+			await result.current.handleSubmit(new FormData());
 		});
 
 		expect(toast.error).toHaveBeenCalledWith('Credentials are not valid');
@@ -80,13 +80,13 @@ describe('useActionForm', () => {
 				useActionForm({
 					action: mockAction,
 					successRoute,
-					isValidated: true,
+					canSubmit: true,
 				}),
 			{ wrapper }
 		);
 
 		await act(async () => {
-			await result.current.mutate(new FormData());
+			await result.current.handleSubmit(new FormData());
 		});
 
 		expect(mockAction).toHaveBeenCalled();
