@@ -14,6 +14,7 @@ body {
 
 @layer base {
 	:root {
+		--radius: 5px;
 		--background: #161618;
 		--background-light: #1f1f21;
 		--foreground: #fefefe;
@@ -49,4 +50,34 @@ body {
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+::-webkit-scrollbar-track {
+	margin: 0;
+	border-radius: 0;
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: transparent;
+}
+
+*[aria-label='scroll-horizontal']::-webkit-scrollbar {
+	width: 0px;
+	height: 2px;
+	overflow: visible;
+	background: transparent;
+}
+
+*[aria-label='scroll-vertical']::-webkit-scrollbar {
+	width: 3px;
+	height: 0px;
+	overflow: visible;
+	background: transparent;
+}
+
+*[aria-label='scroll-horizontal']:hover::-webkit-scrollbar-thumb,
+*[aria-label='scroll-vertical']:hover::-webkit-scrollbar-thumb {
+	background: var(--accent);
 }
