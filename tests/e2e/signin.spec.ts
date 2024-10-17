@@ -2,8 +2,8 @@ import { test } from './fixtures/signin.fixture';
 import { expect } from '@playwright/test';
 
 test.describe('Base page', () => {
-	test.beforeEach(async ({ navigateToPage }) => {
-		await navigateToPage();
+	test.beforeEach(async ({ navigateToSigninPage }) => {
+		await navigateToSigninPage();
 	});
 
 	test('Should the page be successfully rendered', async ({ signInPage }) => {
