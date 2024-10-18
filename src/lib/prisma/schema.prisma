@@ -11,7 +11,38 @@ datasource db {
 }
 
 model User {
-  id       String @id @unique @default(uuid())
+  id       String   @id @unique @default(uuid())
   password String
-  email    String @unique
+  email    String   @unique
+  resumes  Resume[]
+}
+
+model Resume {
+  id        String                   @id @unique @default(uuid())
+  userId    String
+  user      User                     @relation(fields: [userId], references: [id])
+  basicInfo ResumeBasicInformation[]
+}
+
+model ResumeBasicInformation {
+  id           String                    @id @unique @default(uuid())
+  resumeId     String
+  fullName     String
+  headline     String
+  email        String
+  website      String
+  phone        String
+  location     String
+  imageUrl     String?
+  createdAt    DateTime                  @default(now())
+  resume       Resume                    @relation(fields: [resumeId], references: [id])
+  customFields ResumeBasicCustomFields[]
+}
+
+model ResumeBasicCustomFields {
+  id                     String                 @id @unique @default(uuid())
+  basicInfoId            String
+  label                  String
+  href                   String
+  ResumeBasicInformation ResumeBasicInformation @relation(fields: [basicInfoId], references: [id])
 }

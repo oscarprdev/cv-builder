@@ -8,7 +8,7 @@ export class DashboardPage {
 	readonly supportLink: Locator;
 	readonly settingsLink: Locator;
 
-	constructor(private readonly page: Page) {
+	constructor(protected readonly page: Page) {
 		this.dashboardAside = this.page.getByTestId('dashboard-aside');
 		this.homeLink = this.dashboardAside.getByRole('link', { name: 'Home' });
 		this.discoverLink = this.dashboardAside.getByRole('link', { name: 'Discover' });

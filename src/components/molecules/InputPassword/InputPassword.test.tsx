@@ -53,6 +53,7 @@ describe('Input Password', () => {
 		fireEvent.input(input, { target: { value: 'invalid' } });
 
 		await waitFor(async () => {
+			expect(input.classList).toContain('border-destructive');
 			expect(lengthMessage.parentElement?.className).toContain('text-destructive');
 			expect(patternMessage.parentElement?.className).toContain('text-destructive');
 		});

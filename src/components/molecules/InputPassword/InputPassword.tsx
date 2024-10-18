@@ -1,7 +1,6 @@
 import { CircleCheck, Eye, EyeOff } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { Input } from '~/components/atoms/input/input';
 import { cn } from '~/lib/utils/cn';
 
 const InputPassword = ({
@@ -50,7 +49,14 @@ const InputPassword = ({
 		<label htmlFor="password" className="flex flex-col gap-2 text-sm">
 			Password
 			<div className="relative">
-				<Input
+				<input
+					className={cn(
+						(passwordValidations.length && passwordValidations.special) ||
+							!passwordValidations.value
+							? 'border-input focus-visible:ring-ring'
+							: 'border-destructive focus-visible:ring-destructive-foreground',
+						'flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50'
+					)}
 					id="password"
 					disabled={disabled}
 					type={isPasswordVisible ? 'text' : 'password'}

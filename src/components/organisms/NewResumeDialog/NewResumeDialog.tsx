@@ -15,7 +15,8 @@ const NewResumeDialog = () => {
 					</label>
 				</button>
 			}
-			title="Create new resume">
+			title="Create new resume"
+			subTitle="Fullfill basic information to start building your resume">
 			<NewResumeForm />
 		</Dialog>
 	);

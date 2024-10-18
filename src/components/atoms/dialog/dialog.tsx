@@ -95,17 +95,24 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 const Dialog = ({
 	trigger,
 	title,
+	subTitle,
 	children,
 }: React.PropsWithChildren<{
 	trigger: React.ReactNode;
 	title: string;
+	subTitle?: string;
 }>) => {
 	return (
 		<DialogWrapper>
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
-			<DialogContent>
+			<DialogContent aria-describedby={title}>
 				<DialogHeader>
 					<DialogTitle>{title}</DialogTitle>
+					{subTitle && (
+						<DialogDescription className="text-sm leading-none tracking-tight text-muted">
+							{subTitle}
+						</DialogDescription>
+					)}
 				</DialogHeader>
 				{children}
 			</DialogContent>

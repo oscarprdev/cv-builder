@@ -3,7 +3,6 @@ import { test as base } from './signin.fixture';
 
 interface SigninFixture {
 	dashboardPage: DashboardPage;
-	navigateToDashboardPage(): Promise<void>;
 }
 
 export const test = base.extend<SigninFixture>({

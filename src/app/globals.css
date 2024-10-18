@@ -50,6 +50,20 @@ body {
 	body {
 		@apply bg-background text-foreground;
 	}
+
+	input:invalid:not(:placeholder-shown) {
+		@apply border-destructive;
+		@apply ring-destructive-foreground;
+	}
+
+	input + p {
+		@apply hidden;
+	}
+
+	input:invalid:not(:placeholder-shown) + p {
+		@apply block;
+		@apply text-destructive;
+	}
 }
 
 ::-webkit-scrollbar-track {
