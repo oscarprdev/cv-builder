@@ -48,7 +48,7 @@ const NewResumeForm = () => {
 				type="text"
 				name="fullName"
 				placeholder="Jhon Doe"
-				pattern="^[\w\+\-]{1,30}$"
+				pattern="^[\w\s\+\-]{1,30}$"
 				errorMessage="Maximum length is 30 characters"
 				required
 				onChange={onInputChange}
@@ -60,7 +60,7 @@ const NewResumeForm = () => {
 				type="text"
 				name="headline"
 				placeholder="Software Engineer"
-				pattern="^[\w\+\-]{1,60}$"
+				pattern="^[\w\s\+\-]{1,60}$"
 				errorMessage="Maximum length is 60 characters"
 				required
 				onChange={onInputChange}
@@ -109,7 +109,7 @@ const NewResumeForm = () => {
 					type="text"
 					name="location"
 					placeholder="Florida, USA"
-					pattern="^[\w\+\-]{1,25}$"
+					pattern="^[\w\s\+\-]{1,25}$"
 					errorMessage="Maximum length is 25 characters"
 					required
 					onChange={onInputChange}

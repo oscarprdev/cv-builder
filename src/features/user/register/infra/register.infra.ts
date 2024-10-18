@@ -1,6 +1,6 @@
 import { UserModel } from '~/features/shared/models/user.model';
 import { CreateUserPayload } from '~/features/user/register/shared/types';
-import { UserClient } from '~/lib/prisma/clients/user/user.client';
+import { IUserClient } from '~/lib/prisma/clients/user/user.client';
 
 export interface IRegisterInfra {
 	getUserByEmail(email: string): Promise<UserModel | null>;
@@ -8,7 +8,7 @@ export interface IRegisterInfra {
 }
 
 export class RegisterInfra implements IRegisterInfra {
-	constructor(private readonly client: UserClient) {}
+	constructor(private readonly client: IUserClient) {}
 
 	async getUserByEmail(email: string): Promise<UserModel | null> {
 		try {
