@@ -6,8 +6,8 @@ import { isError } from '~/lib/utils/either';
 
 class MockCreateResumeRepository implements CreateResumePort {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async createResume(_: CreateResumePayload): Promise<void> {
-		return;
+	async createResume(_: CreateResumePayload) {
+		return { resumeId: '123' };
 	}
 }
 
@@ -22,7 +22,7 @@ describe('Create Resume UseCase', () => {
 	});
 
 	it('Should respond with success message', async () => {
-		spyCreateResume.mockImplementationOnce(() => Promise.resolve());
+		spyCreateResume.mockImplementationOnce(() => Promise.resolve({ resumeId: '123' }));
 
 		const input: CreateResumePayload = {
 			userId: '123',
@@ -39,7 +39,7 @@ describe('Create Resume UseCase', () => {
 
 		if (isError(result)) return;
 
-		expect(result.success).toBe('Resume created successfully');
+		expect(result.success).toEqual({ id: '123' });
 		expect(spyCreateResume).toHaveBeenCalledWith(input);
 	});
 

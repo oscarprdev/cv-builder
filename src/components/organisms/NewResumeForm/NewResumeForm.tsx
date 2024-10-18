@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, { useMemo, useState } from 'react';
 import { createNewResumeAction } from '~/app/actions/create-new-resume.action';
 import { Input } from '~/components/atoms/input/input';
@@ -25,7 +26,9 @@ const initialFormState: FormState = {
 };
 
 const NewResumeForm = () => {
+	const router = useRouter();
 	const [formState, setFormState] = useState<FormState>(initialFormState);
+
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormState(prevState => ({
 			...prevState,
@@ -34,9 +37,10 @@ const NewResumeForm = () => {
 	};
 	const isFormValid = useMemo(() => Object.values(formState).every(Boolean), [formState]);
 
-	const { handleSubmit, isPending } = useActionForm({
+	const { handleSubmit, isPending } = useActionForm<{ id: string }>({
 		action: createNewResumeAction,
 		canSubmit: isFormValid,
+		onSuccessCb: data => data && router.push(`/builder/${data.id}`),
 	});
 
 	return (

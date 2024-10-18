@@ -2,6 +2,7 @@
 
 import InputPassword from '../../molecules/InputPassword/InputPassword';
 import SubmitButton from '../../molecules/SubmitButton/SubmitButton';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useState } from 'react';
 import { Input } from '~/components/atoms/input/input';
@@ -21,6 +22,7 @@ const AuthForm = ({
 	submitText: string;
 	successRoute: string;
 }) => {
+	const route = useRouter();
 	const [formValidations, setFormValidations] = useState({
 		password: false,
 	});
@@ -28,7 +30,7 @@ const AuthForm = ({
 	const { handleSubmit, isPending } = useActionForm({
 		action,
 		canSubmit: Object.values(formValidations).every(Boolean),
-		successRoute,
+		onSuccessCb: () => route.push(successRoute),
 	});
 
 	const onListenPasswordValidations = (isValid: boolean) =>

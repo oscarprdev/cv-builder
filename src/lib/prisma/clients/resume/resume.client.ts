@@ -1,15 +1,16 @@
 import prisma from '../../db';
 import { CreateResumePayload } from '~/features/resume/create/shared/types';
+import { ResumeModel } from '~/features/shared/models/resume.model';
 
 export interface IResumeClient {
-	create(payload: CreateResumePayload): Promise<void>;
+	create(payload: CreateResumePayload): Promise<ResumeModel>;
 }
 
 export class ResumeClient implements IResumeClient {
 	constructor() {}
 
-	async create(payload: CreateResumePayload): Promise<void> {
-		await prisma.resume.create({
+	async create(payload: CreateResumePayload): Promise<ResumeModel> {
+		return await prisma.resume.create({
 			data: {
 				userId: payload.userId,
 				basicInfo: {

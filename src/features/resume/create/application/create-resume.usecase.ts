@@ -4,7 +4,7 @@ import { UseCase } from '~/features/shared/application/usecase';
 import { Either } from '~/lib/utils/either';
 
 export interface ICreateResumeUseCase {
-	execute(input: CreateResumeDto): Promise<Either<string, string>>;
+	execute(input: CreateResumeDto): Promise<Either<string, { id: string }>>;
 }
 
 export class CreateResumeUseCase extends UseCase implements ICreateResumeUseCase {
@@ -12,13 +12,13 @@ export class CreateResumeUseCase extends UseCase implements ICreateResumeUseCase
 		super();
 	}
 
-	async execute(input: CreateResumeDto): Promise<Either<string, string>> {
+	async execute(input: CreateResumeDto): Promise<Either<string, { id: string }>> {
 		try {
 			const payload = this.parseInput<CreateResumeDto>(createResumeDto, input);
 
-			await this.ports.createResume(payload);
+			const result = await this.ports.createResume(payload);
 
-			return this.successResponse('Resume created successfully');
+			return this.successResponse({ id: result.resumeId });
 		} catch (error: unknown) {
 			return this.errorResponse(error, 'Error creating resume');
 		}

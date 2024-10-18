@@ -5,7 +5,11 @@ import { CreateResumePayload } from '../shared/types';
 export class CreateResumeRepository implements CreateResumePort {
 	constructor(private readonly infra: ICreateResumeInfra) {}
 
-	async createResume(input: CreateResumePayload): Promise<void> {
-		await this.infra.createResume(input);
+	async createResume(input: CreateResumePayload) {
+		const res = await this.infra.createResume(input);
+
+		return {
+			resumeId: res.id,
+		};
 	}
 }
