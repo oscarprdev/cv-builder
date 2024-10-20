@@ -39,7 +39,10 @@ const ResumeCard = ({
 	const cardClassNames = cn(themeClasses[theme], commonStyles);
 
 	return basicInfo ? (
-		<Link href={`/builder/${basicInfo.resumeId}`} className={cardClassNames}>
+		<Link
+			data-testid="resume-card-link"
+			href={`/builder/${basicInfo.resumeId}`}
+			className={cardClassNames}>
 			{themeContent[theme](basicInfo)}
 		</Link>
 	) : (
@@ -48,17 +51,19 @@ const ResumeCard = ({
 };
 
 const DefaultResumeCard = ({ basicInfo }: { basicInfo?: ResumeBasicInfoModel }) => (
-	<div>{basicInfo?.headline}</div>
+	<div data-testid="default-resume-card">{basicInfo?.headline}</div>
 );
 
 const LoadingResumeCard = () => (
-	<div className="grid size-full place-items-center">
-		<LoaderCircle className="animate-spin text-muted" />
+	<div data-testid="loading-resume-card" className="grid size-full place-items-center">
+		<LoaderCircle data-testid="loading-icon" className="animate-spin text-muted" />
 	</div>
 );
 
 const ErrorResumeCard = () => (
-	<div className="flex size-full flex-col items-center justify-center gap-2 text-destructive">
+	<div
+		data-testid="error-resume-card"
+		className="flex size-full flex-col items-center justify-center gap-2 text-destructive">
 		<CircleX />
 		<p className="text-center text-xs font-semibold">Something went wrong, try again later.</p>
 	</div>

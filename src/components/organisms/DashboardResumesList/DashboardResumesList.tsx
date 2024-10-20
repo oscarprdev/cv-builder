@@ -1,10 +1,12 @@
 import React from 'react';
 import ResumeCard from '~/components/molecules/ResumeCard/ResumeCard';
-import { provideListResumesUsecase } from '~/features/resume/list';
+import { IListResumesUseCase } from '~/features/resume/list/application/list-resumes.usecase';
 import { isError } from '~/lib/utils/either';
 
-const DashboardResumesList = async ({ userId }: Readonly<{ userId: string }>) => {
-	const usecase = provideListResumesUsecase();
+const DashboardResumesList = async ({
+	userId,
+	usecase,
+}: Readonly<{ userId: string; usecase: IListResumesUseCase }>) => {
 	const result = await usecase.execute({ userId });
 
 	if (isError(result)) {

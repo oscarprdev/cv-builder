@@ -7,6 +7,7 @@ import {
 } from '~/components/organisms/DashboardResumesList/DashboardResumesList';
 import DashboardHomePage from '~/components/pages/DashboardHome/DashboardHome';
 import { provideCountResumesUsecase } from '~/features/resume/count';
+import { provideListResumesUsecase } from '~/features/resume/list';
 import { isError } from '~/lib/utils/either';
 
 export default async function DashboardHome() {
@@ -26,7 +27,7 @@ export default async function DashboardHome() {
 		<DashboardHomePage>
 			{!isError(countResponse) && countResponse.success > 0 && (
 				<Suspense fallback={<FallbackDashboardResumesList />}>
-					<DashboardResumesList userId={userId} />
+					<DashboardResumesList userId={userId} usecase={provideListResumesUsecase()} />
 				</Suspense>
 			)}
 		</DashboardHomePage>
