@@ -4,7 +4,7 @@ import React from 'react';
 import { describe, it } from 'vitest';
 
 describe('Dashboard home page', () => {
-	it('Should render successfuly', () => {
+	it('Should render successfuly', async () => {
 		render(<DashboardHomePage />);
 
 		screen.findByTestId('dashboard-aside');

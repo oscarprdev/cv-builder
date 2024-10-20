@@ -10,6 +10,11 @@ datasource db {
   directUrl = env("DATABASE_URL")
 }
 
+enum ResumeTheme {
+  DEFAULT
+  HARVARD
+}
+
 model User {
   id       String   @id @unique @default(uuid())
   password String
@@ -18,15 +23,25 @@ model User {
 }
 
 model Resume {
-  id        String                   @id @unique @default(uuid())
-  userId    String
-  user      User                     @relation(fields: [userId], references: [id])
-  basicInfo ResumeBasicInformation[]
+  id         String                  @id @unique @default(uuid())
+  userId     String
+  user       User                    @relation(fields: [userId], references: [id])
+  basicInfo  ResumeBasicInformation? @relation()
+  resumeMeta ResumeMeta?             @relation()
+}
+
+model ResumeMeta {
+  id        String      @id @unique @default(uuid())
+  resumeId  String      @unique
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt()
+  theme     ResumeTheme
+  resume    Resume      @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeBasicInformation {
   id           String                    @id @unique @default(uuid())
-  resumeId     String
+  resumeId     String                    @unique
   fullName     String
   headline     String
   email        String
@@ -34,8 +49,7 @@ model ResumeBasicInformation {
   phone        String
   location     String
   imageUrl     String?
-  createdAt    DateTime                  @default(now())
-  resume       Resume                    @relation(fields: [resumeId], references: [id])
+  resume       Resume?                   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   customFields ResumeBasicCustomFields[]
 }
 

@@ -1,18 +1,26 @@
 import prisma from '../../db';
+import { ResumeClientResponse } from './resume.types';
+import { $Enums } from '@prisma/client';
 import { CreateResumePayload } from '~/features/resume/create/shared/types';
-import { ResumeModel } from '~/features/shared/models/resume.model';
+import { ListResumesInput } from '~/features/resume/list/shared/types';
 
 export interface IResumeClient {
-	create(payload: CreateResumePayload): Promise<ResumeModel>;
+	create(payload: CreateResumePayload): Promise<ResumeClientResponse>;
+	list(input: ListResumesInput): Promise<ResumeClientResponse[]>;
 }
 
 export class ResumeClient implements IResumeClient {
 	constructor() {}
 
-	async create(payload: CreateResumePayload): Promise<ResumeModel> {
+	async create(payload: CreateResumePayload): Promise<ResumeClientResponse> {
 		return await prisma.resume.create({
 			data: {
 				userId: payload.userId,
+				resumeMeta: {
+					create: {
+						theme: $Enums.ResumeTheme.DEFAULT,
+					},
+				},
 				basicInfo: {
 					create: {
 						fullName: payload.fullName,
@@ -28,6 +36,19 @@ export class ResumeClient implements IResumeClient {
 				},
 			},
 			include: {
+				resumeMeta: true,
+				basicInfo: true,
+			},
+		});
+	}
+
+	async list(input: ListResumesInput): Promise<ResumeClientResponse[]> {
+		return await prisma.resume.findMany({
+			where: {
+				userId: input.userId,
+			},
+			include: {
+				resumeMeta: true,
 				basicInfo: true,
 			},
 		});

@@ -1,8 +1,7 @@
-import React from 'react';
-import DashboardResumesList from '~/components/organisms/DashboardResumesList/DashboardResumesList';
+import React, { PropsWithChildren } from 'react';
 import NewResumeDialog from '~/components/organisms/NewResumeDialog/NewResumeDialog';
 
-const DashboardHomePage = () => {
+const DashboardHomePage = ({ children }: PropsWithChildren) => {
 	return (
 		<section data-testid="dashboard-home" className="flex w-full flex-col p-5">
 			<h2 className="text-2xl font-bold">Welcome back</h2>
@@ -10,7 +9,7 @@ const DashboardHomePage = () => {
 				<h3 className="text-sm text-muted">Your resumes:</h3>
 				<div className="flex w-full flex-wrap items-center justify-center gap-5 md:justify-start">
 					<NewResumeDialog />
-					<DashboardResumesList />
+					{children}
 				</div>
 			</div>
 		</section>
