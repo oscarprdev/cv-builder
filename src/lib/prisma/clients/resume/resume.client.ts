@@ -3,12 +3,14 @@ import { ResumeClientResponse } from './resume.types';
 import { $Enums } from '@prisma/client';
 import { CountResumesInput } from '~/features/resume/count/shared/types';
 import { CreateResumePayload } from '~/features/resume/create/shared/types';
+import { RetrieveResumeDetailInput } from '~/features/resume/detail/shared/types';
 import { ListResumesInput } from '~/features/resume/list/shared/types';
 
 export interface IResumeClient {
 	create(payload: CreateResumePayload): Promise<ResumeClientResponse>;
 	list(input: ListResumesInput): Promise<ResumeClientResponse[]>;
 	count(input: CountResumesInput): Promise<number>;
+	detail(input: RetrieveResumeDetailInput): Promise<ResumeClientResponse | null>;
 }
 
 export class ResumeClient implements IResumeClient {
@@ -60,6 +62,18 @@ export class ResumeClient implements IResumeClient {
 		return await prisma.resume.count({
 			where: {
 				userId: input.userId,
+			},
+		});
+	}
+
+	async detail(input: RetrieveResumeDetailInput): Promise<ResumeClientResponse | null> {
+		return await prisma.resume.findUnique({
+			where: {
+				id: input.resumeId,
+			},
+			include: {
+				resumeMeta: true,
+				basicInfo: true,
 			},
 		});
 	}
