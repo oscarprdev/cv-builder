@@ -7,8 +7,10 @@ import { cn } from '~/lib/utils/cn';
 export type ResumeCardTheme = Enums.ResumeTheme | 'error' | 'fallback';
 
 const themeClasses: Record<ResumeCardTheme, string> = {
-	[Enums.resumeTheme.DEFAULT]: 'bg-background',
-	[Enums.resumeTheme.HARVARD]: 'bg-background',
+	[Enums.resumeTheme.DEFAULT]:
+		'bg-background duration-300 hover:border-muted-foreground hover:bg-backgroundLight hover:text-white',
+	[Enums.resumeTheme.HARVARD]:
+		'bg-background duration-300 hover:border-muted-foreground hover:bg-backgroundLight hover:text-white',
 	['error']: 'bg-error',
 	['fallback']: 'bg-backgroundLight animate-pulse',
 };
