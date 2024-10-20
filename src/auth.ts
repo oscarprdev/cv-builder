@@ -3,21 +3,24 @@ import NextAuth, { NextAuthResult } from 'next-auth';
 
 const nextAuth = NextAuth({
 	callbacks: {
-		async jwt({ token, user }) {
-			if (user) {
-				token.id = user.id;
-			}
-
-			return token;
-		},
 		session({ session, token }) {
 			if (token && session.user) {
 				session.user.id = token.id as string;
+				session.user.resumesCount = token.resumesCount as number;
 			}
 
 			return session;
 		},
+		async jwt({ token, user }) {
+			if (user) {
+				token.id = user.id;
+				token.resumesCount = user.resumesCount;
+			}
+
+			return token;
+		},
 	},
+
 	session: { strategy: 'jwt' },
 	...authConfig,
 });

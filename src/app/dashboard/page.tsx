@@ -10,6 +10,7 @@ import DashboardHomePage from '~/components/pages/DashboardHome/DashboardHome';
 export default async function DashboardHome() {
 	const session = await auth();
 	const userId = session?.user?.id;
+	const resumesCount = session?.user?.resumesCount;
 
 	if (!userId) {
 		return redirect('/signin');
@@ -17,9 +18,11 @@ export default async function DashboardHome() {
 
 	return (
 		<DashboardHomePage>
-			<Suspense fallback={<FallbackDashboardResumesList />}>
-				<DashboardResumesList userId={userId} />
-			</Suspense>
+			{resumesCount && resumesCount > 0 && (
+				<Suspense fallback={<FallbackDashboardResumesList />}>
+					<DashboardResumesList userId={userId} />
+				</Suspense>
+			)}
 		</DashboardHomePage>
 	);
 }

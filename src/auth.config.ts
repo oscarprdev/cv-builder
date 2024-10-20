@@ -1,3 +1,4 @@
+import { provideCountResumesUsecase } from './features/resume/count';
 import { provideLoginUsecase } from './features/user/login';
 import { isError } from './lib/utils/either';
 import { NextAuthConfig } from 'next-auth';
@@ -17,8 +18,18 @@ export default {
 					throw new Error(response.error);
 				}
 
+				const countResumesUsecase = provideCountResumesUsecase();
+				const countResponse = await countResumesUsecase.execute({
+					userId: response.success.data.id,
+				});
+
+				if (isError(countResponse)) {
+					throw new Error(countResponse.error);
+				}
+
 				return {
 					id: response.success.data.id,
+					resumesCount: countResponse.success,
 				};
 			},
 		}),

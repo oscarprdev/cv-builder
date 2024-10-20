@@ -1,8 +1,7 @@
-import { $Enums } from '@prisma/client';
 import { DefaultUser } from 'next-auth';
 
 interface IUser extends DefaultUser {
-	role?: $Enums.Role;
+	resumesCount: number;
 	id: string;
 }
 declare module 'next-auth' {
