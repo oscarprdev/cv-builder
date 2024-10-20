@@ -12,7 +12,8 @@ export class CreateResumeInfra implements ICreateResumeInfra {
 	async createResume(input: CreateResumePayload): Promise<ResumeClientResponse> {
 		try {
 			return await this.client.create(input);
-		} catch {
+		} catch (error) {
+			console.log(error);
 			throw new Error('Error infra creating resume');
 		}
 	}

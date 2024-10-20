@@ -1,7 +1,7 @@
-import { Resume, ResumeMeta } from '@prisma/client';
-import { ResumeBasicInfoModel } from '~/features/shared/models/resume.model';
+import { Resume } from '@prisma/client';
+import { ResumeBasicInfoModel, ResumeMetaModel } from '~/features/shared/models/resume.model';
 
 export interface ResumeClientResponse extends Resume {
-	resumeMeta: ResumeMeta | null;
+	resumeMeta: ResumeMetaModel | null;
 	basicInfo: ResumeBasicInfoModel | null;
 }

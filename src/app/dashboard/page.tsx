@@ -6,19 +6,25 @@ import {
 	FallbackDashboardResumesList,
 } from '~/components/organisms/DashboardResumesList/DashboardResumesList';
 import DashboardHomePage from '~/components/pages/DashboardHome/DashboardHome';
+import { provideCountResumesUsecase } from '~/features/resume/count';
+import { isError } from '~/lib/utils/either';
 
 export default async function DashboardHome() {
 	const session = await auth();
 	const userId = session?.user?.id;
-	const resumesCount = session?.user?.resumesCount;
 
 	if (!userId) {
 		return redirect('/signin');
 	}
 
+	const countResumesUsecase = provideCountResumesUsecase();
+	const countResponse = await countResumesUsecase.execute({
+		userId,
+	});
+
 	return (
 		<DashboardHomePage>
-			{resumesCount && resumesCount > 0 && (
+			{!isError(countResponse) && countResponse.success > 0 && (
 				<Suspense fallback={<FallbackDashboardResumesList />}>
 					<DashboardResumesList userId={userId} />
 				</Suspense>

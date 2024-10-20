@@ -34,7 +34,7 @@ model ResumeMeta {
   id        String      @id @unique @default(uuid())
   resumeId  String      @unique
   createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt()
+  updatedAt DateTime    @default(now())
   theme     ResumeTheme
   resume    Resume      @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }

@@ -113,7 +113,7 @@ const NewResumeForm = () => {
 					type="text"
 					name="location"
 					placeholder="Florida, USA"
-					pattern="^[\w\s\+\-]{1,25}$"
+					pattern="^[\w\s\+\-,]{1,25}$"
 					errorMessage="Maximum length is 25 characters"
 					required
 					onChange={onInputChange}

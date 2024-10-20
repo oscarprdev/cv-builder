@@ -14,7 +14,11 @@ const DashboardResumesList = async ({ userId }: Readonly<{ userId: string }>) =>
 	return (
 		<>
 			{result.success.map(resume => (
-				<ResumeCard key={resume.id} theme="default" basicInfo={resume.basicInfo} />
+				<ResumeCard
+					key={resume.id}
+					theme={resume.resumeMeta.theme}
+					basicInfo={resume.basicInfo}
+				/>
 			))}
 		</>
 	);

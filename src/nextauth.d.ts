@@ -1,7 +1,6 @@
 import { DefaultUser } from 'next-auth';
 
 interface IUser extends DefaultUser {
-	resumesCount: number;
 	id: string;
 }
 declare module 'next-auth' {

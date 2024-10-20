@@ -6,7 +6,6 @@ const nextAuth = NextAuth({
 		session({ session, token }) {
 			if (token && session.user) {
 				session.user.id = token.id as string;
-				session.user.resumesCount = token.resumesCount as number;
 			}
 
 			return session;
@@ -14,7 +13,6 @@ const nextAuth = NextAuth({
 		async jwt({ token, user }) {
 			if (user) {
 				token.id = user.id;
-				token.resumesCount = user.resumesCount;
 			}
 
 			return token;
