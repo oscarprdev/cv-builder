@@ -1,4 +1,4 @@
-import { provideLoginUsecase } from './features/user/login';
+import { provideLoginUsecase } from './features/auth/signin/providers/sigin.provider';
 import { isError } from './lib/utils/either';
 import { NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';

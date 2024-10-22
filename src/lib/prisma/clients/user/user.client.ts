@@ -1,6 +1,6 @@
 import prisma from '../../db';
 import { User } from '@prisma/client';
-import { CreateUserPayload } from '~/features/user/register/shared/types';
+import { CreateUserPayload } from '~/features/auth/signup/shared/types';
 
 export interface IUserClient {
 	getUserByEmail(email: string): Promise<User | null>;

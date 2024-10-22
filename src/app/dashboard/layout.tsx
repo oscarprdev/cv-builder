@@ -1,14 +1,9 @@
-import DashboardAside from '~/components/organisms/DashboardAside/DashboardAside';
+import Dashboard from '~/features/dashboard/shared/presentation/layout/DashboardLayout';
 
 export default function DashboardLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	return (
-		<main className="flex h-screen w-screen flex-col md:flex-row">
-			<DashboardAside />
-			<section className="flex w-full flex-col p-5">{children}</section>
-		</main>
-	);
+	return <Dashboard>{children}</Dashboard>;
 }

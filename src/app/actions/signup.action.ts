@@ -1,6 +1,6 @@
 'use server';
 
-import { provideRegisterUsecase } from '~/features/user/register';
+import { provideRegisterUsecase } from '~/features/auth/signup';
 import { errorResponse } from '~/lib/utils/either';
 
 export const signupAction = async (formData: FormData) => {

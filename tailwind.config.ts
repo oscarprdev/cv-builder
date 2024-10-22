@@ -2,12 +2,16 @@ import type { Config } from 'tailwindcss';
 import tailwindAnimate from 'tailwindcss-animate';
 
 const config: Config = {
-	content: ['./src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
+	darkMode: ['class'],
+	content: ['./src/features/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
 	theme: {
 		extend: {
 			colors: {
-				background: 'var(--background)',
-				backgroundLight: 'var(--background-light)',
+				background: {
+					DEFAULT: 'var(--background)',
+					light: 'var(--background-light)',
+					hover: 'var(--background-hover)',
+				},
 				foreground: 'var(--foreground)',
 				card: {
 					DEFAULT: 'hsl(var(--card))',
@@ -47,6 +51,16 @@ const config: Config = {
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))',
 				},
+				sidebar: {
+					DEFAULT: 'hsl(var(--sidebar-background))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					accent: 'hsl(var(--sidebar-accent))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					border: 'hsl(var(--sidebar-border))',
+					ring: 'hsl(var(--sidebar-ring))',
+				},
 			},
 			keyframes: {
 				'fade-up': {
@@ -59,9 +73,20 @@ const config: Config = {
 						transform: 'translateY(0)',
 					},
 				},
+				'fade-right': {
+					from: {
+						opacity: '0',
+						transform: 'translateX(-25px)',
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateX(0)',
+					},
+				},
 			},
 			animation: {
 				'fade-up': 'fade-up 0.3s ease-in-out forwards',
+				'fade-right': 'fade-right 0.4s ease-in-out forwards',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

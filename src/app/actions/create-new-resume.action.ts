@@ -1,7 +1,7 @@
 'use server';
 
 import { auth } from '~/auth';
-import { provideCreateResumeUsecase } from '~/features/resume/create';
+import { provideCreateResumeUsecase } from '~/features/dashboard/home/providers/create-resume.provider';
 import { errorResponse } from '~/lib/utils/either';
 
 export const createNewResumeAction = async (formData: FormData) => {
