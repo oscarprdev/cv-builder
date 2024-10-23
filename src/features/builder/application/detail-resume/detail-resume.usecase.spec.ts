@@ -1,7 +1,7 @@
-import { RetrieveResumeDetailInput } from '../shared/types';
 import { DetailResumePort } from './detail-resume.port';
 import { DetailResumeUseCase } from './detail-resume.usecase';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
+import { RetrieveResumeDetailInput } from '~/features/builder/shared/types';
 import { ResumeModel } from '~/features/shared/models/resume.model';
 import { isError } from '~/lib/utils/either';
 

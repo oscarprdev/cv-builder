@@ -1,7 +1,7 @@
-import { CountResumesInput } from '../shared/types';
 import { CountResumesUseCase } from './count-resumes.usecase';
 import { CountResumesPort } from './count.resumes.port';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
+import { CountResumesInput } from '~/features/dashboard/home/shared/types';
 import { isError } from '~/lib/utils/either';
 
 class MockCountResumesRepository implements CountResumesPort {

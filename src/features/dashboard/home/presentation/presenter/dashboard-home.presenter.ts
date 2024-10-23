@@ -1,19 +1,10 @@
 'use server';
 
-import { redirect } from 'next/navigation';
-import { auth } from '~/auth';
 import { provideCountResumesUsecase } from '~/features/dashboard/home/providers/count-resume.provider';
 import { provideListResumesUsecase } from '~/features/dashboard/home/providers/list-resumes.provider';
 import { isError } from '~/lib/utils/either';
 
-export const dashboardHomePresenter = async () => {
-	const session = await auth();
-	const userId = session?.user?.id;
-
-	if (!userId) {
-		return redirect('/signin');
-	}
-
+export const dashboardHomePresenter = async (userId: string) => {
 	const listResumesUsecase = provideListResumesUsecase();
 	const countResumesUsecase = provideCountResumesUsecase();
 

@@ -1,7 +1,7 @@
-import { CreateResumePayload } from '../shared/types';
 import { CreateResumePort } from './create-resume.port';
 import { CreateResumeUseCase, ICreateResumeUseCase } from './create-resume.usecase';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
+import { CreateResumePayload } from '~/features/dashboard/home/shared/types';
 import { isError } from '~/lib/utils/either';
 
 class MockCreateResumeRepository implements CreateResumePort {

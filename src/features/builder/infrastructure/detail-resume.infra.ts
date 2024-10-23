@@ -1,4 +1,4 @@
-import { RetrieveResumeDetailInput } from '../shared/types';
+import { RetrieveResumeDetailInput } from '~/features/builder/shared/types';
 import { ResumeClient } from '~/lib/prisma/clients/resume/resume.client';
 import { ResumeClientResponse } from '~/lib/prisma/clients/resume/resume.types';
 

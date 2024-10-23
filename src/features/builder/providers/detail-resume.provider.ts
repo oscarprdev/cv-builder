@@ -1,6 +1,6 @@
-import { DetailResumeRepository } from '../../builder/repository/detail-resume.repository';
-import { DetailResumeUseCase } from '../application/detail-resume/detail-resume.usecase';
-import { DetailResumeInfra } from '../infrastructure/detail-resume.infra';
+import { DetailResumeUseCase } from '~/features/builder/application/detail-resume/detail-resume.usecase';
+import { DetailResumeInfra } from '~/features/builder/infrastructure/detail-resume.infra';
+import { DetailResumeRepository } from '~/features/builder/repository/detail-resume.repository';
 import { ResumeClient } from '~/lib/prisma/clients/resume/resume.client';
 
 export const provideDetailResumeUsecase = () => {

@@ -1,4 +1,4 @@
-import { RetrieveResumeDetailInput } from '../shared/types';
+import { RetrieveResumeDetailInput } from '~/features/builder/shared/types';
 import { ResumeModel } from '~/features/shared/models/resume.model';
 
 export interface DetailResumePort {

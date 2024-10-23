@@ -1,6 +1,6 @@
-import { DetailResumePort } from '../application/detail-resume.port';
-import { DetailResumeInfra } from '../infra/detail-resume.infra';
-import { RetrieveResumeDetailInput } from '../shared/types';
+import { DetailResumePort } from '~/features/builder/application/detail-resume/detail-resume.port';
+import { DetailResumeInfra } from '~/features/builder/infrastructure/detail-resume.infra';
+import { RetrieveResumeDetailInput } from '~/features/builder/shared/types';
 import { ResumeModel } from '~/features/shared/models/resume.model';
 import { ResumeClientResponse } from '~/lib/prisma/clients/resume/resume.types';
 

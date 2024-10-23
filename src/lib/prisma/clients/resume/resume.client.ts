@@ -1,10 +1,12 @@
-import prisma from '../../db';
 import { ResumeClientResponse } from './resume.types';
 import { $Enums } from '@prisma/client';
 import { RetrieveResumeDetailInput } from '~/features/builder/shared/types';
-import { ListResumesInput } from '~/features/dashboard/home/shared/types';
-import { CountResumesInput } from '~/features/resume/count/shared/types';
-import { CreateResumePayload } from '~/features/resume/create/shared/types';
+import {
+	CountResumesInput,
+	CreateResumePayload,
+	ListResumesInput,
+} from '~/features/dashboard/home/shared/types';
+import prisma from '~/lib/prisma/db';
 
 export interface IResumeClient {
 	create(payload: CreateResumePayload): Promise<ResumeClientResponse>;

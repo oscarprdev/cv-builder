@@ -1,7 +1,7 @@
-import { ListResumesInput } from '../shared/types';
 import { ListResumesPort } from './list-resumes.port';
 import { ListResumesUseCase } from './list-resumes.usecase';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
+import { ListResumesInput } from '~/features/dashboard/home/shared/types';
 import { isError } from '~/lib/utils/either';
 
 class MockListResumesRepository implements ListResumesPort {

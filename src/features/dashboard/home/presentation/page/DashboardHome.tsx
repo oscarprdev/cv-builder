@@ -8,8 +8,8 @@ import {
 import NewResumeDialog from '~/features/dashboard/home/presentation/components/NewResumeDialog/NewResumeDialog';
 import { dashboardHomePresenter } from '~/features/dashboard/home/presentation/presenter/dashboard-home.presenter';
 
-const DashboardHomePage = async () => {
-	const { userId, resumesCount, listResumesUsecase } = await dashboardHomePresenter();
+const DashboardHomePage = async ({ userId }: { userId: string }) => {
+	const { resumesCount, listResumesUsecase } = await dashboardHomePresenter(userId);
 
 	return (
 		<section data-testid="dashboard-home" className="flex w-full flex-col p-5">

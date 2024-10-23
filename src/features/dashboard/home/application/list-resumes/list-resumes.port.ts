@@ -1,4 +1,4 @@
-import { ListResumesInput } from '../shared/types';
+import { ListResumesInput } from '~/features/dashboard/home/shared/types';
 import { ResumeModel } from '~/features/shared/models/resume.model';
 
 export interface ListResumesPort {

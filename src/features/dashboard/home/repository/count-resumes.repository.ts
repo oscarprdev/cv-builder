@@ -1,6 +1,6 @@
-import { CountResumesInput } from '../../../resume/count/shared/types';
-import { CountResumesPort } from '../application/count.resumes.port';
-import { ICountResumesInfra } from '../infra/count-resumes.infra';
+import { CountResumesPort } from '~/features/dashboard/home/application/count-resume/count.resumes.port';
+import { ICountResumesInfra } from '~/features/dashboard/home/infrastructure/count-resumes.infra';
+import { CountResumesInput } from '~/features/dashboard/home/shared/types';
 
 export class CountResumesRepository implements CountResumesPort {
 	constructor(private readonly infra: ICountResumesInfra) {}

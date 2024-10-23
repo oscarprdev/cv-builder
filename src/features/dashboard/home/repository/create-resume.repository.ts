@@ -1,6 +1,6 @@
-import { CreateResumePayload } from '../../../resume/create/shared/types';
-import { CreateResumePort } from '../application/create-resume.port';
-import { ICreateResumeInfra } from '../infra/create-resume.infra';
+import { CreateResumePort } from '~/features/dashboard/home/application/create-resume/create-resume.port';
+import { ICreateResumeInfra } from '~/features/dashboard/home/infrastructure/create-resume.infra';
+import { CreateResumePayload } from '~/features/dashboard/home/shared/types';
 
 export class CreateResumeRepository implements CreateResumePort {
 	constructor(private readonly infra: ICreateResumeInfra) {}

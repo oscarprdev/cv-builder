@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
+import { LoginPort } from '~/features/auth/signin/application/login.port';
 import { LoginInfra } from '~/features/auth/signin/infrastructure/login.infra';
 import { UserModel } from '~/features/shared/models/user.model';
-import { LoginPort } from '~/features/user/login/application/login.port';
 
 export class LoginRepository implements LoginPort {
 	constructor(private readonly infra: LoginInfra) {}
