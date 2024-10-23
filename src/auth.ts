@@ -25,5 +25,5 @@ const nextAuth = NextAuth({
 
 export const signIn: NextAuthResult['signIn'] = nextAuth.signIn;
 export const auth: NextAuthResult['auth'] = nextAuth.auth;
-export const { GET, POST }: NextAuthResult['handlers'] = nextAuth.handlers;
+export const handlers: NextAuthResult['handlers'] = nextAuth.handlers;
 export const signOut: NextAuthResult['signOut'] = nextAuth.signOut;
