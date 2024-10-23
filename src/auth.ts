@@ -3,7 +3,7 @@ import NextAuth, { NextAuthResult } from 'next-auth';
 
 const nextAuth = NextAuth({
 	callbacks: {
-		session({ session, token }) {
+		async session({ session, token }) {
 			if (token && session.user) {
 				session.user.id = token.id as string;
 			}

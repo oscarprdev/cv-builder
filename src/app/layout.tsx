@@ -25,13 +25,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
 	children,
-	params,
+	params: { session },
 }: Readonly<{
 	children: React.ReactNode;
-	params: Promise<{ session: Session }>;
+	params: { session: Session };
 }>) {
-	const { session } = await params;
-
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
