@@ -43,8 +43,16 @@ const AsideTrigger = ({
 }) => {
 	return (
 		<div className={cn(asideOpened ? '-right-14' : '-right-10', 'absolute top-2 flex w-full')}>
-			<Button onClick={onToggleAside} variant={'link'} className="group ml-auto">
-				<PanelLeft size={22} className="text-muted duration-200 group-hover:text-white" />
+			<Button
+				data-testid="aside-trigger"
+				onClick={onToggleAside}
+				variant={'link'}
+				className="group ml-auto">
+				<PanelLeft
+					data-testid="aside-trigger-icon"
+					size={22}
+					className="text-muted duration-200 group-hover:text-white"
+				/>
 			</Button>
 		</div>
 	);
@@ -54,6 +62,7 @@ const AsideHeader = ({ asideOpened }: { asideOpened: boolean }) => {
 	return (
 		<Link href={'/dashboard'} className="flex items-center gap-1 p-[0.45rem] font-bold italic">
 			<Sparkle
+				data-testid="aside-header-icon"
 				size={18}
 				className={cn(asideOpened ? 'rotate-90' : 'rotate-0', 'text-accent duration-200')}
 			/>

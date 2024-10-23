@@ -13,6 +13,7 @@ const BuilderAsideForms = ({
 }) => {
 	return (
 		<section
+			data-testid="aside-forms-container"
 			className={cn(
 				asideOpened ? 'flex w-[450px] animate-fade-right' : 'hidden',
 				'ml-12 flex-col'

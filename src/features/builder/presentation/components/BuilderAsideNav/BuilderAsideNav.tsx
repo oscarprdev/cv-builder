@@ -10,7 +10,9 @@ const BuilderAsideNav = ({
 	onShowSection: (section: string) => void;
 }) => {
 	return (
-		<nav className="absolute z-10 flex h-[80px] w-fit items-center gap-1 overflow-y-scroll bg-background-light pb-2 pt-12 sm:justify-center md:h-full md:flex-col md:items-start md:justify-start md:pb-0 md:pt-2">
+		<nav
+			data-testid="aside-nav"
+			className="absolute z-10 flex h-[80px] w-fit items-center gap-1 overflow-y-scroll bg-background-light pb-2 pt-12 sm:justify-center md:h-full md:flex-col md:items-start md:justify-start md:pb-0 md:pt-2">
 			<AsideTooltip
 				section="basic"
 				onShowSection={onShowSection}

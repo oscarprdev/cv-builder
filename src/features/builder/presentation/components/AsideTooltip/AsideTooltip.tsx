@@ -1,5 +1,10 @@
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip';
 import React, { ReactNode } from 'react';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from '~/features/shared/presentation/components/ui/tooltip/tooltip';
 import { cn } from '~/lib/utils/cn';
 
 const AsideTooltip = ({
@@ -19,6 +24,7 @@ const AsideTooltip = ({
 		<TooltipProvider>
 			<Tooltip>
 				<TooltipTrigger
+					data-testid={`aside-tooltip-trigger-${section}`}
 					onClick={() => onShowSection(section)}
 					className={cn(
 						isActive ? 'bg-background-hover text-accent' : 'text-white',
