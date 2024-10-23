@@ -23,13 +23,15 @@ export const metadata: Metadata = {
 	description: 'Cv builder',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
-	params: { session },
+	params,
 }: Readonly<{
 	children: React.ReactNode;
-	params: { session: Session };
+	params: Promise<{ session: Session }>;
 }>) {
+	const { session } = await params;
+
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
