@@ -1,5 +1,4 @@
 import './globals.css';
-import { Sparkle } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
@@ -33,10 +32,6 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<header className="absolute left-5 top-5 flex items-center gap-1 font-bold italic">
-					<Sparkle size={18} className="text-accent" />
-					Sparkle
-				</header>
 				<SessionProvider session={session}>
 					<QueryProvider>
 						{children}

@@ -1,17 +1,20 @@
 import { ResumeClientResponse } from './resume.types';
 import { $Enums } from '@prisma/client';
-import { RetrieveResumeDetailInput } from '~/features/builder/shared/types';
+import { RetrieveResumeDetailInput } from '~/features/builder/old/types';
 import {
 	CountResumesInput,
 	CreateResumePayload,
 	ListResumesInput,
 } from '~/features/dashboard/home/shared/types';
+import { ResumeBasicInfoModel } from '~/features/shared/models/resume.model';
 import prisma from '~/lib/prisma/db';
 
 export interface IResumeClient {
 	create(payload: CreateResumePayload): Promise<ResumeClientResponse>;
 	list(input: ListResumesInput): Promise<ResumeClientResponse[]>;
 	count(input: CountResumesInput): Promise<number>;
+	describeResumeBasic(input: { resumeId: string }): Promise<ResumeBasicInfoModel | null>;
+
 	detail(input: RetrieveResumeDetailInput): Promise<ResumeClientResponse | null>;
 }
 
@@ -66,6 +69,19 @@ export class ResumeClient implements IResumeClient {
 				userId: input.userId,
 			},
 		});
+	}
+
+	async describeResumeBasic(input: { resumeId: string }): Promise<ResumeBasicInfoModel | null> {
+		const response = await prisma.resume.findUnique({
+			where: {
+				id: input.resumeId,
+			},
+			include: {
+				basicInfo: true,
+			},
+		});
+
+		return response?.basicInfo || null;
 	}
 
 	async detail(input: RetrieveResumeDetailInput): Promise<ResumeClientResponse | null> {

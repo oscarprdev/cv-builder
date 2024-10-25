@@ -86,7 +86,7 @@ const config: Config = {
 			},
 			animation: {
 				'fade-up': 'fade-up 0.3s ease-in-out forwards',
-				'fade-right': 'fade-right 0.4s ease-in-out forwards',
+				'fade-right': 'fade-right 0.2s ease-in-out forwards',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
