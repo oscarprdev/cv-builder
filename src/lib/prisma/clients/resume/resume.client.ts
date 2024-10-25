@@ -1,5 +1,6 @@
 import { ResumeClientResponse } from './resume.types';
 import { $Enums } from '@prisma/client';
+import { UpdateResumeBasicPayload } from '~/features/builder/sidebar/shared/types';
 import {
 	CountResumesInput,
 	CreateResumePayload,
@@ -12,7 +13,10 @@ export interface IResumeClient {
 	create(payload: CreateResumePayload): Promise<ResumeClientResponse>;
 	list(input: ListResumesInput): Promise<ResumeClientResponse[]>;
 	count(input: CountResumesInput): Promise<number>;
+
+	// Resume basic info
 	describeResumeBasic(input: { resumeId: string }): Promise<ResumeBasicInfoModel | null>;
+	updateResumeBasic(payload: UpdateResumeBasicPayload): Promise<void>;
 
 	// detail(input: RetrieveResumeDetailInput): Promise<ResumeClientResponse | null>;
 }
@@ -81,6 +85,26 @@ export class ResumeClient implements IResumeClient {
 		});
 
 		return response?.basicInfo || null;
+	}
+
+	async updateResumeBasic(payload: UpdateResumeBasicPayload): Promise<void> {
+		await prisma.resume.update({
+			where: {
+				id: payload.resumeId,
+			},
+			data: {
+				basicInfo: {
+					update: {
+						fullName: payload.fullName,
+						headline: payload.headline,
+						email: payload.email,
+						website: payload.website,
+						phone: payload.phone,
+						location: payload.location,
+					},
+				},
+			},
+		});
 	}
 
 	// async detail(input: RetrieveResumeDetailInput): Promise<ResumeClientResponse | null> {

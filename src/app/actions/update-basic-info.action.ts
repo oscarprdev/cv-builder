@@ -2,9 +2,10 @@
 
 import { revalidatePath } from 'next/cache';
 import { auth } from '~/auth';
-import { errorResponse, successResponse } from '~/lib/utils/either';
+import { provideUpdateResumeBasicUsecase } from '~/features/builder/sidebar/provider/resume-basic/update-resume-basic.provider';
+import { errorResponse } from '~/lib/utils/either';
 
-export const updateBasicInfoAction = async (formData: FormData) => {
+export const updateBasicInfoAction = async (formData: FormData, resumeId: string) => {
 	const session = await auth();
 
 	const fullName = formData.get('fullName') as string;
@@ -13,6 +14,9 @@ export const updateBasicInfoAction = async (formData: FormData) => {
 	const website = formData.get('website') as string;
 	const phone = formData.get('phone') as string;
 	const location = formData.get('location') as string;
+	const imageUrl = formData.get('imageUrl') as string;
+
+	console.log(imageUrl);
 
 	const userId = session?.user?.id;
 	if (!userId) return errorResponse('User not found');
@@ -21,7 +25,18 @@ export const updateBasicInfoAction = async (formData: FormData) => {
 		return errorResponse('Invalid payload');
 	}
 
+	const usecase = provideUpdateResumeBasicUsecase();
+	const response = await usecase.execute({
+		resumeId,
+		fullName,
+		headline,
+		email,
+		website,
+		phone,
+		location,
+	});
+
 	revalidatePath('/builder');
 
-	return successResponse('Success');
+	return response;
 };

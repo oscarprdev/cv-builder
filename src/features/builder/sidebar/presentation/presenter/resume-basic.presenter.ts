@@ -1,5 +1,5 @@
-import { provideDescribeResumeBasicUsecase } from '../../provider/describe-resume-basic.provider';
 import { z } from 'zod';
+import { provideDescribeResumeBasicUsecase } from '~/features/builder/sidebar/provider/resume-basic/describe-resume-basic.provider';
 import { isError } from '~/lib/utils/either';
 
 export const resumeBasicPresenter = async ({ resumeId }: { resumeId: string }) => {
@@ -23,6 +23,7 @@ export const resumeBasicPresenterDto = z.object({
 	phone: z.string(),
 	location: z.string(),
 	website: z.string(),
+	imageUrl: z.string().nullable(),
 });
 
 export type ResumeBasicPresenter = z.infer<typeof resumeBasicPresenterDto>;

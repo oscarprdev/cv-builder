@@ -1,5 +1,5 @@
-import { DescribeResumeBasicPort } from '../application/resume-basic/describe/describe-resume-basic.port';
-import { IDescribeResumeBasicInfra } from '../infrastructure/describe-resume-basic.infrastructure';
+import { DescribeResumeBasicPort } from '~/features/builder/sidebar/application/resume-basic/describe/describe-resume-basic.port';
+import { IDescribeResumeBasicInfra } from '~/features/builder/sidebar/infrastructure/resume-basic/describe-resume-basic.infrastructure';
 import { ResumeBasicInfoModel } from '~/features/shared/models/resume.model';
 
 export class DescribeResumeBasicRepository implements DescribeResumeBasicPort {

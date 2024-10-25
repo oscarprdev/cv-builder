@@ -2,35 +2,41 @@
 
 import { useFormBasic } from '../../hooks/useFormBasic';
 import { ResumeBasicPresenter } from '../../presenter/resume-basic.presenter';
+import FormBasicImageUrlInput from './FormBasicImageUrlInput';
 import React from 'react';
 import { updateBasicInfoAction } from '~/app/actions/update-basic-info.action';
 import SubmitButton from '~/features/shared/presentation/components/SubmitButton/SubmitButton';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
 
 const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => {
-	const { isPending, isFormValid, onInputChange, handleSubmit } = useFormBasic({
+	const { formState, isPending, isFormValid, onInputChange, handleSubmit } = useFormBasic({
 		defaultValues: basicInfo,
-		action: updateBasicInfoAction,
+		action: (formDate: FormData) => updateBasicInfoAction(formDate, basicInfo.resumeId),
 	});
 
 	return (
 		<form action={handleSubmit} className="flex w-full flex-col gap-5">
+			<FormBasicImageUrlInput
+				imageUrl={formState.imageUrl}
+				isPending={isPending}
+				onInputChange={onInputChange}
+			/>
 			<Input
 				disabled={isPending}
-				value={basicInfo.fullName}
+				value={formState.fullName}
 				id="fullName"
 				label="Full Name"
 				type="text"
 				name="fullName"
 				placeholder="Jhon Doe"
-				pattern="^[\w\s\+\-]{1,30}$"
+				pattern="^.{1,30}$"
 				errorMessage="Maximum length is 30 characters"
 				required
 				onChange={onInputChange}
 			/>
 			<Input
 				disabled={isPending}
-				value={basicInfo.headline}
+				value={formState.headline}
 				id="headline"
 				label="Headline"
 				type="text"
@@ -44,7 +50,7 @@ const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter 
 			<div className="flex w-full items-center gap-2">
 				<Input
 					disabled={isPending}
-					value={basicInfo.email}
+					value={formState.email}
 					id="email"
 					label="Email"
 					type="email"
@@ -56,7 +62,7 @@ const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter 
 				/>
 				<Input
 					disabled={isPending}
-					value={basicInfo.website}
+					value={formState.website}
 					id="website"
 					label="Website"
 					type="url"
@@ -70,7 +76,7 @@ const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter 
 			<div className="mb-2 flex w-full items-center gap-2">
 				<Input
 					disabled={isPending}
-					value={basicInfo.phone}
+					value={formState.phone}
 					id="phone"
 					label="Phone"
 					type="text"
@@ -83,7 +89,7 @@ const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter 
 				/>
 				<Input
 					disabled={isPending}
-					value={basicInfo.location}
+					value={formState.location}
 					id="location"
 					label="Location"
 					type="text"
