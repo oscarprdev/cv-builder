@@ -1,4 +1,4 @@
-import BuilderSidebarFormsList from '../BuilderSidebarFormsList/BuilderSidebarFormsList';
+import BuilderSidebarSectionsList from '../BuilderSidebarSectionsList/BuilderSidebarSectionsList';
 import BuilderSidebarNav from '../BuilderSidebarNav/BuilderSidebarNav';
 import { PanelLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -26,7 +26,7 @@ const BuilderSidebar = ({
 				<PanelLeft size={22} className="text-muted duration-200 group-hover:text-white" />
 			</Link>
 			<BuilderSidebarNav resumeId={resumeId} section={section} opened={opened} />
-			<BuilderSidebarFormsList resumeId={resumeId} section={section} opened={opened} />
+			<BuilderSidebarSectionsList resumeId={resumeId} section={section} opened={opened} />
 		</aside>
 	);
 };
