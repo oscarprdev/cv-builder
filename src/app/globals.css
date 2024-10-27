@@ -50,7 +50,7 @@ body {
 		--sidebar-border: 220 13% 91%;
 		--sidebar-ring: 217.2 91.2% 59.8%;
 	}
-  .dark {
+	.dark {
 		--sidebar-background: 240 5.9% 10%;
 		--sidebar-foreground: 240 4.8% 95.9%;
 		--sidebar-primary: 224.3 76.3% 48%;
@@ -66,6 +66,12 @@ body {
 	* {
 		@apply border-border;
 	}
+	
+	ul,
+	ol {
+		list-style: revert;
+	}
+
 	body {
 		@apply bg-background text-foreground;
 	}

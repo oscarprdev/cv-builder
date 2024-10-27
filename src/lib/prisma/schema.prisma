@@ -23,11 +23,12 @@ model User {
 }
 
 model Resume {
-  id         String                  @id @unique @default(uuid())
-  userId     String
-  user       User                    @relation(fields: [userId], references: [id])
-  basicInfo  ResumeBasicInformation? @relation()
-  resumeMeta ResumeMeta?             @relation()
+  id          String                    @id @unique @default(uuid())
+  userId      String
+  user        User                      @relation(fields: [userId], references: [id])
+  basicInfo   ResumeBasicInformation?   @relation()
+  summaryInfo ResumeSummaryInformation? @relation()
+  resumeMeta  ResumeMeta?               @relation()
 }
 
 model ResumeMeta {
@@ -59,4 +60,11 @@ model ResumeBasicCustomFields {
   label                  String
   href                   String
   ResumeBasicInformation ResumeBasicInformation @relation(fields: [basicInfoId], references: [id])
+}
+
+model ResumeSummaryInformation {
+  id       String  @id @unique @default(uuid())
+  resumeId String  @unique
+  summary  String
+  resume   Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }

@@ -1,13 +1,13 @@
-import { resumeBasicPresenter } from '../../presenter/resume-basic.presenter';
-import ResumeFormBasicClient from './FormBasicClient';
+import FormBasicClient from './FormBasicClient';
 import React from 'react';
+import { resumeBasicPresenter } from '~/features/builder/sidebar/presentation/presenter/resume-basic.presenter';
 
 const FormBasicServer = async ({ resumeId }: { resumeId: string }) => {
 	const response = await resumeBasicPresenter({ resumeId });
 
 	if (typeof response === 'string') return <div>{response}</div>;
 
-	return <ResumeFormBasicClient basicInfo={response} />;
+	return <FormBasicClient basicInfo={response} />;
 };
 
 const FormBasicServerFallback = () => <div>Loading...</div>;

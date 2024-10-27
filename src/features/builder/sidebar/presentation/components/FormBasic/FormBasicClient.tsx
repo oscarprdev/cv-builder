@@ -8,7 +8,7 @@ import { updateBasicInfoAction } from '~/app/actions/update-basic-info.action';
 import SubmitButton from '~/features/shared/presentation/components/SubmitButton/SubmitButton';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
 
-const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => {
+const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => {
 	const { formState, isPending, isFormValid, onInputChange, handleSubmit } = useFormBasic({
 		defaultValues: basicInfo,
 		action: (formData: FormData) =>
@@ -107,4 +107,4 @@ const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter 
 	);
 };
 
-export default ResumeFormBasicClient;
+export default FormBasicClient;

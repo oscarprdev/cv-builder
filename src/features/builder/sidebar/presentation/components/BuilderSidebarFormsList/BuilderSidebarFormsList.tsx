@@ -1,5 +1,6 @@
 import BuilderForm from '../BuilderForm/BuilderForm';
 import { FormBasicServer, FormBasicServerFallback } from '../FormBasic/FormBasicServer';
+import { FormSummaryServer, FormSummaryServerFallback } from '../FormSummary/FormSummaryServer';
 import { Briefcase, DraftingCompass, GraduationCap, Languages, Text, User } from 'lucide-react';
 import React, { Suspense } from 'react';
 
@@ -16,7 +17,9 @@ const BuilderSidebarFormsList = ({
 		<section data-testid="aside-forms-container" className="w-full flex-col p-5">
 			{section === 'summary' ? (
 				<BuilderForm opened={opened} title="Summary" icon={<Text size={20} />}>
-					Summary
+					<Suspense fallback={<FormSummaryServerFallback />}>
+						<FormSummaryServer resumeId={resumeId} />
+					</Suspense>
 				</BuilderForm>
 			) : section === 'experience' ? (
 				<BuilderForm opened={opened} title="Experience" icon={<Briefcase size={20} />}>
