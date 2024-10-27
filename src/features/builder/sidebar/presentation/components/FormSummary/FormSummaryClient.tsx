@@ -14,12 +14,17 @@ const FormSummaryClient = ({ summaryInfo }: { summaryInfo: ResumeSummaryPresente
 	});
 
 	return (
-		<form action={handleSubmit} className="flex w-full flex-col gap-5">
+		<form action={handleSubmit} className="flex w-full flex-col">
 			<Editor
 				onChange={onInputChange}
 				content={summaryInfo.summary || 'Write a short summary of your experience'}
 			/>
-			<SubmitButton disabled={!canSubmit} text="Update summary" isPending={isPending} />
+			<SubmitButton
+				disabled={!canSubmit}
+				text="Update summary"
+				isPending={isPending}
+				className="mt-5"
+			/>
 		</form>
 	);
 };
