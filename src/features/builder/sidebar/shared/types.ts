@@ -8,3 +8,8 @@ export interface UpdateResumeBasicPayload {
 	location: string;
 	imageUrl: string | null;
 }
+
+export interface UpdateResumeSummaryPayload {
+	resumeId: string;
+	summary: string;
+}
