@@ -1,6 +1,6 @@
 import { CreateUserPayload } from '~/features/auth/signup/shared/types';
 import { UserModel } from '~/features/shared/models/user.model';
-import { IUserClient } from '~/lib/prisma/clients/user/user.client';
+import prisma from '~/lib/prisma/db';
 
 export interface IRegisterInfra {
 	getUserByEmail(email: string): Promise<UserModel | null>;
@@ -8,11 +8,15 @@ export interface IRegisterInfra {
 }
 
 export class RegisterInfra implements IRegisterInfra {
-	constructor(private readonly client: IUserClient) {}
+	constructor() {}
 
 	async getUserByEmail(email: string): Promise<UserModel | null> {
 		try {
-			return await this.client.getUserByEmail(email);
+			return await prisma.user.findUnique({
+				where: {
+					email,
+				},
+			});
 		} catch {
 			throw new Error('Infra error getting user by email');
 		}
@@ -20,7 +24,12 @@ export class RegisterInfra implements IRegisterInfra {
 
 	async createUser(payload: CreateUserPayload): Promise<void> {
 		try {
-			await this.client.createUser(payload);
+			await prisma.user.create({
+				data: {
+					email: payload.email,
+					password: payload.password,
+				},
+			});
 		} catch {
 			throw new Error('Infra error creating user');
 		}

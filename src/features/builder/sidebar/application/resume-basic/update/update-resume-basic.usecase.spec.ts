@@ -8,7 +8,6 @@ import { isError } from '~/lib/utils/either';
 
 class MockUpdateResumeBasicRepository implements UpdateResumeBasicPort {
 	async update(payload: UpdateResumeBasicPayload): Promise<void> {
-		console.log('payload', payload);
 		return;
 	}
 

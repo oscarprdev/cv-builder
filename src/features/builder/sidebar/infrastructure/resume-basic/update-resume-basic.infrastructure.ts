@@ -1,6 +1,6 @@
 import { UpdateResumeBasicPayload } from '~/features/builder/sidebar/shared/types';
 import { IBucketClient } from '~/lib/bucket/bucket.client';
-import { ResumeClient } from '~/lib/prisma/clients/resume/resume.client';
+import prisma from '~/lib/prisma/db';
 
 export interface IUpdateResumeBasicInfra {
 	update(payload: UpdateResumeBasicPayload): Promise<void>;
@@ -9,13 +9,47 @@ export interface IUpdateResumeBasicInfra {
 }
 
 export class UpdateResumeBasicInfra implements IUpdateResumeBasicInfra {
-	constructor(
-		private readonly client: ResumeClient,
-		private readonly bucketClient: IBucketClient
-	) {}
+	constructor(private readonly bucketClient: IBucketClient) {}
 
 	async update(payload: UpdateResumeBasicPayload): Promise<void> {
-		await this.client.updateResumeBasic(payload);
+		if (payload.imageUrl) {
+			await prisma.resume.update({
+				where: {
+					id: payload.resumeId,
+				},
+				data: {
+					basicInfo: {
+						update: {
+							fullName: payload.fullName,
+							headline: payload.headline,
+							email: payload.email,
+							website: payload.website,
+							phone: payload.phone,
+							location: payload.location,
+							imageUrl: payload.imageUrl,
+						},
+					},
+				},
+			});
+		} else {
+			await prisma.resume.update({
+				where: {
+					id: payload.resumeId,
+				},
+				data: {
+					basicInfo: {
+						update: {
+							fullName: payload.fullName,
+							headline: payload.headline,
+							email: payload.email,
+							website: payload.website,
+							phone: payload.phone,
+							location: payload.location,
+						},
+					},
+				},
+			});
+		}
 	}
 
 	async uploadImage(imageFile: File, resumeId: string, fileId: string): Promise<string> {

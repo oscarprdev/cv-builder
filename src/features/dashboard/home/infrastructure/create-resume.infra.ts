@@ -1,19 +1,47 @@
 import { CreateResumePayload } from '../shared/types';
-import { IResumeClient } from '~/lib/prisma/clients/resume/resume.client';
-import { ResumeClientResponse } from '~/lib/prisma/clients/resume/resume.types';
+import { $Enums } from '@prisma/client';
+import { ResumeClientResponse } from '~/features/dashboard/shared/types';
+import { DEFAULT_IMAGE_URL } from '~/features/shared/constants';
+import prisma from '~/lib/prisma/db';
 
 export interface ICreateResumeInfra {
-	createResume(input: CreateResumePayload): Promise<ResumeClientResponse>;
+	createResume(payload: CreateResumePayload): Promise<ResumeClientResponse>;
 }
 
 export class CreateResumeInfra implements ICreateResumeInfra {
-	constructor(private readonly client: IResumeClient) {}
+	constructor() {}
 
-	async createResume(input: CreateResumePayload): Promise<ResumeClientResponse> {
+	async createResume(payload: CreateResumePayload): Promise<ResumeClientResponse> {
 		try {
-			return await this.client.create(input);
-		} catch (error) {
-			console.log(error);
+			return await prisma.resume.create({
+				data: {
+					userId: payload.userId,
+					resumeMeta: {
+						create: {
+							theme: $Enums.ResumeTheme.DEFAULT,
+						},
+					},
+					basicInfo: {
+						create: {
+							fullName: payload.fullName,
+							headline: payload.headline,
+							email: payload.email,
+							website: payload.website,
+							phone: payload.phone,
+							location: payload.location,
+							imageUrl: DEFAULT_IMAGE_URL,
+							customFields: {
+								create: [],
+							},
+						},
+					},
+				},
+				include: {
+					resumeMeta: true,
+					basicInfo: true,
+				},
+			});
+		} catch {
 			throw new Error('Error infra creating resume');
 		}
 	}

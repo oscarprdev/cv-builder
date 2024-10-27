@@ -1,14 +1,23 @@
 import { ResumeBasicInfoModel } from '~/features/shared/models/resume.model';
-import { ResumeClient } from '~/lib/prisma/clients/resume/resume.client';
+import prisma from '~/lib/prisma/db';
 
 export interface IDescribeResumeBasicInfra {
 	describe(input: { resumeId: string }): Promise<ResumeBasicInfoModel | null>;
 }
 
 export class DescribeResumeBasicInfra implements IDescribeResumeBasicInfra {
-	constructor(private readonly client: ResumeClient) {}
+	constructor() {}
 
 	async describe(input: { resumeId: string }): Promise<ResumeBasicInfoModel | null> {
-		return await this.client.describeResumeBasic(input);
+		const response = await prisma.resume.findUnique({
+			where: {
+				id: input.resumeId,
+			},
+			include: {
+				basicInfo: true,
+			},
+		});
+
+		return response?.basicInfo || null;
 	}
 }

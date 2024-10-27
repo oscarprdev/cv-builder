@@ -1,16 +1,20 @@
 import { UserModel } from '~/features/shared/models/user.model';
-import { IUserClient } from '~/lib/prisma/clients/user/user.client';
+import prisma from '~/lib/prisma/db';
 
 export interface ILoginInfra {
 	getUserByEmail(email: string): Promise<UserModel | null>;
 }
 
 export class LoginInfra implements ILoginInfra {
-	constructor(private readonly client: IUserClient) {}
+	constructor() {}
 
 	async getUserByEmail(email: string): Promise<UserModel | null> {
 		try {
-			return await this.client.getUserByEmail(email);
+			return await prisma.user.findUnique({
+				where: {
+					email,
+				},
+			});
 		} catch {
 			throw new Error('Infra error getting user by email');
 		}
