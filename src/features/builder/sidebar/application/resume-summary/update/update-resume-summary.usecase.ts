@@ -1,5 +1,5 @@
 import { UpdateResumeSummaryDto, updateResumeSummaryDto } from './update-resume-summary.dto';
-import { UpdateResumeSummaryPort } from './update-resume.port';
+import { UpdateResumeSummaryPort } from './update-resume-summary.port';
 import { UseCase } from '~/features/shared/application/usecase';
 import { Either } from '~/lib/utils/either';
 
