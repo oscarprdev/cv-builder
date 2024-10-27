@@ -42,6 +42,15 @@ export class UpdateResumeBasicUseCase extends UseCase implements IUpdateResumeBa
 		});
 	}
 
+	private async deleteAndUploadImage(imageFile: File, resumeId: string) {
+		const [result] = await Promise.all([
+			this.uploadImage(imageFile, resumeId),
+			this.ports.deleteImage(resumeId),
+		]);
+
+		return result;
+	}
+
 	private async uploadImage(imageFile: File, resumeId: string): Promise<string> {
 		const imageId = await this.ports.uploadImage(
 			imageFile,
@@ -50,15 +59,6 @@ export class UpdateResumeBasicUseCase extends UseCase implements IUpdateResumeBa
 		);
 
 		return this.mapImageId(imageId);
-	}
-
-	private async deleteAndUploadImage(imageFile: File, resumeId: string) {
-		const [result] = await Promise.all([
-			this.uploadImage(imageFile, resumeId),
-			this.ports.deleteImage(resumeId),
-		]);
-
-		return result;
 	}
 
 	private mapImageId(imageId: string) {
