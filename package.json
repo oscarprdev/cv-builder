@@ -18,6 +18,7 @@
 		"schema": "./src/lib/prisma/schema.prisma"
 	},
 	"dependencies": {
+		"@oprdev/cloudflare-r2-storage": "^1.0.3",
 		"@playwright/test": "^1.48.0",
 		"@prisma/adapter-neon": "^5.20.0",
 		"@prisma/client": "^5.20.0",

@@ -13,10 +13,6 @@ export const useFormBasic = ({
 	action: (formData: FormData) => Promise<Either<string, string>>;
 	defaultValues: ResumeBasicPresenter;
 }) => {
-	const [imageUrl, setImageUrl] = useState<{ file: File | null; type: string | null }>({
-		file: null,
-		type: null,
-	});
 	const [formState, setFormState] = useState(defaultValues);
 	const [canSubmit, setCanSubmit] = useState(
 		resumeBasicPresenterDto.safeParse(formState).success
@@ -24,9 +20,6 @@ export const useFormBasic = ({
 
 	const { handleSubmit, isPending } = useActionForm({
 		action: (formData: FormData) => {
-			if (imageUrl.file && imageUrl.type) {
-				formData.append('imageUrl', imageUrl.file, imageUrl.type);
-			}
 			return action(formData);
 		},
 		canSubmit,
@@ -37,7 +30,7 @@ export const useFormBasic = ({
 	const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (
 			event.target instanceof HTMLInputElement &&
-			event.target.name === 'imageUrl' &&
+			event.target.name === 'imageFile' &&
 			event.target.value
 		) {
 			const [file] = Array.from(event.target.files!);
@@ -46,7 +39,6 @@ export const useFormBasic = ({
 				return toast.error('Image size should be less than 2MB');
 			}
 
-			setImageUrl({ file, type: file.type });
 			return setFormState(prev => ({
 				...prev,
 				imageUrl: URL.createObjectURL(file),

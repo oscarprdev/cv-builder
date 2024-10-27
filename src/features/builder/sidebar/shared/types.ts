@@ -1,3 +1,10 @@
-import { UpdateResumeBasicDto } from '~/features/builder/sidebar/application/resume-basic/update/update-resume-basic.dto';
-
-export interface UpdateResumeBasicPayload extends UpdateResumeBasicDto {}
+export interface UpdateResumeBasicPayload {
+	resumeId: string;
+	fullName: string;
+	headline: string;
+	email: string;
+	website: string;
+	phone: string;
+	location: string;
+	imageUrl: string | null;
+}

@@ -6,6 +6,7 @@ import {
 	CreateResumePayload,
 	ListResumesInput,
 } from '~/features/dashboard/home/shared/types';
+import { DEFAULT_IMAGE_URL } from '~/features/shared/constants';
 import { ResumeBasicInfoModel } from '~/features/shared/models/resume.model';
 import prisma from '~/lib/prisma/db';
 
@@ -41,6 +42,7 @@ export class ResumeClient implements IResumeClient {
 						website: payload.website,
 						phone: payload.phone,
 						location: payload.location,
+						imageUrl: DEFAULT_IMAGE_URL,
 						customFields: {
 							create: [],
 						},
@@ -88,23 +90,44 @@ export class ResumeClient implements IResumeClient {
 	}
 
 	async updateResumeBasic(payload: UpdateResumeBasicPayload): Promise<void> {
-		await prisma.resume.update({
-			where: {
-				id: payload.resumeId,
-			},
-			data: {
-				basicInfo: {
-					update: {
-						fullName: payload.fullName,
-						headline: payload.headline,
-						email: payload.email,
-						website: payload.website,
-						phone: payload.phone,
-						location: payload.location,
+		if (payload.imageUrl) {
+			await prisma.resume.update({
+				where: {
+					id: payload.resumeId,
+				},
+				data: {
+					basicInfo: {
+						update: {
+							fullName: payload.fullName,
+							headline: payload.headline,
+							email: payload.email,
+							website: payload.website,
+							phone: payload.phone,
+							location: payload.location,
+							imageUrl: payload.imageUrl,
+						},
 					},
 				},
-			},
-		});
+			});
+		} else {
+			await prisma.resume.update({
+				where: {
+					id: payload.resumeId,
+				},
+				data: {
+					basicInfo: {
+						update: {
+							fullName: payload.fullName,
+							headline: payload.headline,
+							email: payload.email,
+							website: payload.website,
+							phone: payload.phone,
+							location: payload.location,
+						},
+					},
+				},
+			});
+		}
 	}
 
 	// async detail(input: RetrieveResumeDetailInput): Promise<ResumeClientResponse | null> {

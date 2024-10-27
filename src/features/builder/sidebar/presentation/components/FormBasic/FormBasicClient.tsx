@@ -11,7 +11,8 @@ import { Input } from '~/features/shared/presentation/components/ui/input/input'
 const ResumeFormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => {
 	const { formState, isPending, isFormValid, onInputChange, handleSubmit } = useFormBasic({
 		defaultValues: basicInfo,
-		action: (formDate: FormData) => updateBasicInfoAction(formDate, basicInfo.resumeId),
+		action: (formData: FormData) =>
+			updateBasicInfoAction(formData, basicInfo.resumeId, formState.imageUrl),
 	});
 
 	return (

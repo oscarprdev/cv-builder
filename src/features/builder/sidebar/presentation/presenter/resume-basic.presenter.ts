@@ -23,7 +23,7 @@ export const resumeBasicPresenterDto = z.object({
 	phone: z.string(),
 	location: z.string(),
 	website: z.string(),
-	imageUrl: z.string().nullable(),
+	imageUrl: z.string(),
 });
 
 export type ResumeBasicPresenter = z.infer<typeof resumeBasicPresenterDto>;

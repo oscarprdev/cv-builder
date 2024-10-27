@@ -5,7 +5,11 @@ import { auth } from '~/auth';
 import { provideUpdateResumeBasicUsecase } from '~/features/builder/sidebar/provider/resume-basic/update-resume-basic.provider';
 import { errorResponse } from '~/lib/utils/either';
 
-export const updateBasicInfoAction = async (formData: FormData, resumeId: string) => {
+export const updateBasicInfoAction = async (
+	formData: FormData,
+	resumeId: string,
+	imageUrl: string
+) => {
 	const session = await auth();
 
 	const fullName = formData.get('fullName') as string;
@@ -14,9 +18,7 @@ export const updateBasicInfoAction = async (formData: FormData, resumeId: string
 	const website = formData.get('website') as string;
 	const phone = formData.get('phone') as string;
 	const location = formData.get('location') as string;
-	const imageUrl = formData.get('imageUrl') as string;
-
-	console.log(imageUrl);
+	const imageFile = formData.get('imageFile') as File;
 
 	const userId = session?.user?.id;
 	if (!userId) return errorResponse('User not found');
@@ -34,6 +36,8 @@ export const updateBasicInfoAction = async (formData: FormData, resumeId: string
 		website,
 		phone,
 		location,
+		imageUrl,
+		imageFile: imageFile || null,
 	});
 
 	revalidatePath('/builder');
