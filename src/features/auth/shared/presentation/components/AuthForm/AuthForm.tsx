@@ -1,10 +1,10 @@
 'use client';
 
-import SubmitButton from '../../../../../shared/presentation/components/SubmitButton/SubmitButton';
-import { Input } from '../../../../../shared/presentation/components/ui/input/input';
-import { useAuthForm } from '../../hooks/useAuthForm';
-import InputPassword from '../InputPassword/InputPassword';
 import React from 'react';
+import InputPassword from '~/features/auth/shared/presentation/components/InputPassword/InputPassword';
+import { useAuthForm } from '~/features/auth/shared/presentation/hooks/useAuthForm';
+import SubmitButton from '~/features/shared/presentation/components/SubmitButton/SubmitButton';
+import { Input } from '~/features/shared/presentation/components/ui/input/input';
 import { Either } from '~/lib/utils/either';
 
 const AuthForm = ({
@@ -24,6 +24,8 @@ const AuthForm = ({
 		successRoute,
 		action,
 	});
+
+	// const form = useForm();
 
 	return (
 		<form

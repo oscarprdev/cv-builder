@@ -5,7 +5,7 @@ const DashboardAside = () => {
 	return (
 		<aside
 			data-testid="dashboard-aside"
-			className="bg-background-light flex w-full pt-2 md:w-[250px] md:p-5">
+			className="flex w-full bg-background-light pt-2 md:w-[250px] md:p-5">
 			<div
 				aria-label="scroll-horizontal"
 				className="flex h-[80px] w-full items-center gap-1 overflow-y-scroll px-5 pb-2 pt-12 sm:justify-center md:h-full md:flex-col md:items-start md:px-0 md:pb-0">

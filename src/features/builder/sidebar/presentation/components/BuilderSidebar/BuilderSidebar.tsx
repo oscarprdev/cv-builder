@@ -1,5 +1,5 @@
-import BuilderSidebarSectionsList from '../BuilderSidebarSectionsList/BuilderSidebarSectionsList';
 import BuilderSidebarNav from '../BuilderSidebarNav/BuilderSidebarNav';
+import BuilderSidebarSectionsList from '../BuilderSidebarSectionsList/BuilderSidebarSectionsList';
 import { PanelLeft } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';

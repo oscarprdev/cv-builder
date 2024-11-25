@@ -1,6 +1,6 @@
 import React from 'react';
-import ResumeCard from '~/features/dashboard/home/presentation/components/ResumeCard/ResumeCard';
 import { IListResumesUseCase } from '~/features/dashboard/home/application/list-resumes/list-resumes.usecase';
+import ResumeCard from '~/features/dashboard/home/presentation/components/ResumeCard/ResumeCard';
 import { isError } from '~/lib/utils/either';
 
 const DashboardResumesList = async ({

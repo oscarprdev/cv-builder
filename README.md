@@ -4,17 +4,17 @@ Scafolding of a clean architecture Next project to save time and start developin
 
 ## Stack
 
-  - Typescript
-  - TailwindCSS
-  - ShadcnUi
-  - Prisma
-  - Authjs
-  - Zod
-  - React testig library
-  - Vitest
-  - Playwright
-  - Github actions
-  - PostgreSQL (neon database)
+-   Typescript
+-   TailwindCSS
+-   ShadcnUi
+-   Prisma
+-   Authjs
+-   Zod
+-   React testig library
+-   Vitest
+-   Playwright
+-   Github actions
+-   PostgreSQL (neon database)
 
 ## How to start
 

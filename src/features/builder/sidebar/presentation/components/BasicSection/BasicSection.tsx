@@ -12,4 +12,4 @@ const BasicSection = async ({ resumeId }: { resumeId: string }) => {
 
 const BasicSectionFallback = () => <div>Loading...</div>;
 
-export { BasicSection , BasicSectionFallback };
+export { BasicSection, BasicSectionFallback };
