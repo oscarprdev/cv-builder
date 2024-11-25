@@ -4,10 +4,9 @@ import { AuthError } from 'next-auth';
 import { signIn } from '~/auth';
 import { errorResponse, successResponse } from '~/lib/utils/either';
 
-export const loginAction = async (formData: FormData) => {
+export const loginAction = async ({ email, password }: { email: string; password: string }) => {
 	try {
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
+		if (!email || !password) return errorResponse('Missing credentials');
 
 		await signIn('credentials', {
 			email,

@@ -1,5 +1,5 @@
 import { SignInPage } from '../pages/signin.page';
-import { test as base } from 'playwright/test';
+import { test as base } from '@playwright/test';
 
 interface SigninFixture {
 	signInPage: SignInPage;

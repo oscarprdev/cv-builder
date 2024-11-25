@@ -3,10 +3,7 @@
 import { provideRegisterUsecase } from '~/features/auth/signup/providers/signup.provider';
 import { errorResponse } from '~/lib/utils/either';
 
-export const signupAction = async (formData: FormData) => {
-	const email = formData.get('email') as string;
-	const password = formData.get('password') as string;
-
+export const signupAction = async ({ email, password }: { email: string; password: string }) => {
 	if (!email || !password) return errorResponse('Missing credentials');
 
 	const registerUsecase = provideRegisterUsecase();

@@ -17,7 +17,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		label: 'Default',
 		type: 'text',
 		placeholder: 'Placeholder',
 	},
@@ -25,7 +24,6 @@ export const Default: Story = {
 
 export const Email: Story = {
 	args: {
-		label: 'Email',
 		type: 'email',
 		placeholder: 'Enter email',
 	},
@@ -33,7 +31,6 @@ export const Email: Story = {
 
 export const Password: Story = {
 	args: {
-		label: 'Password',
 		type: 'password',
 		placeholder: 'Create password',
 	},

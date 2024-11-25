@@ -18,6 +18,7 @@
 		"schema": "./src/lib/prisma/schema.prisma"
 	},
 	"dependencies": {
+		"@hookform/resolvers": "^3.9.1",
 		"@neondatabase/serverless": "^0.10.3",
 		"@oprdev/cloudflare-r2-storage": "^1.0.3",
 		"@playwright/test": "^1.49.0",
