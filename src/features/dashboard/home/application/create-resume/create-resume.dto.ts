@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const createResumeDto = z.object({
 	userId: z.string(),
-	fullName: z.string(),
+	fullname: z.string(),
 	headline: z.string(),
 	email: z.string().email(),
 	phone: z.string(),

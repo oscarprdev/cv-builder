@@ -23,7 +23,7 @@ export class CreateResumeInfra implements ICreateResumeInfra {
 					},
 					basicInfo: {
 						create: {
-							fullName: payload.fullName,
+							fullName: payload.fullname,
 							headline: payload.headline,
 							email: payload.email,
 							website: payload.website,

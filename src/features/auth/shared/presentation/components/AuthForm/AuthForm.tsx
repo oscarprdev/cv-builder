@@ -15,14 +15,13 @@ import { isError } from '~/lib/utils/either';
 
 const AuthForm = ({ action, header, subHeader, submitText, successRoute }: AuthFormProps) => {
 	const route = useRouter();
-	const form = useForm({
+	const { handleSubmit, formState, register } = useForm({
 		resolver: zodResolver(authSchema),
 		defaultValues: {
 			email: '',
 			password: '',
 		},
 	});
-	const { handleSubmit, formState, register } = form;
 
 	const onSubmit = async (values: z.infer<typeof authSchema>) => {
 		const response = await action(values);

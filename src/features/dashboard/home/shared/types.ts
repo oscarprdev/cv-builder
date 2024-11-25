@@ -4,7 +4,7 @@ export type ListResumesInput = {
 
 export type CreateResumePayload = {
 	userId: string;
-	fullName: string;
+	fullname: string;
 	headline: string;
 	email: string;
 	phone: string;
