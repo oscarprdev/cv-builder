@@ -10,6 +10,6 @@ const FormSummaryServer = async ({ resumeId }: { resumeId: string }) => {
 	return <FormSummaryClient summaryInfo={response} />;
 };
 
-const FormSummaryServerFallback = () => <div>Loading...</div>;
+const FormSummaryFallback = () => <div>Loading...</div>;
 
-export { FormSummaryServer, FormSummaryServerFallback };
+export { FormSummaryServer, FormSummaryFallback };

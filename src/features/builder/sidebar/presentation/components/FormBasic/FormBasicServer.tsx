@@ -2,7 +2,7 @@ import FormBasicClient from './FormBasicClient';
 import React from 'react';
 import { resumeBasicPresenter } from '~/features/builder/sidebar/presentation/presenter/resume-basic.presenter';
 
-const BasicSection = async ({ resumeId }: { resumeId: string }) => {
+const FormBasicServer = async ({ resumeId }: { resumeId: string }) => {
 	const response = await resumeBasicPresenter({ resumeId });
 
 	if (typeof response === 'string') return <div>{response}</div>;
@@ -10,6 +10,6 @@ const BasicSection = async ({ resumeId }: { resumeId: string }) => {
 	return <FormBasicClient basicInfo={response} />;
 };
 
-const BasicSectionFallback = () => <div>Loading...</div>;
+const FormBasicFallback = () => <div>Loading...</div>;
 
-export { BasicSection, BasicSectionFallback };
+export { FormBasicServer, FormBasicFallback };

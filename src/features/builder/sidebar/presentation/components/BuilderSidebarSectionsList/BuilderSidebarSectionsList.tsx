@@ -1,7 +1,7 @@
-import { BasicSection, BasicSectionFallback } from '../BasicSection/BasicSection';
+import { FormBasicFallback, FormBasicServer } from '../FormBasic/FormBasicServer';
 import BuilderSection from '../BuilderSection/BuilderSection';
 import ExperienceSection from '../ExperienceSection/ExperienceSection';
-import { FormSummaryServer, FormSummaryServerFallback } from '../FormSummary/FormSummaryServer';
+import { FormSummaryServer, FormSummaryFallback } from '../FormSummary/FormSummaryServer';
 import { Briefcase, DraftingCompass, GraduationCap, Languages, Text, User } from 'lucide-react';
 import React, { Suspense } from 'react';
 
@@ -18,7 +18,7 @@ const BuilderSidebarSectionsList = ({
 		<section data-testid="aside-forms-container" className="w-full flex-col p-5">
 			{section === 'summary' ? (
 				<BuilderSection opened={opened} title="Summary" icon={<Text size={20} />}>
-					<Suspense fallback={<FormSummaryServerFallback />}>
+					<Suspense fallback={<FormSummaryFallback />}>
 						<FormSummaryServer resumeId={resumeId} />
 					</Suspense>
 				</BuilderSection>
@@ -43,8 +43,8 @@ const BuilderSidebarSectionsList = ({
 				</BuilderSection>
 			) : (
 				<BuilderSection opened={opened} title="Basic" icon={<User size={20} />}>
-					<Suspense fallback={<BasicSectionFallback />}>
-						<BasicSection resumeId={resumeId} />
+					<Suspense fallback={<FormBasicFallback />}>
+						<FormBasicServer resumeId={resumeId} />
 					</Suspense>
 				</BuilderSection>
 			)}
