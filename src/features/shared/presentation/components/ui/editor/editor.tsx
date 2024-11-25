@@ -29,7 +29,7 @@ const Editor = ({ content, onChange }: { content: string; onChange?: (value: str
 		editorProps: {
 			attributes: {
 				placeholder: 'Write a short summary of your experience',
-				class: 'prose prose-sm text-muted max-h-[200px] max-w-none overflow-y-scroll dark:prose-invert focus:outline-none [&_*]:my-2',
+				class: 'overflow-y-scroll prose prose-sm text-muted max-h-[200px] max-w-none dark:prose-invert focus:outline-none [&_*]:my-2',
 			},
 		},
 		content,
