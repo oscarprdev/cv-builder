@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import SubmitButton from '~/features/shared/presentation/components/SubmitButton/SubmitButton';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';

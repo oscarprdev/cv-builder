@@ -1,6 +1,7 @@
+import AddNewCustomItemButton from '../AddNewCustomItemButton/AddNewCustomItemButton';
 import ReorderGroup from '../ReorderGroup/ReorderGroup';
 import { CustomFieldKind } from '../ReorderGroup/types';
-import AddNewExperienceButton from './AddNewExperienceButton';
+import ExperienceForm from './ExperienceForm';
 import React from 'react';
 
 type Experience = {
@@ -46,7 +47,9 @@ const ExperienceSection = () => {
 					},
 				]}
 			/>
-			<AddNewExperienceButton />
+			<AddNewCustomItemButton>
+				<ExperienceForm />
+			</AddNewCustomItemButton>
 		</div>
 	);
 };
