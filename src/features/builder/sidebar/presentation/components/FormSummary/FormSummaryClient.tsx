@@ -54,8 +54,7 @@ const FormSummaryClient = ({ summaryInfo }: { summaryInfo: ResumeSummaryPresente
 				onChange={onInputChange}
 				content={summaryInfo.summary || 'Write a short summary of your experience'}
 			/>
-
-			<Button type="submit" disabled={formSubmitting}>
+			<Button type="submit" disabled={formSubmitting} className="mt-5">
 				{formSubmitting ? (
 					<LoaderCircle data-testid="loader-icon" className="animate-spin" />
 				) : (
