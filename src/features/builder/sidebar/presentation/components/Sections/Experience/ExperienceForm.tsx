@@ -2,16 +2,17 @@
 
 import React from 'react';
 import SubmitButton from '~/features/shared/presentation/components/SubmitButton/SubmitButton';
-import { Input } from '~/features/shared/presentation/components/ui/input/input';
+
+// import { Input } from '~/features/shared/presentation/components/ui/input/input';
 
 const ExperienceForm = () => {
 	const isPending = false;
 	const isFormValid = false;
-	const onInputChange = () => {};
+	// const onInputChange = () => {};
 
 	return (
 		<form>
-			<Input
+			{/* <Input
 				disabled={isPending}
 				value={''}
 				id="fullName"
@@ -49,7 +50,7 @@ const ExperienceForm = () => {
 				errorMessage="Maximum length is 30 characters"
 				required
 				onChange={onInputChange}
-			/>
+			/> */}
 			<SubmitButton text="Update basic info" isPending={isPending} disabled={!isFormValid} />
 		</form>
 	);

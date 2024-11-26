@@ -5,18 +5,14 @@ import React, { MouseEvent, useRef } from 'react';
 import { DEFAULT_IMAGE_URL } from '~/features/shared/constants';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 
-type FormBasicImageUrlInputProps = {
+type ImageUrlInputProps = {
 	isPending: boolean;
 	imageUrl: string;
 
 	onImageUrlChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const FormBasicImageUrlInput = ({
-	isPending,
-	imageUrl,
-	onImageUrlChange,
-}: FormBasicImageUrlInputProps) => {
+const ImageUrlInput = ({ isPending, imageUrl, onImageUrlChange }: ImageUrlInputProps) => {
 	const inputFileRef = useRef<HTMLInputElement>(null);
 
 	const onBrowseImage = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
@@ -65,4 +61,4 @@ const FormBasicImageUrlInput = ({
 	);
 };
 
-export default FormBasicImageUrlInput;
+export default ImageUrlInput;

@@ -1,6 +1,6 @@
 'use client';
 
-import { ResumeSummaryPresenter } from '../../presenter/resume-summary.presenter';
+import { ResumeSummaryPresenter } from '../../../presenter/resume-summary.presenter';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoaderCircle } from 'lucide-react';
 import React from 'react';
@@ -16,7 +16,7 @@ const summarySchema = z.object({
 	summary: z.string().min(1, { message: 'Summary is required' }),
 });
 
-const FormSummaryClient = ({ summaryInfo }: { summaryInfo: ResumeSummaryPresenter }) => {
+const SummaryForm = ({ summaryInfo }: { summaryInfo: ResumeSummaryPresenter }) => {
 	const [formSubmitting, setFormSubmitting] = React.useState(false);
 	const { setValue, getValues } = useForm({
 		resolver: zodResolver(summarySchema),
@@ -65,4 +65,4 @@ const FormSummaryClient = ({ summaryInfo }: { summaryInfo: ResumeSummaryPresente
 	);
 };
 
-export default FormSummaryClient;
+export default SummaryForm;

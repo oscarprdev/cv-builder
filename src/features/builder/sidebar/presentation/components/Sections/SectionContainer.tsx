@@ -4,12 +4,18 @@ import { motion } from 'framer-motion';
 import React, { PropsWithChildren, ReactNode } from 'react';
 import { cn } from '~/lib/utils/cn';
 
-const BuilderSection = ({
+type SectionContainerProps = {
+	title: string;
+	icon: ReactNode;
+	opened: boolean;
+};
+
+const SectionContainer = ({
 	title,
 	icon,
 	opened,
 	children,
-}: PropsWithChildren<{ title: string; icon: ReactNode; opened: boolean }>) => {
+}: PropsWithChildren<SectionContainerProps>) => {
 	return (
 		<motion.section
 			key={title}
@@ -26,4 +32,4 @@ const BuilderSection = ({
 	);
 };
 
-export default BuilderSection;
+export default SectionContainer;

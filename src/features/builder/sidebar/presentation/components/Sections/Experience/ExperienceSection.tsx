@@ -1,8 +1,9 @@
-import AddNewCustomItemButton from '../AddNewCustomItemButton/AddNewCustomItemButton';
-import ReorderGroup from '../ReorderGroup/ReorderGroup';
-import { CustomFieldKind } from '../ReorderGroup/types';
+import ReorderGroup from '../shared/ReorderGroup/ReorderGroup';
+import { CustomFieldKind } from '../shared/ReorderGroup/types';
 import ExperienceForm from './ExperienceForm';
 import React from 'react';
+import { Button } from '~/features/shared/presentation/components/ui/button/button';
+import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
 
 type Experience = {
 	id: string;
@@ -47,9 +48,11 @@ const ExperienceSection = () => {
 					},
 				]}
 			/>
-			<AddNewCustomItemButton>
+			<Dialog
+				trigger={<Button className="mt-5 w-full">Add new experience</Button>}
+				title="New experience">
 				<ExperienceForm />
-			</AddNewCustomItemButton>
+			</Dialog>
 		</div>
 	);
 };

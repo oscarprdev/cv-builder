@@ -1,19 +1,17 @@
-import BuilderSidebarNav from '../BuilderSidebarNav/BuilderSidebarNav';
-import BuilderSidebarSectionsList from '../BuilderSidebarSectionsList/BuilderSidebarSectionsList';
 import { PanelLeft } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
+import SectionsList from '~/features/builder/sidebar/presentation/components/Sections/SectionsList';
+import SidebarNav from '~/features/builder/sidebar/presentation/components/Sidebar/SidebarNav';
 import { cn } from '~/lib/utils/cn';
 
-const BuilderSidebar = ({
-	resumeId,
-	section,
-	opened,
-}: {
+type SidebarProps = {
 	resumeId: string;
 	section: string;
 	opened: boolean;
-}) => {
+};
+
+const Sidebar = ({ resumeId, section, opened }: SidebarProps) => {
 	return (
 		<aside
 			className={cn(
@@ -25,10 +23,10 @@ const BuilderSidebar = ({
 				className={cn('group absolute -right-8 top-2 flex w-fit')}>
 				<PanelLeft size={22} className="text-muted duration-200 group-hover:text-white" />
 			</Link>
-			<BuilderSidebarNav resumeId={resumeId} section={section} opened={opened} />
-			<BuilderSidebarSectionsList resumeId={resumeId} section={section} opened={opened} />
+			<SidebarNav resumeId={resumeId} section={section} opened={opened} />
+			<SectionsList resumeId={resumeId} section={section} opened={opened} />
 		</aside>
 	);
 };
 
-export default BuilderSidebar;
+export default Sidebar;

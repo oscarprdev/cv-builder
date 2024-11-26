@@ -1,5 +1,5 @@
 // import Builder from '~/features/builder/old/presentation/page/BuilderPage';
-import BuilderSidebar from '~/features/builder/sidebar/presentation/components/BuilderSidebar/BuilderSidebar';
+import Sidebar from '~/features/builder/sidebar/presentation/components/Sidebar/Sidebar';
 
 export default async function BuilderPage({
 	params: { id },
@@ -8,5 +8,5 @@ export default async function BuilderPage({
 	params: { id: string };
 	searchParams: { section: string; opened: string };
 }) {
-	return <BuilderSidebar resumeId={id} section={section} opened={opened === 'true'} />;
+	return <Sidebar resumeId={id} section={section} opened={opened === 'true'} />;
 }

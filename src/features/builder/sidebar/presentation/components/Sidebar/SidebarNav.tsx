@@ -1,4 +1,3 @@
-import NavTooltip from '../NavTooltip/NavTooltip';
 import {
 	Briefcase,
 	DraftingCompass,
@@ -9,20 +8,24 @@ import {
 	User,
 } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { ReactNode } from 'react';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from '~/features/shared/presentation/components/ui/tooltip/tooltip';
 import { cn } from '~/lib/utils/cn';
 
 const ICON_SIZE = 20;
 
-const BuilderSidebarNav = ({
-	resumeId,
-	section,
-	opened,
-}: {
+type SidebarNavProps = {
 	resumeId: string;
 	section: string;
 	opened: boolean;
-}) => {
+};
+
+const SidebarNav = ({ resumeId, section, opened }: SidebarNavProps) => {
 	return (
 		<nav
 			data-testid="aside-nav"
@@ -80,4 +83,37 @@ const BuilderSidebarNav = ({
 	);
 };
 
-export default BuilderSidebarNav;
+type NavTooltipProps = {
+	resumeId: string;
+	section: string;
+	icon: ReactNode;
+	content: string;
+	isActive: boolean;
+};
+
+const NavTooltip = ({ resumeId, section, icon, content, isActive }: NavTooltipProps) => {
+	return (
+		<TooltipProvider>
+			<Tooltip>
+				<TooltipTrigger
+					asChild
+					data-testid={`aside-tooltip-trigger-${section}`}
+					className={cn(
+						isActive
+							? 'bg-background-hover text-accent'
+							: 'text-muted hover:text-white',
+						'rounded-full p-2 duration-200 hover:bg-background-hover'
+					)}>
+					<Link href={`/builder/${resumeId}?section=${section}&opened=true`}>{icon}</Link>
+				</TooltipTrigger>
+				<TooltipContent
+					side="right"
+					className="m-2 rounded-md bg-background-hover px-2 py-1">
+					<p className="text-xs text-white">{content}</p>
+				</TooltipContent>
+			</Tooltip>
+		</TooltipProvider>
+	);
+};
+
+export default SidebarNav;

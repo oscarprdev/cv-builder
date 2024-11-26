@@ -1,7 +1,6 @@
 'use client';
 
-import { ResumeBasicPresenter } from '../../presenter/resume-basic.presenter';
-import FormBasicImageUrlInput from './FormBasicImageUrlInput';
+import ImageUrlInput from './ImageUrlInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoaderCircle } from 'lucide-react';
 import React, { startTransition } from 'react';
@@ -9,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { updateBasicInfoAction } from '~/app/actions/update-basic-info.action';
+import { ResumeBasicPresenter } from '~/features/builder/sidebar/presentation/presenter/resume-basic.presenter';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
 import { isError } from '~/lib/utils/either';
@@ -25,7 +25,7 @@ const basicSchema = z.object({
 
 const MAX_FILE_SIZE_MB = 2;
 
-const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => {
+const BasicForm = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => {
 	const [imageFile, setImageFile] = React.useState<File | null>(null);
 	const { handleSubmit, formState, watch, setValue, register } = useForm({
 		resolver: zodResolver(basicSchema),
@@ -73,7 +73,7 @@ const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => 
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col gap-5">
-			<FormBasicImageUrlInput
+			<ImageUrlInput
 				imageUrl={watch('imageUrl')}
 				isPending={formState.isSubmitting}
 				onImageUrlChange={onImageUrlChange}
@@ -210,4 +210,4 @@ const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => 
 	);
 };
 
-export default FormBasicClient;
+export default BasicForm;
