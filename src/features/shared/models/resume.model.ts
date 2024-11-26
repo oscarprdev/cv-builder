@@ -1,6 +1,7 @@
 import {
 	Resume,
 	ResumeBasicInformation,
+	ResumeExperienceInformation,
 	ResumeMeta,
 	ResumeSummaryInformation,
 } from '@prisma/client';
@@ -13,6 +14,7 @@ export interface ResumeModel extends Resume {
 
 export interface ResumeBasicInfoModel extends ResumeBasicInformation {}
 export interface ResumeSummaryInfoModel extends ResumeSummaryInformation {}
+export interface ResumeExperienceInfoModel extends ResumeExperienceInformation {}
 export interface ResumeMetaModel extends ResumeMeta {
 	theme: Enums.ResumeTheme;
 }

@@ -4,10 +4,14 @@ import CustomFieldActions from './CustomFieldActions';
 import { ICustomField } from './types';
 import { Reorder, useDragControls } from 'framer-motion';
 import { GripVertical } from 'lucide-react';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 
-const CustomField = ({ field }: { field: ICustomField }) => {
+type CustomFieldProps = {
+	field: ICustomField;
+};
+
+const CustomField = ({ field, children }: PropsWithChildren<CustomFieldProps>) => {
 	const controls = useDragControls();
 
 	return (
@@ -32,7 +36,9 @@ const CustomField = ({ field }: { field: ICustomField }) => {
 				<p className="text-muted/20 text-sm">{field.title}</p>
 				<p className="text-xs text-muted">{field.subTitle}</p>
 			</div>
-			<CustomFieldActions fieldKind={field.kind} fieldId={field.id} />
+			<CustomFieldActions fieldKind={field.kind} fieldId={field.id} fieldTitle={field.title}>
+				{children}
+			</CustomFieldActions>
 		</Reorder.Item>
 	);
 };

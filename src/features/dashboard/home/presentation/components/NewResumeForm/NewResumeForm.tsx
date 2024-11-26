@@ -46,7 +46,7 @@ const NewResumeForm = () => {
 			<label
 				htmlFor="fullname"
 				className="relative flex w-full flex-col gap-2 text-sm font-semibold">
-				Fullname
+				Full Name
 				<Input
 					{...register('fullname')}
 					disabled={formState.isSubmitting}

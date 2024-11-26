@@ -30,7 +30,7 @@ const SectionsList = ({
 				</SectionContainer>
 			) : section === 'experience' ? (
 				<SectionContainer opened={opened} title="Experience" icon={<Briefcase size={20} />}>
-					<ExperienceSection />
+					<ExperienceSection resumeId={resumeId} />
 				</SectionContainer>
 			) : section === 'education' ? (
 				<SectionContainer

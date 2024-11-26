@@ -92,18 +92,24 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
+type DialogProps = {
+	trigger: React.ReactNode;
+	title: string;
+	subTitle?: string;
+	open?: boolean;
+	onOpenChange?: (open: boolean) => void;
+};
+
 const Dialog = ({
 	trigger,
 	title,
 	subTitle,
+	open,
+	onOpenChange,
 	children,
-}: React.PropsWithChildren<{
-	trigger: React.ReactNode;
-	title: string;
-	subTitle?: string;
-}>) => {
+}: React.PropsWithChildren<DialogProps>) => {
 	return (
-		<DialogWrapper>
+		<DialogWrapper open={open} onOpenChange={onOpenChange}>
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
 			<DialogContent aria-describedby={title}>
 				<DialogHeader>

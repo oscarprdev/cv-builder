@@ -26,7 +26,7 @@ describe('Create Resume UseCase', () => {
 
 		const input: CreateResumePayload = {
 			userId: '123',
-			fullName: 'John Doe',
+			fullname: 'John Doe',
 			headline: 'Senior Developer',
 			email: 'john.doe@example.com',
 			phone: '123-456-7890',
@@ -48,7 +48,7 @@ describe('Create Resume UseCase', () => {
 
 		const input: CreateResumePayload = {
 			userId: '123',
-			fullName: 'John Doe',
+			fullname: 'John Doe',
 			headline: 'Senior Developer',
 			email: 'john.doe@example.com',
 			phone: '123-456-7890',
@@ -68,7 +68,7 @@ describe('Create Resume UseCase', () => {
 	it('Should respond with error message if input is not valid', async () => {
 		const input: CreateResumePayload = {
 			userId: '123',
-			fullName: 'John Doe',
+			fullname: 'John Doe',
 			headline: 'Senior Developer',
 			email: 'not valid email',
 			phone: '123-456-7890',
