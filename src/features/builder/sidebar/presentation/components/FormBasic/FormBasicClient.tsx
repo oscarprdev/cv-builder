@@ -4,7 +4,7 @@ import { ResumeBasicPresenter } from '../../presenter/resume-basic.presenter';
 import FormBasicImageUrlInput from './FormBasicImageUrlInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoaderCircle } from 'lucide-react';
-import React from 'react';
+import React, { startTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -21,23 +21,12 @@ const basicSchema = z.object({
 	phone: z.string({ message: 'Phone number is required' }),
 	location: z.string({ message: 'Location is required' }),
 	imageUrl: z.string(),
-	imageFile: z
-		.any()
-		.nullable()
-		.refine(file => {
-			if ((file && !file.size) || !file) return true;
-
-			return (
-				file.type === 'image/png' ||
-				file.type === 'image/jpeg' ||
-				file.type === 'image/webp'
-			);
-		}),
 });
 
 const MAX_FILE_SIZE_MB = 2;
 
 const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => {
+	const [imageFile, setImageFile] = React.useState<File | null>(null);
 	const { handleSubmit, formState, watch, setValue, register } = useForm({
 		resolver: zodResolver(basicSchema),
 		defaultValues: {
@@ -48,7 +37,6 @@ const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => 
 			phone: basicInfo.phone,
 			location: basicInfo.location,
 			imageUrl: basicInfo.imageUrl,
-			imageFile: null,
 		},
 	});
 
@@ -57,6 +45,8 @@ const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => 
 		Object.keys(values).forEach(key => {
 			formData.append(key, values[key as keyof typeof values]);
 		});
+
+		formData.append('imageFile', imageFile as File);
 
 		const response = await updateBasicInfoAction(formData, basicInfo.resumeId);
 		if (isError(response)) {
@@ -74,11 +64,11 @@ const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => 
 				return toast.error('Image size should be less than 2MB');
 			}
 
-			setValue('imageUrl', URL.createObjectURL(file));
-			return;
+			startTransition(() => {
+				setValue('imageUrl', URL.createObjectURL(file));
+				setImageFile(file);
+			});
 		}
-
-		setValue('imageUrl', event.target.value);
 	};
 
 	return (
@@ -86,7 +76,6 @@ const FormBasicClient = ({ basicInfo }: { basicInfo: ResumeBasicPresenter }) => 
 			<FormBasicImageUrlInput
 				imageUrl={watch('imageUrl')}
 				isPending={formState.isSubmitting}
-				register={register('imageFile')}
 				onImageUrlChange={onImageUrlChange}
 			/>
 			<label

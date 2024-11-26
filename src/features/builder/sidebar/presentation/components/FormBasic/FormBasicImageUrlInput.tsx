@@ -2,21 +2,19 @@
 
 import Image from 'next/image';
 import React, { MouseEvent, useRef } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 import { DEFAULT_IMAGE_URL } from '~/features/shared/constants';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 
 type FormBasicImageUrlInputProps = {
 	isPending: boolean;
 	imageUrl: string;
-	register: UseFormRegisterReturn<'imageFile'>;
+
 	onImageUrlChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const FormBasicImageUrlInput = ({
 	isPending,
 	imageUrl,
-	register,
 	onImageUrlChange,
 }: FormBasicImageUrlInputProps) => {
 	const inputFileRef = useRef<HTMLInputElement>(null);
@@ -55,7 +53,6 @@ const FormBasicImageUrlInput = ({
 			</Button>
 			<input
 				hidden
-				{...register}
 				ref={inputFileRef}
 				disabled={isPending}
 				accept="image/png, image/jpeg, image/webp"

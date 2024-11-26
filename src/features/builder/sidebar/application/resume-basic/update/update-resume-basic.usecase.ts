@@ -20,6 +20,7 @@ export class UpdateResumeBasicUseCase extends UseCase implements IUpdateResumeBa
 			);
 
 			let imageUrlToUpdate = null;
+
 			if (imageUrl && imageFile && imageFile.size > 0) {
 				imageUrlToUpdate = await this.deleteAndUploadImage(imageFile, validInput.resumeId);
 			}
