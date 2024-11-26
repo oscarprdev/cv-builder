@@ -8,19 +8,15 @@ import {
 } from '~/features/shared/presentation/components/ui/tooltip/tooltip';
 import { cn } from '~/lib/utils/cn';
 
-const NavTooltip = ({
-	resumeId,
-	section,
-	icon,
-	content,
-	isActive,
-}: {
+type NavTooltipProps = {
 	resumeId: string;
 	section: string;
 	icon: ReactNode;
 	content: string;
 	isActive: boolean;
-}) => {
+};
+
+const NavTooltip = ({ resumeId, section, icon, content, isActive }: NavTooltipProps) => {
 	return (
 		<TooltipProvider>
 			<Tooltip>
@@ -28,7 +24,9 @@ const NavTooltip = ({
 					asChild
 					data-testid={`aside-tooltip-trigger-${section}`}
 					className={cn(
-						isActive ? 'bg-background-hover text-accent' : 'text-white',
+						isActive
+							? 'bg-background-hover text-accent'
+							: 'text-muted hover:text-white',
 						'rounded-full p-2 duration-200 hover:bg-background-hover'
 					)}>
 					<Link href={`/builder/${resumeId}?section=${section}&opened=true`}>{icon}</Link>

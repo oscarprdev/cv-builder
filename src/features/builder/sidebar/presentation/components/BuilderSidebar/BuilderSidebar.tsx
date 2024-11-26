@@ -17,7 +17,7 @@ const BuilderSidebar = ({
 	return (
 		<aside
 			className={cn(
-				opened ? 'w-[450px]' : 'w-[50px]',
+				opened ? 'w-[480px]' : 'w-[50px]',
 				'relative flex h-screen bg-background-light p-2 duration-200'
 			)}>
 			<Link

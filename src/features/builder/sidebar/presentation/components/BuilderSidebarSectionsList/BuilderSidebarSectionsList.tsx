@@ -1,7 +1,7 @@
-import { FormBasicFallback, FormBasicServer } from '../FormBasic/FormBasicServer';
 import BuilderSection from '../BuilderSection/BuilderSection';
 import ExperienceSection from '../ExperienceSection/ExperienceSection';
-import { FormSummaryServer, FormSummaryFallback } from '../FormSummary/FormSummaryServer';
+import { FormBasicFallback, FormBasicServer } from '../FormBasic/FormBasicServer';
+import { FormSummaryFallback, FormSummaryServer } from '../FormSummary/FormSummaryServer';
 import { Briefcase, DraftingCompass, GraduationCap, Languages, Text, User } from 'lucide-react';
 import React, { Suspense } from 'react';
 
