@@ -18,7 +18,7 @@ export const editNewExperienceAction = async (input: ExperienceFormValues) => {
 		id: input.id,
 		company: input.company,
 		description: input.description,
-		position: input.position,
+		role: input.role,
 		startDate: input.startDate,
 		endDate: input.endDate,
 		website: input.website,

@@ -16,7 +16,7 @@ describe('Create resume experience usecase', () => {
 	const input: CreateResumeExperienceDto = {
 		resumeId: 'resumeId',
 		company: 'company',
-		position: 'position',
+		role: 'role',
 		description: 'description',
 		startDate: 'startDate',
 		endDate: 'endDate',

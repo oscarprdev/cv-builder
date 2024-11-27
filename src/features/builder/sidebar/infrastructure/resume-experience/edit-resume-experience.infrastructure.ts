@@ -15,7 +15,7 @@ export class EditResumeExperienceInfra implements IEditResumeExperienceInfra {
 			},
 			data: {
 				company: payload.company,
-				position: payload.position,
+				role: payload.role,
 				description: payload.description,
 				startDate: payload.startDate,
 				endDate: payload.endDate,

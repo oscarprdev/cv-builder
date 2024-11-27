@@ -22,7 +22,7 @@ type ExperienceSectionProps = {
 
 const defaultExperience: ExperienceFormValues = {
 	company: '',
-	position: '',
+	role: '',
 	startDate: '',
 	endDate: '',
 	website: '',
@@ -40,7 +40,7 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 				field: {
 					id: experience.id,
 					title: experience.company,
-					subTitle: experience.position,
+					subTitle: experience.role,
 					kind: CustomFieldKind.EXPERIENCE,
 				},
 				data: experience,

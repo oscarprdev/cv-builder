@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const createResumeExperienceDto = z.object({
 	resumeId: z.string(),
 	company: z.string(),
-	position: z.string(),
+	role: z.string(),
 	description: z.string(),
 	startDate: z.string(),
 	endDate: z.string(),

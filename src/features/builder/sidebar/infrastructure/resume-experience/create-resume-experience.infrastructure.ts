@@ -13,7 +13,7 @@ export class CreateResumeExperienceInfra implements ICreateResumeExperienceInfra
 			data: {
 				resumeId: payload.resumeId,
 				company: payload.company,
-				position: payload.position,
+				role: payload.role,
 				description: payload.description,
 				startDate: payload.startDate,
 				endDate: payload.endDate,

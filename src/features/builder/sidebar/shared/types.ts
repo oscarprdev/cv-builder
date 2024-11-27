@@ -21,9 +21,14 @@ export interface EditResumeExperiencePayload
 export interface CreateResumeExperiencePayload {
 	resumeId: string;
 	company: string;
-	position: string;
+	role: string;
 	description: string;
 	startDate: string;
 	endDate: string;
 	website?: string;
 }
+
+export type EditResumeExperienceSortOrderPayload = {
+	experienceId: string;
+	sortOrder: number;
+}[];

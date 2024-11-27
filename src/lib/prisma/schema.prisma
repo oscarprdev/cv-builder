@@ -74,10 +74,11 @@ model ResumeExperienceInformation {
   id          String  @id @unique @default(uuid())
   resumeId    String
   company     String
-  position    String
+  role        String
   description String
   startDate   String
   endDate     String
   website     String
+  sortOrder   Int     @default(autoincrement())
   resume      Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }

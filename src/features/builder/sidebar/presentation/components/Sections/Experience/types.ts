@@ -6,9 +6,9 @@ export const experienceSchema = z.object({
 		.string()
 		.min(1, { message: 'Company is required' })
 		.max(50, { message: 'Max 50 characters' }),
-	position: z
+	role: z
 		.string()
-		.min(1, { message: 'Position is required' })
+		.min(1, { message: 'Role is required' })
 		.max(50, { message: 'Max 50 characters' }),
 	startDate: z
 		.string()

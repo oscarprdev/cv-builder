@@ -58,21 +58,21 @@ const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: Experi
 					)}
 				</label>
 				<label
-					htmlFor="position"
+					htmlFor="role"
 					className="relative flex w-full flex-col gap-2 text-sm font-semibold">
-					Position
+					Role
 					<Input
-						{...register('position')}
+						{...register('role')}
 						disabled={formState.isSubmitting}
 						id="position"
 						type="text"
-						name="position"
+						name="role"
 						placeholder="Software Engineer"
 						required
 					/>
-					{formState.errors.position && (
+					{formState.errors.role && (
 						<span className="text-xs text-destructive">
-							{formState.errors.position.message}
+							{formState.errors.role.message}
 						</span>
 					)}
 				</label>
