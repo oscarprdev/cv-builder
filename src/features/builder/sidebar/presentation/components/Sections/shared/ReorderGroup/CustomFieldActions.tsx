@@ -1,10 +1,9 @@
+import EditDialog from '../EditDialog';
 import RemoveDialog from '../RemoveDialog';
 import { CustomFieldKind } from './types';
-import { EllipsisIcon, Pencil } from 'lucide-react';
+import { EllipsisIcon } from 'lucide-react';
 import React, { PropsWithChildren } from 'react';
 import { removeExperienceAction } from '~/app/actions/remove-experience.action';
-import { Button } from '~/features/shared/presentation/components/ui/button/button';
-import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -35,10 +34,6 @@ const CustomFieldActions = ({
 	fieldSubtitle,
 	children,
 }: PropsWithChildren<CustomFieldActionsProps>) => {
-	const [editDialogOpen, setEditDialogOpen] = React.useState(false);
-
-	const onEditDialogCancel = () => setEditDialogOpen(false);
-
 	const removeAction = async () => {
 		switch (fieldKind) {
 			case CustomFieldKind.EXPERIENCE:
@@ -60,25 +55,7 @@ const CustomFieldActions = ({
 							<DropdownMenuLabel>Actions</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem asChild>
-								<Dialog
-									open={editDialogOpen}
-									onOpenChange={setEditDialogOpen}
-									trigger={
-										<Button
-											variant={'ghost'}
-											className="flex w-full items-center justify-start gap-2">
-											<Pencil size={14} />
-											Edit
-										</Button>
-									}
-									title={`Edit ${fieldKind}`}>
-									{children}
-									<div className="mt-3 flex w-full flex-col justify-center gap-3 px-10">
-										<Button variant={'ghost'} onClick={onEditDialogCancel}>
-											Cancel
-										</Button>
-									</div>
-								</Dialog>
+								<EditDialog kind={fieldKind}>{children}</EditDialog>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<RemoveDialog
