@@ -11,12 +11,13 @@ import { Either, isError } from '~/lib/utils/either';
 
 type RemoveDialogProps = {
 	title: string;
+	subtitle: string;
 	idToRemove: string;
 	kind: CustomFieldKind;
 	action: (id: string) => Promise<Either<string, string>>;
 };
 
-const RemoveDialog = ({ title, idToRemove, kind, action }: RemoveDialogProps) => {
+const RemoveDialog = ({ title, subtitle, idToRemove, kind, action }: RemoveDialogProps) => {
 	const [removeDialogOpen, setRemoveDialogOpen] = React.useState(false);
 	const onRemoveDialogCancel = () => setRemoveDialogOpen(false);
 
@@ -48,7 +49,10 @@ const RemoveDialog = ({ title, idToRemove, kind, action }: RemoveDialogProps) =>
 			}
 			title={`Remove ${kind}`}>
 			<p className="text-sm text-muted">Are you sure you want to remove this {kind}?</p>
-			<p className="text-md text-center">{title}</p>
+			<p className="text-center text-sm">
+				{title} - {subtitle}
+			</p>
+
 			<div className="mt-3 flex w-full flex-col justify-center gap-3 px-10">
 				<Button onClick={onRemoveDialogConfirm}>{isPending ? 'loading' : 'Remove'}</Button>
 				<Button variant={'ghost'} onClick={onRemoveDialogCancel}>

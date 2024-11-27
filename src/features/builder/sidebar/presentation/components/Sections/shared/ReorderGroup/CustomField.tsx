@@ -36,7 +36,11 @@ const CustomField = ({ field, children }: PropsWithChildren<CustomFieldProps>) =
 				<p className="text-muted/20 text-sm">{field.title}</p>
 				<p className="text-xs text-muted">{field.subTitle}</p>
 			</div>
-			<CustomFieldActions fieldKind={field.kind} fieldId={field.id} fieldTitle={field.title}>
+			<CustomFieldActions
+				fieldKind={field.kind}
+				fieldId={field.id}
+				fieldTitle={field.title}
+				fieldSubtitle={field.subTitle}>
 				{children}
 			</CustomFieldActions>
 		</Reorder.Item>

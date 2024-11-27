@@ -24,6 +24,7 @@ import { errorResponse } from '~/lib/utils/either';
 type CustomFieldActionsProps = {
 	fieldKind: CustomFieldKind;
 	fieldTitle: string;
+	fieldSubtitle: string;
 	fieldId: string;
 };
 
@@ -31,6 +32,7 @@ const CustomFieldActions = ({
 	fieldKind,
 	fieldId,
 	fieldTitle,
+	fieldSubtitle,
 	children,
 }: PropsWithChildren<CustomFieldActionsProps>) => {
 	const [editDialogOpen, setEditDialogOpen] = React.useState(false);
@@ -81,6 +83,7 @@ const CustomFieldActions = ({
 							<DropdownMenuItem asChild>
 								<RemoveDialog
 									title={fieldTitle}
+									subtitle={fieldSubtitle}
 									idToRemove={fieldId}
 									kind={fieldKind}
 									action={removeAction}
