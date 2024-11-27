@@ -24,13 +24,15 @@ const SectionsList = ({
 		<section data-testid="aside-forms-container" className="w-full flex-col p-5">
 			{section === 'summary' ? (
 				<SectionContainer opened={opened} title="Summary" icon={<Text size={20} />}>
-					<Suspense fallback={<SummarySectionFallback />}>
+					<Suspense key={crypto.randomUUID()} fallback={<SummarySectionFallback />}>
 						<SummarySection resumeId={resumeId} />
 					</Suspense>
 				</SectionContainer>
 			) : section === 'experience' ? (
 				<SectionContainer opened={opened} title="Experience" icon={<Briefcase size={20} />}>
-					<ExperienceSection resumeId={resumeId} />
+					<Suspense key={crypto.randomUUID()} fallback={<p>Loading...</p>}>
+						<ExperienceSection resumeId={resumeId} />
+					</Suspense>
 				</SectionContainer>
 			) : section === 'education' ? (
 				<SectionContainer
@@ -52,7 +54,7 @@ const SectionsList = ({
 				</SectionContainer>
 			) : (
 				<SectionContainer opened={opened} title="Basic" icon={<User size={20} />}>
-					<Suspense fallback={<BasicSectionFallback />}>
+					<Suspense key={crypto.randomUUID()} fallback={<BasicSectionFallback />}>
 						<BasicSection resumeId={resumeId} />
 					</Suspense>
 				</SectionContainer>

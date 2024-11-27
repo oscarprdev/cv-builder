@@ -19,8 +19,6 @@ export const createNewResumeAction = async ({
 	const userId = session?.user?.id;
 	if (!userId) return errorResponse('User not found');
 
-	console.log(fullname, headline, email, website, phone, location);
-
 	if (!fullname || !headline || !email || !website || !phone || !location) {
 		console.log('Invalid payload');
 		return errorResponse('Invalid payload');

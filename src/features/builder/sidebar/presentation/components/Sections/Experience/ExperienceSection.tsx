@@ -2,19 +2,11 @@
 
 import { resumeExperiencePresenter } from '../../../presenter/resume-experience.presenter';
 import ReorderGroup from '../shared/ReorderGroup/ReorderGroup';
-import { CustomFieldKind } from '../shared/ReorderGroup/types';
-import ExperienceForm from './ExperienceForm';
+import { CustomFieldKind, ICustomField } from '../shared/ReorderGroup/types';
+import NewExperience from './NewExperience';
 import React from 'react';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
-
-type ExperienceCustomField = {
-	id: string;
-	title: string;
-	subTitle: string;
-
-	kind: CustomFieldKind.EXPERIENCE;
-};
 
 type ExperienceSectionProps = {
 	resumeId: string;
@@ -29,19 +21,21 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 		experience =>
 			({
 				id: experience.id,
-				title: experience.title,
-				subTitle: experience.description,
+				title: experience.company,
+				subTitle: experience.position,
 				kind: CustomFieldKind.EXPERIENCE,
-			}) satisfies ExperienceCustomField
+			}) satisfies ICustomField
 	);
 
 	return (
 		<div>
-			<ReorderGroup<ExperienceCustomField> fields={experienceCustomFields} />
+			<ReorderGroup fields={experienceCustomFields}>
+				{/* <p>Edit experience form</p> */}
+			</ReorderGroup>
 			<Dialog
 				trigger={<Button className="mt-5 w-full">Add new experience</Button>}
 				title="New experience">
-				<ExperienceForm />
+				<NewExperience resumeId={resumeId} />
 			</Dialog>
 		</div>
 	);

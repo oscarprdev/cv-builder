@@ -13,3 +13,13 @@ export interface UpdateResumeSummaryPayload {
 	resumeId: string;
 	summary: string;
 }
+
+export interface CreateResumeExperiencePayload {
+	resumeId: string;
+	company: string;
+	position: string;
+	description: string;
+	startDate: string;
+	endDate: string;
+	website?: string;
+}

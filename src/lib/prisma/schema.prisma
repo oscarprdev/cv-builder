@@ -71,14 +71,13 @@ model ResumeSummaryInformation {
 }
 
 model ResumeExperienceInformation {
-  id           String  @id @unique @default(uuid())
-  experienceId String  @unique
-  title        String
-  role         String
-  description  String
-  startDate    String
-  endDate      String
-  company      String
-  website      String
-  resume       Resume? @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  id          String  @id @unique @default(uuid())
+  resumeId    String
+  company     String
+  position    String
+  description String
+  startDate   String
+  endDate     String
+  website     String
+  resume      Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }

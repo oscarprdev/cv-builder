@@ -8,6 +8,8 @@ export const resumeExperiencePresenter = async ({ resumeId }: { resumeId: string
 
 	if (isError(response)) return response.error;
 
+	console.log(response);
+
 	const validResponse = resumeExperiencePresenterDto.safeParse(response.success);
 
 	if (!validResponse.success) return 'Invalid resume experience info';
@@ -17,14 +19,13 @@ export const resumeExperiencePresenter = async ({ resumeId }: { resumeId: string
 
 export const resumeExperiencePresenterDto = z.array(
 	z.object({
-		resumeId: z.string(),
 		id: z.string(),
-		title: z.string(),
+		resumeId: z.string(),
 		company: z.string(),
+		position: z.string(),
 		description: z.string(),
 		startDate: z.string(),
 		endDate: z.string(),
-		location: z.string(),
 		website: z.string(),
 	})
 );
