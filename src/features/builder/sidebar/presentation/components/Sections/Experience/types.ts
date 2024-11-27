@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const experienceSchema = z.object({
+	id: z.string().optional(),
 	company: z
 		.string()
 		.min(1, { message: 'Company is required' })

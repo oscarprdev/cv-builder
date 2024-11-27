@@ -1,8 +1,9 @@
 'use client';
 
+import ExperienceForm from '../Experience/ExperienceForm';
 import { Pencil } from 'lucide-react';
 import React from 'react';
-import EditExperience from '~/features/builder/sidebar/presentation/components/Sections/Experience/EditExperience';
+import { editNewExperienceAction } from '~/app/actions/edit-experience.action';
 import {
 	CustomFieldDataCommon,
 	CustomFieldKind,
@@ -25,7 +26,12 @@ function EditDialog<T extends CustomFieldDataCommon>({ kind, data }: EditDialogP
 			case CustomFieldKind.EXPERIENCE:
 				return (
 					isExperienceData(data) && (
-						<EditExperience resumeId={data.resumeId} experience={data} />
+						<ExperienceForm
+							submitText="Edit experience"
+							resumeId={data.resumeId}
+							experienceInfo={data}
+							action={editNewExperienceAction}
+						/>
 					)
 				);
 			default:

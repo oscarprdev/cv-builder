@@ -8,8 +8,6 @@ export const resumeExperiencePresenter = async ({ resumeId }: { resumeId: string
 
 	if (isError(response)) return response.error;
 
-	console.log(response);
-
 	const validResponse = resumeExperiencePresenterDto.safeParse(response.success);
 
 	if (!validResponse.success) return 'Invalid resume experience info';

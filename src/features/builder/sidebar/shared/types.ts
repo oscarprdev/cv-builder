@@ -14,6 +14,10 @@ export interface UpdateResumeSummaryPayload {
 	summary: string;
 }
 
+export interface EditResumeExperiencePayload
+	extends Omit<CreateResumeExperiencePayload, 'resumeId'> {
+	id: string;
+}
 export interface CreateResumeExperiencePayload {
 	resumeId: string;
 	company: string;

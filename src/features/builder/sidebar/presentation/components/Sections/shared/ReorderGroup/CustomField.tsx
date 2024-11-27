@@ -18,7 +18,7 @@ function CustomField<T extends CustomFieldDataCommon>({
 
 	return (
 		<Reorder.Item
-			className="border-muted/20 flex items-center gap-2 border pr-2"
+			className="border-muted/20 flex items-center gap-2 border bg-background pr-2"
 			value={field}
 			dragListener={false}
 			dragControls={controls}

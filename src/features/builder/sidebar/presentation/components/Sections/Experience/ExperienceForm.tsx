@@ -5,23 +5,35 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LoaderCircle } from 'lucide-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import Editor from '~/features/shared/presentation/components/ui/editor/editor';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
+import { Either, isError } from '~/lib/utils/either';
 
 type ExperienceFormProps = {
-	onSubmit: (values: ExperienceFormValues) => void;
+	resumeId: string;
 	experienceInfo: ExperienceFormValues;
 	submitText: string;
+	action: (input: ExperienceFormValues, resumeId: string) => Promise<Either<string, string>>;
 };
 
-const ExperienceForm = ({ experienceInfo, submitText, onSubmit }: ExperienceFormProps) => {
+const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: ExperienceFormProps) => {
 	const { handleSubmit, register, formState, setValue } = useForm({
 		resolver: zodResolver(experienceSchema),
 		defaultValues: experienceInfo,
 	});
 
 	const onEditorChange = (value: string) => setValue('description', value);
+
+	const onSubmit = async (values: ExperienceFormValues) => {
+		const response = await action(values, resumeId);
+		if (isError(response)) {
+			toast.error(response.error);
+		} else {
+			toast.success(response.success);
+		}
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="space-y-5">

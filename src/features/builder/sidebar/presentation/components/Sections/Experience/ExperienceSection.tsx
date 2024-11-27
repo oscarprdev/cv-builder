@@ -1,7 +1,9 @@
 'use server';
 
-import NewExperience from './NewExperience';
+import ExperienceForm from './ExperienceForm';
+import { ExperienceFormValues } from './types';
 import React from 'react';
+import { createNewExperienceAction } from '~/app/actions/create-new-experience.action';
 import ReorderGroup from '~/features/builder/sidebar/presentation/components/Sections/shared/ReorderGroup/ReorderGroup';
 import {
 	CustomFieldKind,
@@ -16,6 +18,15 @@ import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dial
 
 type ExperienceSectionProps = {
 	resumeId: string;
+};
+
+const defaultExperience: ExperienceFormValues = {
+	company: '',
+	position: '',
+	startDate: '',
+	endDate: '',
+	website: '',
+	description: '',
 };
 
 const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
@@ -42,7 +53,12 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 			<Dialog
 				trigger={<Button className="mt-5 w-full">Add new experience</Button>}
 				title="New experience">
-				<NewExperience resumeId={resumeId} />
+				<ExperienceForm
+					resumeId={resumeId}
+					experienceInfo={defaultExperience}
+					action={createNewExperienceAction}
+					submitText="Create new experience"
+				/>
 			</Dialog>
 		</div>
 	);
