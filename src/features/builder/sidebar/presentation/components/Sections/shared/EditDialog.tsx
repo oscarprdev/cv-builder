@@ -8,14 +8,8 @@ type EditDialogProps = {
 	kind: CustomFieldKind;
 };
 const EditDialog = ({ kind, children }: PropsWithChildren<EditDialogProps>) => {
-	const [editDialogOpen, setEditDialogOpen] = React.useState(false);
-
-	const onEditDialogCancel = () => setEditDialogOpen(false);
-
 	return (
 		<Dialog
-			open={editDialogOpen}
-			onOpenChange={setEditDialogOpen}
 			trigger={
 				<Button variant={'ghost'} className="flex w-full items-center justify-start gap-2">
 					<Pencil size={14} />
@@ -24,11 +18,6 @@ const EditDialog = ({ kind, children }: PropsWithChildren<EditDialogProps>) => {
 			}
 			title={`Edit ${kind}`}>
 			{children}
-			<div className="mt-3 flex w-full flex-col justify-center gap-3 px-10">
-				<Button variant={'ghost'} onClick={onEditDialogCancel}>
-					Cancel
-				</Button>
-			</div>
 		</Dialog>
 	);
 };

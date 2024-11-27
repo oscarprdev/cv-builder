@@ -11,19 +11,14 @@ import { Input } from '~/features/shared/presentation/components/ui/input/input'
 
 type ExperienceFormProps = {
 	onSubmit: (values: ExperienceFormValues) => void;
+	experienceInfo: ExperienceFormValues;
+	submitText: string;
 };
 
-const NewExperienceForm = ({ onSubmit }: ExperienceFormProps) => {
+const ExperienceForm = ({ experienceInfo, submitText, onSubmit }: ExperienceFormProps) => {
 	const { handleSubmit, register, formState, setValue } = useForm({
 		resolver: zodResolver(experienceSchema),
-		defaultValues: {
-			company: '',
-			position: '',
-			startDate: '',
-			endDate: '',
-			website: '',
-			description: '',
-		},
+		defaultValues: experienceInfo,
 	});
 
 	const onEditorChange = (value: string) => setValue('description', value);
@@ -132,7 +127,7 @@ const NewExperienceForm = ({ onSubmit }: ExperienceFormProps) => {
 				htmlFor="description"
 				className="relative flex w-full flex-col text-sm font-semibold">
 				<p className="mb-3">Description</p>
-				<Editor onChange={onEditorChange} content={''} />
+				<Editor onChange={onEditorChange} content={experienceInfo.description} />
 				{formState.errors.description && (
 					<span className="text-xs text-destructive">
 						{formState.errors.description.message}
@@ -144,7 +139,7 @@ const NewExperienceForm = ({ onSubmit }: ExperienceFormProps) => {
 					{formState.isSubmitting ? (
 						<LoaderCircle data-testid="loader-icon" className="animate-spin" />
 					) : (
-						'Create '
+						submitText
 					)}
 				</Button>
 			</div>
@@ -152,4 +147,4 @@ const NewExperienceForm = ({ onSubmit }: ExperienceFormProps) => {
 	);
 };
 
-export default NewExperienceForm;
+export default ExperienceForm;

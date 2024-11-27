@@ -1,18 +1,39 @@
 'use client';
 
+import { ExperiencePresenter } from '../../../../presenter/resume-experience.presenter';
+import EditExperience from '../../Experience/EditExperience';
 import CustomFieldActions from './CustomFieldActions';
-import { ICustomField } from './types';
+import { CustomFieldDataCommon, CustomFieldKind, ICustomField } from './types';
 import { Reorder, useDragControls } from 'framer-motion';
 import { GripVertical } from 'lucide-react';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 
-type CustomFieldProps = {
-	field: ICustomField;
+type CustomFieldProps<T extends CustomFieldDataCommon> = {
+	customField: ICustomField<T>;
 };
 
-const CustomField = ({ field, children }: PropsWithChildren<CustomFieldProps>) => {
+function CustomField<T extends CustomFieldDataCommon>({
+	customField: { field, data },
+}: CustomFieldProps<T>) {
 	const controls = useDragControls();
+
+	const isExperienceData = React.useCallback((data: T): data is T & ExperiencePresenter => {
+		return 'company' in data;
+	}, []);
+
+	const editDialog = React.useMemo(() => {
+		switch (field.kind) {
+			case CustomFieldKind.EXPERIENCE:
+				return (
+					isExperienceData(data) && (
+						<EditExperience resumeId={data.resumeId} experience={data} />
+					)
+				);
+			default:
+				return <p>Invalid field kind</p>;
+		}
+	}, [field.kind, data, isExperienceData]);
 
 	return (
 		<Reorder.Item
@@ -41,10 +62,10 @@ const CustomField = ({ field, children }: PropsWithChildren<CustomFieldProps>) =
 				fieldId={field.id}
 				fieldTitle={field.title}
 				fieldSubtitle={field.subTitle}>
-				{children}
+				{editDialog}
 			</CustomFieldActions>
 		</Reorder.Item>
 	);
-};
+}
 
 export default CustomField;

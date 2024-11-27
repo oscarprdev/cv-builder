@@ -1,6 +1,6 @@
 'use client';
 
-import NewExperienceForm from './NewExperienceForm';
+import ExperienceForm from './ExperienceForm';
 import { ExperienceFormValues } from './types';
 import React from 'react';
 import { toast } from 'sonner';
@@ -12,6 +12,15 @@ type NewExperienceProps = {
 };
 
 const NewExperience = ({ resumeId }: NewExperienceProps) => {
+	const defaultValues: ExperienceFormValues = {
+		company: '',
+		position: '',
+		startDate: '',
+		endDate: '',
+		website: '',
+		description: '',
+	};
+
 	const onSubmit = async (values: ExperienceFormValues) => {
 		const response = await createNewExperienceAction(values, resumeId);
 
@@ -22,7 +31,9 @@ const NewExperience = ({ resumeId }: NewExperienceProps) => {
 		}
 	};
 
-	return <NewExperienceForm onSubmit={onSubmit} />;
+	return (
+		<ExperienceForm onSubmit={onSubmit} experienceInfo={defaultValues} submitText="Create" />
+	);
 };
 
 export default NewExperience;

@@ -17,17 +17,18 @@ export const resumeExperiencePresenter = async ({ resumeId }: { resumeId: string
 	return validResponse.data;
 };
 
-export const resumeExperiencePresenterDto = z.array(
-	z.object({
-		id: z.string(),
-		resumeId: z.string(),
-		company: z.string(),
-		position: z.string(),
-		description: z.string(),
-		startDate: z.string(),
-		endDate: z.string(),
-		website: z.string(),
-	})
-);
+export const experienceDto = z.object({
+	id: z.string(),
+	resumeId: z.string(),
+	company: z.string(),
+	position: z.string(),
+	description: z.string(),
+	startDate: z.string(),
+	endDate: z.string(),
+	website: z.string(),
+});
 
+export const resumeExperiencePresenterDto = z.array(experienceDto);
+
+export type ExperiencePresenter = z.infer<typeof experienceDto>;
 export type ResumeExperiencePresenter = z.infer<typeof resumeExperiencePresenterDto>;

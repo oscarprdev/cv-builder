@@ -1,21 +1,18 @@
 'use client';
 
 import CustomField from './CustomField';
-import { ICustomField } from './types';
+import { CustomFieldDataCommon, ICustomField } from './types';
 import { AnimatePresence, Reorder } from 'framer-motion';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { useState } from 'react';
 
-type ReorderGroupProps<T extends ICustomField> = {
-	fields: T[];
+type ReorderGroupProps<T extends CustomFieldDataCommon> = {
+	fields: ICustomField<T>[];
 };
 
-function ReorderGroup<T extends ICustomField>({
-	fields,
-	children,
-}: PropsWithChildren<ReorderGroupProps<T>>) {
+function ReorderGroup<T extends CustomFieldDataCommon>({ fields }: ReorderGroupProps<T>) {
 	const [fieldsState, setFieldsState] = useState(fields);
 
-	const onReorderCustomFields = (values: T[]) => {
+	const onReorderCustomFields = (values: ICustomField<T>[]) => {
 		setFieldsState(values);
 	};
 
@@ -28,9 +25,7 @@ function ReorderGroup<T extends ICustomField>({
 					values={fieldsState}
 					onReorder={onReorderCustomFields}>
 					{fieldsState.map(field => (
-						<CustomField key={field.id} field={field}>
-							{children}
-						</CustomField>
+						<CustomField key={field.field.id} customField={field} />
 					))}
 				</Reorder.Group>
 			</AnimatePresence>
