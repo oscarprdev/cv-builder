@@ -1,6 +1,8 @@
+import RemoveDialog from '../RemoveDialog';
 import { CustomFieldKind } from './types';
-import { EllipsisIcon, Pencil, Trash } from 'lucide-react';
+import { EllipsisIcon, Pencil } from 'lucide-react';
 import React, { PropsWithChildren } from 'react';
+import { removeExperienceAction } from '~/app/actions/remove-experience.action';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
 import {
@@ -17,6 +19,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from '~/features/shared/presentation/components/ui/tooltip/tooltip';
+import { errorResponse } from '~/lib/utils/either';
 
 type CustomFieldActionsProps = {
 	fieldKind: CustomFieldKind;
@@ -30,15 +33,17 @@ const CustomFieldActions = ({
 	fieldTitle,
 	children,
 }: PropsWithChildren<CustomFieldActionsProps>) => {
-	const [removeDialogOpen, setRemoveDialogOpen] = React.useState(false);
 	const [editDialogOpen, setEditDialogOpen] = React.useState(false);
 
-	const onRemoveDialogCancel = () => setRemoveDialogOpen(false);
 	const onEditDialogCancel = () => setEditDialogOpen(false);
 
-	const onRemoveDialogConfirm = () => {
-		// Remove custom field by id and kind
-		console.log('Remove custom field', fieldId, fieldKind);
+	const removeAction = async () => {
+		switch (fieldKind) {
+			case CustomFieldKind.EXPERIENCE:
+				return await removeExperienceAction(fieldId);
+			default:
+				return errorResponse('Invalid field kind');
+		}
 	};
 
 	return (
@@ -74,30 +79,12 @@ const CustomFieldActions = ({
 								</Dialog>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
-								<Dialog
-									open={removeDialogOpen}
-									onOpenChange={setRemoveDialogOpen}
-									trigger={
-										<Button
-											variant={'ghost'}
-											className="flex w-full items-center justify-start gap-2 hover:text-destructive"
-											onClick={onRemoveDialogConfirm}>
-											<Trash size={14} />
-											Remove
-										</Button>
-									}
-									title={`Remove ${fieldKind}`}>
-									<p className="text-sm text-muted">
-										Are you sure you want to remove this {fieldKind}?
-									</p>
-									<p className="text-md text-center">{fieldTitle}</p>
-									<div className="mt-3 flex w-full flex-col justify-center gap-3 px-10">
-										<Button>Remove</Button>
-										<Button variant={'ghost'} onClick={onRemoveDialogCancel}>
-											Cancel
-										</Button>
-									</div>
-								</Dialog>
+								<RemoveDialog
+									title={fieldTitle}
+									idToRemove={fieldId}
+									kind={fieldKind}
+									action={removeAction}
+								/>
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
