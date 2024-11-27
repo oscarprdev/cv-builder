@@ -26,10 +26,9 @@ describe('Describe resume experienceusecase', () => {
 		const resumeExperience: ResumeExperienceInfoModel[] = [
 			{
 				id: '1',
-				experienceId: 'resumeId',
-				title: 'Google',
+				resumeId: 'resumeId',
 				company: 'Google',
-				role: 'Software Engineer',
+				position: 'Software Engineer',
 				website: 'https://google.com',
 				startDate: '2022-01-01',
 				endDate: '2022-12-31',
