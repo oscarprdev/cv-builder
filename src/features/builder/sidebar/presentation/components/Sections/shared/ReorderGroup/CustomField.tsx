@@ -11,15 +11,13 @@ type CustomFieldProps<T extends CustomFieldDataCommon> = {
 	customField: ICustomField<T>;
 };
 
-function CustomField<T extends CustomFieldDataCommon>({
-	customField: { field, data },
-}: CustomFieldProps<T>) {
+function CustomField<T extends CustomFieldDataCommon>({ customField }: CustomFieldProps<T>) {
 	const controls = useDragControls();
 
 	return (
 		<Reorder.Item
 			className="border-muted/20 flex items-center gap-2 border bg-background pr-2"
-			value={field}
+			value={customField}
 			dragListener={false}
 			dragControls={controls}
 			initial={{ opacity: 0, x: -50 }}
@@ -35,15 +33,15 @@ function CustomField<T extends CustomFieldDataCommon>({
 				<GripVertical size={16} />
 			</Button>
 			<div className="flex w-full flex-col gap-1">
-				<p className="text-muted/20 text-sm">{field.title}</p>
-				<p className="text-xs text-muted">{field.subTitle}</p>
+				<p className="text-muted/20 text-sm">{customField.field.title}</p>
+				<p className="text-xs text-muted">{customField.field.subTitle}</p>
 			</div>
 			<CustomFieldActions
-				fieldKind={field.kind}
-				fieldId={field.id}
-				fieldTitle={field.title}
-				fieldSubtitle={field.subTitle}
-				fieldData={data}
+				fieldKind={customField.field.kind}
+				fieldId={customField.field.id}
+				fieldTitle={customField.field.title}
+				fieldSubtitle={customField.field.subTitle}
+				fieldData={customField.data}
 			/>
 		</Reorder.Item>
 	);
