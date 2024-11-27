@@ -1,8 +1,8 @@
 import EditDialog from '../EditDialog';
 import RemoveDialog from '../RemoveDialog';
-import { CustomFieldKind } from './types';
+import { CustomFieldDataCommon, CustomFieldKind } from './types';
 import { EllipsisIcon } from 'lucide-react';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { removeExperienceAction } from '~/app/actions/remove-experience.action';
 import {
 	DropdownMenu,
@@ -20,20 +20,21 @@ import {
 } from '~/features/shared/presentation/components/ui/tooltip/tooltip';
 import { errorResponse } from '~/lib/utils/either';
 
-type CustomFieldActionsProps = {
+type CustomFieldActionsProps<T extends CustomFieldDataCommon> = {
 	fieldKind: CustomFieldKind;
 	fieldTitle: string;
 	fieldSubtitle: string;
 	fieldId: string;
+	fieldData: T;
 };
 
-const CustomFieldActions = ({
+function CustomFieldActions<T extends CustomFieldDataCommon>({
 	fieldKind,
 	fieldId,
 	fieldTitle,
 	fieldSubtitle,
-	children,
-}: PropsWithChildren<CustomFieldActionsProps>) => {
+	fieldData,
+}: CustomFieldActionsProps<T>) {
 	const removeAction = async () => {
 		switch (fieldKind) {
 			case CustomFieldKind.EXPERIENCE:
@@ -55,7 +56,7 @@ const CustomFieldActions = ({
 							<DropdownMenuLabel>Actions</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem asChild>
-								<EditDialog kind={fieldKind}>{children}</EditDialog>
+								<EditDialog kind={fieldKind} data={fieldData} />
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<RemoveDialog
@@ -77,6 +78,6 @@ const CustomFieldActions = ({
 			</Tooltip>
 		</TooltipProvider>
 	);
-};
+}
 
 export default CustomFieldActions;
