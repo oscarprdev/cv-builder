@@ -7,6 +7,7 @@ import { LoaderCircle } from 'lucide-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import { CreateNewExperienceActionInput } from '~/app/actions/experience/create-new-experience.action';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import Editor from '~/features/shared/presentation/components/ui/editor/editor';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
@@ -16,7 +17,7 @@ type ExperienceFormProps = {
 	resumeId: string;
 	experienceInfo: ExperienceFormValues;
 	submitText: string;
-	action: (input: ExperienceFormValues, resumeId: string) => Promise<Either<string, string>>;
+	action: (input: CreateNewExperienceActionInput) => Promise<Either<string, string>>;
 };
 
 const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: ExperienceFormProps) => {
@@ -30,7 +31,7 @@ const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: Experi
 	const onEditorChange = (value: string) => setValue('description', value);
 
 	const onSubmit = async (values: ExperienceFormValues) => {
-		const response = await action(values, resumeId);
+		const response = await action({ ...values, resumeId });
 		if (isError(response)) {
 			toast.error(response.error);
 		} else {
