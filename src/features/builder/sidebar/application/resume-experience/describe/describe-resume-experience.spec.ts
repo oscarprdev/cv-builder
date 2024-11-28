@@ -28,11 +28,12 @@ describe('Describe resume experienceusecase', () => {
 				id: '1',
 				resumeId: 'resumeId',
 				company: 'Google',
-				position: 'Software Engineer',
+				role: 'Software Engineer',
 				website: 'https://google.com',
 				startDate: '2022-01-01',
 				endDate: '2022-12-31',
 				description: 'Software Engineer at Google',
+				sortOrder: 1,
 			},
 		];
 
