@@ -7,7 +7,7 @@ import { LoaderCircle } from 'lucide-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { CreateNewExperienceActionInput } from '~/app/actions/experience/create-new-experience.action';
+import { ExperienceActionInput } from '~/app/actions/experience/shared/types';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import Editor from '~/features/shared/presentation/components/ui/editor/editor';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
@@ -17,7 +17,7 @@ type ExperienceFormProps = {
 	resumeId: string;
 	experienceInfo: ExperienceFormValues;
 	submitText: string;
-	action: (input: CreateNewExperienceActionInput) => Promise<Either<string, string>>;
+	action: (input: ExperienceActionInput) => Promise<Either<string, string>>;
 };
 
 const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: ExperienceFormProps) => {

@@ -3,7 +3,7 @@ import RemoveDialog from '../RemoveDialog';
 import { CustomFieldDataCommon, CustomFieldKind } from './types';
 import { EllipsisIcon } from 'lucide-react';
 import React from 'react';
-import { removeExperienceAction } from '~/app/actions/experience/remove-experience.action';
+import { deleteExperienceAction } from '~/app/actions/experience/delete-experience.action';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -38,7 +38,7 @@ function CustomFieldActions<T extends CustomFieldDataCommon>({
 	const removeAction = async () => {
 		switch (fieldKind) {
 			case CustomFieldKind.EXPERIENCE:
-				return await removeExperienceAction(fieldId);
+				return await deleteExperienceAction(fieldId);
 			default:
 				return errorResponse('Invalid field kind');
 		}

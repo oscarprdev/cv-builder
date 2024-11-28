@@ -1,21 +1,12 @@
 'use server';
 
+import { ExperienceActionInput } from './shared/types';
 import { revalidatePath } from 'next/cache';
 import { auth } from '~/auth';
 import { provideCreateResumeExperienceUsecase } from '~/features/builder/sidebar/provider/resume-experience/create-resume-experience.provider';
 import { errorResponse } from '~/lib/utils/either';
 
-export interface CreateNewExperienceActionInput {
-	resumeId: string;
-	company: string;
-	role: string;
-	description: string;
-	startDate: string;
-	endDate: string;
-	website?: string;
-}
-
-export const createNewExperienceAction = async (input: CreateNewExperienceActionInput) => {
+export const createNewExperienceAction = async (input: ExperienceActionInput) => {
 	const session = await auth();
 
 	const userId = session?.user?.id;
