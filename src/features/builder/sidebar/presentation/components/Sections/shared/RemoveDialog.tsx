@@ -3,7 +3,7 @@
 import { useBuilderReload } from '../../../hook/useBuilderReload';
 import { CustomFieldKind } from './ReorderGroup/types';
 import { useMutation } from '@tanstack/react-query';
-import { Trash } from 'lucide-react';
+import { LoaderCircle, Trash } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
@@ -65,7 +65,13 @@ const RemoveDialog = ({
 			</p>
 
 			<div className="mt-3 flex w-full flex-col justify-center gap-3 px-10">
-				<Button onClick={onRemoveDialogConfirm}>{isPending ? 'loading' : 'Remove'}</Button>
+				<Button onClick={onRemoveDialogConfirm}>
+					{isPending ? (
+						<LoaderCircle data-testid="loader-icon" className="animate-spin" />
+					) : (
+						'Remove'
+					)}
+				</Button>
 				<Button variant={'ghost'} onClick={onRemoveDialogCancel}>
 					Cancel
 				</Button>

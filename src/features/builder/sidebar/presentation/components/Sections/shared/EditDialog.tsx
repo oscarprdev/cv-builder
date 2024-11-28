@@ -3,7 +3,7 @@
 import ExperienceForm from '../Experience/ExperienceForm';
 import { Pencil } from 'lucide-react';
 import React from 'react';
-import { editNewExperienceAction } from '~/app/actions/edit-experience.action';
+import { editNewExperienceAction } from '~/app/actions/experience/edit-experience.action';
 import {
 	CustomFieldDataCommon,
 	CustomFieldKind,

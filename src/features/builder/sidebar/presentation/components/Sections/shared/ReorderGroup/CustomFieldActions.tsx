@@ -3,7 +3,7 @@ import RemoveDialog from '../RemoveDialog';
 import { CustomFieldDataCommon, CustomFieldKind } from './types';
 import { EllipsisIcon } from 'lucide-react';
 import React from 'react';
-import { removeExperienceAction } from '~/app/actions/remove-experience.action';
+import { removeExperienceAction } from '~/app/actions/experience/remove-experience.action';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
