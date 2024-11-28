@@ -1,6 +1,7 @@
 import {
 	Resume,
 	ResumeBasicInformation,
+	ResumeEducationInformation,
 	ResumeExperienceInformation,
 	ResumeMeta,
 	ResumeSummaryInformation,
@@ -10,11 +11,14 @@ export interface ResumeModel extends Resume {
 	resumeMeta: ResumeMetaModel;
 	basicInfo: ResumeBasicInfoModel;
 	summaryInfo: ResumeSummaryInfoModel;
+	experienceInfo: ResumeExperienceInfoModel;
+	educationInfo: ResumeEducationInfoModel;
 }
 
 export interface ResumeBasicInfoModel extends ResumeBasicInformation {}
 export interface ResumeSummaryInfoModel extends ResumeSummaryInformation {}
 export interface ResumeExperienceInfoModel extends ResumeExperienceInformation {}
+export interface ResumeEducationInfoModel extends ResumeEducationInformation {}
 export interface ResumeMetaModel extends ResumeMeta {
 	theme: Enums.ResumeTheme;
 }

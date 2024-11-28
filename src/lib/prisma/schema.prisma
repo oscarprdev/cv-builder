@@ -29,6 +29,7 @@ model Resume {
   basicInfo      ResumeBasicInformation?       @relation()
   summaryInfo    ResumeSummaryInformation?     @relation()
   experienceInfo ResumeExperienceInformation[] @relation()
+  educationInfo  ResumeEducationInformation[]  @relation()
   resumeMeta     ResumeMeta?                   @relation()
 }
 
@@ -79,6 +80,18 @@ model ResumeExperienceInformation {
   startDate   String
   endDate     String
   website     String
+  sortOrder   Int     @default(autoincrement())
+  resume      Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+}
+
+model ResumeEducationInformation {
+  id          String  @id @unique @default(uuid())
+  resumeId    String
+  institution String
+  study       String
+  description String
+  startDate   String
+  endDate     String
   sortOrder   Int     @default(autoincrement())
   resume      Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
