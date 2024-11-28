@@ -6,7 +6,7 @@ import { auth } from '~/auth';
 import { provideCreateResumeEducationUsecase } from '~/features/builder/sidebar/provider/resume-education/create-resume-education.provider';
 import { errorResponse } from '~/lib/utils/either';
 
-export const createNewEducationAction = async (input: EducationActionInput) => {
+export const createEducationAction = async (input: EducationActionInput) => {
 	const session = await auth();
 
 	const userId = session?.user?.id;
