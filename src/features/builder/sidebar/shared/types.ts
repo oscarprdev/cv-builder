@@ -1,3 +1,4 @@
+// Basic types
 export interface UpdateResumeBasicPayload {
 	resumeId: string;
 	fullName: string;
@@ -9,11 +10,13 @@ export interface UpdateResumeBasicPayload {
 	imageUrl: string | null;
 }
 
+// Summary types
 export interface UpdateResumeSummaryPayload {
 	resumeId: string;
 	summary: string;
 }
 
+// Experience types
 export interface EditResumeExperiencePayload
 	extends Omit<CreateResumeExperiencePayload, 'resumeId'> {
 	id: string;
@@ -29,6 +32,24 @@ export interface CreateResumeExperiencePayload {
 }
 
 export type SortResumeExperiencePayload = {
+	experienceId: string;
+	sortOrder: number;
+};
+
+// Education types
+export interface EditResumeEducationPayload extends Omit<CreateResumeEducationPayload, 'resumeId'> {
+	id: string;
+}
+export interface CreateResumeEducationPayload {
+	resumeId: string;
+	institution: string;
+	study: string;
+	description: string;
+	startDate: string;
+	endDate: string;
+}
+
+export type SortResumeEducationPayload = {
 	experienceId: string;
 	sortOrder: number;
 };
