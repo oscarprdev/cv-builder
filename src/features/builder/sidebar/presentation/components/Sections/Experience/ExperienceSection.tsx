@@ -4,6 +4,7 @@ import ExperienceForm from './ExperienceForm';
 import { ExperienceFormValues } from './types';
 import React from 'react';
 import { createNewExperienceAction } from '~/app/actions/create-new-experience.action';
+import { sortExperienceAction } from '~/app/actions/sort-experience.action';
 import ReorderGroup from '~/features/builder/sidebar/presentation/components/Sections/shared/ReorderGroup/ReorderGroup';
 import {
 	CustomFieldKind,
@@ -49,7 +50,10 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 
 	return (
 		<div>
-			<ReorderGroup<ExperiencePresenter> fields={experienceCustomFields} />
+			<ReorderGroup<ExperiencePresenter>
+				fields={experienceCustomFields}
+				onReorderAction={sortExperienceAction}
+			/>
 			<Dialog
 				trigger={<Button className="mt-5 w-full">Add new experience</Button>}
 				title="New experience">

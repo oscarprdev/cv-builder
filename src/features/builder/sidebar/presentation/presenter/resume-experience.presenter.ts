@@ -24,6 +24,7 @@ export const experienceDto = z.object({
 	startDate: z.string(),
 	endDate: z.string(),
 	website: z.string(),
+	sortOrder: z.number(),
 });
 
 export const resumeExperiencePresenterDto = z.array(experienceDto);

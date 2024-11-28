@@ -30,7 +30,7 @@ const SectionsList = ({
 				</SectionContainer>
 			) : section === 'experience' ? (
 				<SectionContainer opened={opened} title="Experience" icon={<Briefcase size={20} />}>
-					<Suspense key={crypto.randomUUID()} fallback={<p>Loading...</p>}>
+					<Suspense fallback={<p>Loading...</p>}>
 						<ExperienceSection resumeId={resumeId} />
 					</Suspense>
 				</SectionContainer>

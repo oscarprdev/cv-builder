@@ -10,6 +10,7 @@ export interface ICustomField<T extends CustomFieldDataCommon> {
 
 export interface CustomFieldDataCommon {
 	resumeId: string;
+	sortOrder: number;
 }
 
 export enum CustomFieldKind {

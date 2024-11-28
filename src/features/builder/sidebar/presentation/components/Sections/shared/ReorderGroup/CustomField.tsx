@@ -9,17 +9,22 @@ import { Button } from '~/features/shared/presentation/components/ui/button/butt
 
 type CustomFieldProps<T extends CustomFieldDataCommon> = {
 	customField: ICustomField<T>;
+	onDragEnd: () => Promise<void>;
 };
 
-function CustomField<T extends CustomFieldDataCommon>({ customField }: CustomFieldProps<T>) {
+function CustomField<T extends CustomFieldDataCommon>({
+	customField,
+	onDragEnd,
+}: CustomFieldProps<T>) {
 	const controls = useDragControls();
 
 	return (
 		<Reorder.Item
 			className="border-muted/20 flex items-center gap-2 border bg-background pr-2"
 			value={customField}
-			dragListener={false}
+			dragListener={true}
 			dragControls={controls}
+			onDragEnd={onDragEnd}
 			initial={{ opacity: 0, x: -50 }}
 			animate={{ opacity: 1, x: 0 }}
 			exit={{ opacity: 0, x: -50 }}>
