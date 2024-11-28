@@ -60,6 +60,7 @@ function CustomFieldActions<T extends CustomFieldDataCommon>({
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<RemoveDialog
+									resumeId={fieldData.resumeId}
 									title={fieldTitle}
 									subtitle={fieldSubtitle}
 									idToRemove={fieldId}

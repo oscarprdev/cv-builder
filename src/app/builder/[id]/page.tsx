@@ -3,10 +3,17 @@ import Sidebar from '~/features/builder/sidebar/presentation/components/Sidebar/
 
 export default async function BuilderPage({
 	params: { id },
-	searchParams: { section, opened },
+	searchParams: { section, opened, reload },
 }: {
 	params: { id: string };
-	searchParams: { section: string; opened: string };
+	searchParams: { section: string; opened: string; reload: string };
 }) {
-	return <Sidebar resumeId={id} section={section} opened={opened === 'true'} />;
+	return (
+		<Sidebar
+			resumeId={id}
+			section={section}
+			opened={opened === 'true'}
+			reload={Number(reload)}
+		/>
+	);
 }

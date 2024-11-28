@@ -104,7 +104,9 @@ const NavTooltip = ({ resumeId, section, icon, content, isActive }: NavTooltipPr
 							: 'text-muted hover:text-white',
 						'rounded-full p-2 duration-200 hover:bg-background-hover'
 					)}>
-					<Link href={`/builder/${resumeId}?section=${section}&opened=true`}>{icon}</Link>
+					<Link href={`/builder/${resumeId}?section=${section}&opened=true&reload=0`}>
+						{icon}
+					</Link>
 				</TooltipTrigger>
 				<TooltipContent
 					side="right"

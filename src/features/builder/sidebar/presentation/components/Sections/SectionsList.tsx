@@ -15,10 +15,12 @@ const SectionsList = ({
 	resumeId,
 	section,
 	opened,
+	reload,
 }: {
 	resumeId: string;
 	section: string;
 	opened: boolean;
+	reload: number;
 }) => {
 	return (
 		<section data-testid="aside-forms-container" className="w-full flex-col p-5">
@@ -30,7 +32,7 @@ const SectionsList = ({
 				</SectionContainer>
 			) : section === 'experience' ? (
 				<SectionContainer opened={opened} title="Experience" icon={<Briefcase size={20} />}>
-					<Suspense fallback={<p>Loading...</p>}>
+					<Suspense key={reload} fallback={<p>Loading...</p>}>
 						<ExperienceSection resumeId={resumeId} />
 					</Suspense>
 				</SectionContainer>

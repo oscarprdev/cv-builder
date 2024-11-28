@@ -9,6 +9,15 @@ export class CreateResumeExperienceInfra implements ICreateResumeExperienceInfra
 	constructor() {}
 
 	async create(payload: CreateResumeExperiencePayload): Promise<void> {
+		const currentExperiences = await prisma.resumeExperienceInformation.findMany({
+			where: {
+				resumeId: payload.resumeId,
+			},
+			orderBy: {
+				sortOrder: 'asc',
+			},
+		});
+
 		await prisma.resumeExperienceInformation.create({
 			data: {
 				resumeId: payload.resumeId,
@@ -18,6 +27,7 @@ export class CreateResumeExperienceInfra implements ICreateResumeExperienceInfra
 				startDate: payload.startDate,
 				endDate: payload.endDate,
 				website: payload.website || '',
+				sortOrder: currentExperiences[currentExperiences.length - 1]?.sortOrder + 1 || 1,
 			},
 		});
 	}

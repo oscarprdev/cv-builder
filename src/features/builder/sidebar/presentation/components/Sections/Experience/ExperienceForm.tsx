@@ -1,5 +1,6 @@
 'use client';
 
+import { useBuilderReload } from '../../../hook/useBuilderReload';
 import { ExperienceFormValues, experienceSchema } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoaderCircle } from 'lucide-react';
@@ -19,6 +20,8 @@ type ExperienceFormProps = {
 };
 
 const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: ExperienceFormProps) => {
+	const { update } = useBuilderReload();
+
 	const { handleSubmit, register, formState, setValue } = useForm({
 		resolver: zodResolver(experienceSchema),
 		defaultValues: experienceInfo,
@@ -32,6 +35,8 @@ const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: Experi
 			toast.error(response.error);
 		} else {
 			toast.success(response.success);
+
+			update(resumeId);
 		}
 	};
 

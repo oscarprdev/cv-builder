@@ -9,9 +9,10 @@ type SidebarProps = {
 	resumeId: string;
 	section: string;
 	opened: boolean;
+	reload: number;
 };
 
-const Sidebar = ({ resumeId, section, opened }: SidebarProps) => {
+const Sidebar = ({ resumeId, section, opened, reload }: SidebarProps) => {
 	return (
 		<aside
 			className={cn(
@@ -24,7 +25,7 @@ const Sidebar = ({ resumeId, section, opened }: SidebarProps) => {
 				<PanelLeft size={22} className="text-muted duration-200 group-hover:text-white" />
 			</Link>
 			<SidebarNav resumeId={resumeId} section={section} opened={opened} />
-			<SectionsList resumeId={resumeId} section={section} opened={opened} />
+			<SectionsList resumeId={resumeId} section={section} opened={opened} reload={reload} />
 		</aside>
 	);
 };

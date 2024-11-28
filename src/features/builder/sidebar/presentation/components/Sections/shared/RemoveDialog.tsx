@@ -1,5 +1,6 @@
 'use client';
 
+import { useBuilderReload } from '../../../hook/useBuilderReload';
 import { CustomFieldKind } from './ReorderGroup/types';
 import { useMutation } from '@tanstack/react-query';
 import { Trash } from 'lucide-react';
@@ -10,6 +11,7 @@ import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dial
 import { Either, isError } from '~/lib/utils/either';
 
 type RemoveDialogProps = {
+	resumeId: string;
 	title: string;
 	subtitle: string;
 	idToRemove: string;
@@ -17,9 +19,17 @@ type RemoveDialogProps = {
 	action: (id: string) => Promise<Either<string, string>>;
 };
 
-const RemoveDialog = ({ title, subtitle, idToRemove, kind, action }: RemoveDialogProps) => {
+const RemoveDialog = ({
+	resumeId,
+	title,
+	subtitle,
+	idToRemove,
+	kind,
+	action,
+}: RemoveDialogProps) => {
 	const [removeDialogOpen, setRemoveDialogOpen] = React.useState(false);
 	const onRemoveDialogCancel = () => setRemoveDialogOpen(false);
+	const { update } = useBuilderReload();
 
 	const { mutateAsync, isPending } = useMutation({
 		mutationFn: action,
@@ -28,6 +38,7 @@ const RemoveDialog = ({ title, subtitle, idToRemove, kind, action }: RemoveDialo
 				toast.error(response.error);
 			} else {
 				toast.success(response.success);
+				update(resumeId);
 			}
 		},
 		onError: () => toast.error('Unexpected error removing field'),
