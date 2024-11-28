@@ -28,7 +28,7 @@ export interface CreateResumeExperiencePayload {
 	website?: string;
 }
 
-export type EditResumeExperienceSortOrderPayload = {
+export type SortResumeExperiencePayload = {
 	experienceId: string;
 	sortOrder: number;
-}[];
+};
