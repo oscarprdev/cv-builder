@@ -50,6 +50,6 @@ export interface CreateResumeEducationPayload {
 }
 
 export type SortResumeEducationPayload = {
-	experienceId: string;
+	educationId: string;
 	sortOrder: number;
 };
