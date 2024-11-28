@@ -3,8 +3,8 @@
 import ExperienceForm from './ExperienceForm';
 import { ExperienceFormValues } from './types';
 import React from 'react';
-import { createNewExperienceAction } from '~/app/actions/create-new-experience.action';
-import { sortExperienceAction } from '~/app/actions/sort-experience.action';
+import { createNewExperienceAction } from '~/app/actions/experience/create-new-experience.action';
+import { sortExperienceAction } from '~/app/actions/experience/sort-experience.action';
 import ReorderGroup from '~/features/builder/sidebar/presentation/components/Sections/shared/ReorderGroup/ReorderGroup';
 import {
 	CustomFieldKind,
