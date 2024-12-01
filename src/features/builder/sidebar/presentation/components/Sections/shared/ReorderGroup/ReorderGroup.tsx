@@ -9,7 +9,7 @@ import { Either } from '~/lib/utils/either';
 type ReorderGroupProps<T extends CustomFieldDataCommon> = {
 	fields: ICustomField<T>[];
 	onReorderAction: (
-		input: { experienceId: string; sortOrder: number }[]
+		input: { id: string; sortOrder: number }[]
 	) => Promise<Either<string, string>>;
 };
 
@@ -26,7 +26,7 @@ function ReorderGroup<T extends CustomFieldDataCommon>({
 	const onDragEnd = async () => {
 		const mapFields = (fields: ICustomField<T>[]) => {
 			return fields.map(({ field }, index) => ({
-				experienceId: field.id,
+				id: field.id,
 				sortOrder: index,
 			}));
 		};

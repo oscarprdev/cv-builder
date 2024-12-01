@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
-export const experienceSchema = z.object({
+export const educationSchema = z.object({
 	id: z.string().optional(),
-	company: z
+	institution: z
 		.string()
-		.min(1, { message: 'Company is required' })
+		.min(1, { message: 'Institution is required' })
 		.max(50, { message: 'Max 50 characters' }),
-	role: z
+	study: z
 		.string()
-		.min(1, { message: 'Role is required' })
+		.min(1, { message: 'Study is required' })
 		.max(50, { message: 'Max 50 characters' }),
 	startDate: z
 		.string()
@@ -18,14 +18,10 @@ export const experienceSchema = z.object({
 		.string()
 		.min(1, { message: 'End date is required' })
 		.max(20, { message: 'Max 20 characters' }),
-	website: z
-		.string()
-		.url({ message: 'Website is invalid' })
-		.max(50, { message: 'Max 50 characters' }),
 	description: z
 		.string()
 		.min(1, { message: 'Description is required' })
 		.max(500, { message: 'Max 500 characters' }),
 });
 
-export type ExperienceFormValues = z.infer<typeof experienceSchema>;
+export type EducationFormValues = z.infer<typeof educationSchema>;

@@ -5,7 +5,7 @@ import { auth } from '~/auth';
 import { provideSortResumeEducationUsecase } from '~/features/builder/sidebar/provider/resume-education/sort-resume-education.provider';
 import { errorResponse } from '~/lib/utils/either';
 
-type SortEducationInput = { educationId: string; sortOrder: number }[];
+type SortEducationInput = { id: string; sortOrder: number }[];
 
 export const sortEducationAction = async (input: SortEducationInput) => {
 	const session = await auth();
@@ -14,7 +14,7 @@ export const sortEducationAction = async (input: SortEducationInput) => {
 	if (!userId) return errorResponse('User not found');
 
 	const usecase = provideSortResumeEducationUsecase();
-	const response = await usecase.execute(input);
+	const response = await usecase.execute(input.map(education => ({...education, educationId: education.id})));
 
 	revalidatePath('/builder');
 
