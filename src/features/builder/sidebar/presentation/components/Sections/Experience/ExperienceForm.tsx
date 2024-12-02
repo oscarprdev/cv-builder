@@ -84,7 +84,7 @@ const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: Experi
 				</label>
 			</div>
 
-			<div className="align-start flex w-full gap-5">
+			<div className="flex w-full items-start gap-5">
 				<label
 					htmlFor="startDate"
 					className="relative flex w-full flex-col gap-2 text-sm font-semibold">

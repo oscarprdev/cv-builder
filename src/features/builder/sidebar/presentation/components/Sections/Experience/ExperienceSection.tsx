@@ -16,6 +16,7 @@ import {
 } from '~/features/builder/sidebar/presentation/presenter/resume-experience.presenter';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
+import { capitalizeStr } from '~/lib/utils/str';
 
 type ExperienceSectionProps = {
 	resumeId: string;
@@ -41,7 +42,7 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 				field: {
 					id: experience.id,
 					title: experience.company,
-					subTitle: experience.role,
+					subTitle: capitalizeStr(experience.role.toLowerCase()),
 					kind: CustomFieldKind.EXPERIENCE,
 				},
 				data: experience,

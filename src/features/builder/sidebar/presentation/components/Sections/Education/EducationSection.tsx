@@ -16,6 +16,7 @@ import {
 } from '~/features/builder/sidebar/presentation/components/Sections/shared/ReorderGroup/types';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
+import { capitalizeStr } from '~/lib/utils/str';
 
 type EducationSectionProps = {
 	resumeId: string;
@@ -40,7 +41,7 @@ const EducationSection = async ({ resumeId }: EducationSectionProps) => {
 				field: {
 					id: education.id,
 					title: education.institution,
-					subTitle: education.study,
+					subTitle: capitalizeStr(education.study.toLowerCase()),
 					kind: CustomFieldKind.EDUCATION,
 				},
 				data: education,

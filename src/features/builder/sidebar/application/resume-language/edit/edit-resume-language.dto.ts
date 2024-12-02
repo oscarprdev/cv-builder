@@ -11,8 +11,11 @@ export const editResumeLanguageDto = z.object({
 	language: z.string(),
 	level: z.enum(languageLevels),
 	certificationUrl: z
-		.string()
-		.url({ message: 'Invalid URL format - http://*****.com' })
+		.union([
+			z.string().url({ message: 'Invalid URL format - http://*****.com' }),
+			z.literal(''),
+			z.undefined(),
+		])
 		.optional(),
 });
 export type EditResumeLanguageDto = z.infer<typeof editResumeLanguageDto>;

@@ -39,7 +39,7 @@ function CustomField<T extends CustomFieldDataCommon>({
 			</Button>
 			<div className="flex w-full flex-col gap-1">
 				<p className="text-muted/20 text-sm">{customField.field.title}</p>
-				<p className="text-xs text-muted">{customField.field.subTitle}</p>
+				<p className="text-xs capitalize text-muted">{customField.field.subTitle}</p>
 			</div>
 			<CustomFieldActions
 				fieldKind={customField.field.kind}

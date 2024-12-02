@@ -1,20 +1,23 @@
 'use client';
 
-import { EducationPresenter } from '../../../presenter/resume-education.presenter';
-import { SkillPresenter } from '../../../presenter/resume-skill.presenter';
-import EducationForm from '../Education/EducationForm';
-import ExperienceForm from '../Experience/ExperienceForm';
-import SkillForm from '../Skill/SkillForm';
+import LanguageForm from '../Language/LanguageForm';
 import { Pencil } from 'lucide-react';
 import React from 'react';
 import { editEducationAction } from '~/app/actions/education/edit-education.action';
 import { editNewExperienceAction } from '~/app/actions/experience/edit-experience.action';
+import { editNewLanguageAction } from '~/app/actions/language/edit-language.action';
 import { editNewSkillAction } from '~/app/actions/skill/edit-skill.action';
+import EducationForm from '~/features/builder/sidebar/presentation/components/Sections/Education/EducationForm';
+import ExperienceForm from '~/features/builder/sidebar/presentation/components/Sections/Experience/ExperienceForm';
+import SkillForm from '~/features/builder/sidebar/presentation/components/Sections/Skill/SkillForm';
 import {
 	CustomFieldDataCommon,
 	CustomFieldKind,
 } from '~/features/builder/sidebar/presentation/components/Sections/shared/ReorderGroup/types';
+import { EducationPresenter } from '~/features/builder/sidebar/presentation/presenter/resume-education.presenter';
 import { ExperiencePresenter } from '~/features/builder/sidebar/presentation/presenter/resume-experience.presenter';
+import { LanguagePresenter } from '~/features/builder/sidebar/presentation/presenter/resume-language.presenter';
+import { SkillPresenter } from '~/features/builder/sidebar/presentation/presenter/resume-skill.presenter';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
 
@@ -33,6 +36,10 @@ function EditDialog<T extends CustomFieldDataCommon>({ kind, data }: EditDialogP
 
 	const isSkillData = React.useCallback((data: T): data is T & SkillPresenter => {
 		return 'level' in data;
+	}, []);
+
+	const isLanguageData = React.useCallback((data: T): data is T & LanguagePresenter => {
+		return 'language' in data;
 	}, []);
 
 	const content = React.useMemo(() => {
@@ -70,10 +77,21 @@ function EditDialog<T extends CustomFieldDataCommon>({ kind, data }: EditDialogP
 						/>
 					)
 				);
+			case CustomFieldKind.LANGUAGES:
+				return (
+					isLanguageData(data) && (
+						<LanguageForm
+							submitText="Edit Language"
+							resumeId={data.resumeId}
+							languageInfo={data}
+							action={editNewLanguageAction}
+						/>
+					)
+				);
 			default:
 				return <p>Invalid field kind</p>;
 		}
-	}, [kind, data, isExperienceData, isEducationData, isSkillData]);
+	}, [kind, data, isExperienceData, isEducationData, isSkillData, isLanguageData]);
 
 	return (
 		<Dialog

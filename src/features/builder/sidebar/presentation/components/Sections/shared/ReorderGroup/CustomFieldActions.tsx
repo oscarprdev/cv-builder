@@ -5,6 +5,7 @@ import { EllipsisIcon } from 'lucide-react';
 import React from 'react';
 import { deleteEducationAction } from '~/app/actions/education/delete-education.action';
 import { deleteExperienceAction } from '~/app/actions/experience/delete-experience.action';
+import { deleteLanguageAction } from '~/app/actions/language/delete-language.action';
 import { deleteSkillAction } from '~/app/actions/skill/delete-skill.action';
 import {
 	DropdownMenu,
@@ -45,6 +46,8 @@ function CustomFieldActions<T extends CustomFieldDataCommon>({
 				return await deleteEducationAction(fieldId);
 			case CustomFieldKind.SKILLS:
 				return await deleteSkillAction(fieldId);
+			case CustomFieldKind.LANGUAGES:
+				return await deleteLanguageAction(fieldId);
 			default:
 				return errorResponse('Invalid field kind');
 		}
