@@ -30,6 +30,7 @@ model Resume {
   summaryInfo    ResumeSummaryInformation?     @relation()
   experienceInfo ResumeExperienceInformation[] @relation()
   educationInfo  ResumeEducationInformation[]  @relation()
+  skillInfo      ResumeSkillInformation[]      @relation()
   resumeMeta     ResumeMeta?                   @relation()
 }
 
@@ -94,4 +95,13 @@ model ResumeEducationInformation {
   endDate     String
   sortOrder   Int     @default(autoincrement())
   resume      Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+}
+
+model ResumeSkillInformation {
+  id        String  @id @unique @default(uuid())
+  resumeId  String
+  name      String
+  level     Int
+  sortOrder Int     @default(autoincrement())
+  resume    Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }

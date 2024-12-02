@@ -53,3 +53,18 @@ export type SortResumeEducationPayload = {
 	educationId: string;
 	sortOrder: number;
 };
+
+// Skills types
+export interface EditResumeSkillPayload extends Omit<CreateResumeSkillPayload, 'resumeId'> {
+	id: string;
+}
+export interface CreateResumeSkillPayload {
+	resumeId: string;
+	name: string;
+	level: number;
+}
+
+export type SortResumeSkillPayload = {
+	skillId: string;
+	sortOrder: number;
+};
