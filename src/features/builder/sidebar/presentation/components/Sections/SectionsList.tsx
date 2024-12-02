@@ -1,4 +1,5 @@
 import EducationSection from './Education/EducationSection';
+import SkillSection from './Skill/SkillSection';
 import { Briefcase, DraftingCompass, GraduationCap, Languages, Text, User } from 'lucide-react';
 import React, { Suspense } from 'react';
 import {
@@ -51,7 +52,9 @@ const SectionsList = ({
 					opened={opened}
 					title="Skills"
 					icon={<DraftingCompass size={20} />}>
-					Skills
+					<Suspense key={reload} fallback={<p>Loading...</p>}>
+						<SkillSection resumeId={resumeId} />
+					</Suspense>
 				</SectionContainer>
 			) : section === 'languages' ? (
 				<SectionContainer opened={opened} title="Languages" icon={<Languages size={20} />}>
