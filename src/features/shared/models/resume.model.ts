@@ -3,6 +3,7 @@ import {
 	ResumeBasicInformation,
 	ResumeEducationInformation,
 	ResumeExperienceInformation,
+	ResumeLanguageInformation,
 	ResumeMeta,
 	ResumeSkillInformation,
 	ResumeSummaryInformation,
@@ -14,7 +15,8 @@ export interface ResumeModel extends Resume {
 	summaryInfo: ResumeSummaryInfoModel;
 	experienceInfo: ResumeExperienceInfoModel;
 	educationInfo: ResumeEducationInfoModel;
-	skillInfo: ResumeEducationInfoModel;
+	skillInfo: ResumeSkillInfoModel;
+	languageInfo: ResumeLanguageInfoModel;
 }
 
 export interface ResumeBasicInfoModel extends ResumeBasicInformation {}
@@ -22,6 +24,7 @@ export interface ResumeSummaryInfoModel extends ResumeSummaryInformation {}
 export interface ResumeExperienceInfoModel extends ResumeExperienceInformation {}
 export interface ResumeEducationInfoModel extends ResumeEducationInformation {}
 export interface ResumeSkillInfoModel extends ResumeSkillInformation {}
+export interface ResumeLanguageInfoModel extends ResumeLanguageInformation {}
 export interface ResumeMetaModel extends ResumeMeta {
 	theme: Enums.ResumeTheme;
 }
@@ -35,4 +38,13 @@ export namespace Enums {
 	} as const;
 
 	export type ResumeTheme = (typeof resumeTheme)[keyof typeof resumeTheme];
+
+	export const languageLevel = {
+		BEGINNER: 'BEGINNER',
+		INTERMEDIATE: 'INTERMEDIATE',
+		ADVANCED: 'ADVANCED',
+		NATIVE: 'NATIVE',
+	} as const;
+
+	export type LanguageLevel = (typeof languageLevel)[keyof typeof languageLevel];
 }

@@ -1,3 +1,5 @@
+import { Enums } from '~/features/shared/models/resume.model';
+
 // Basic types
 export interface UpdateResumeBasicPayload {
 	resumeId: string;
@@ -66,5 +68,21 @@ export interface CreateResumeSkillPayload {
 
 export type SortResumeSkillPayload = {
 	skillId: string;
+	sortOrder: number;
+};
+
+// Languages types
+export interface EditResumeLanguagePayload extends Omit<CreateResumeLanguagePayload, 'resumeId'> {
+	id: string;
+}
+export interface CreateResumeLanguagePayload {
+	resumeId: string;
+	language: string;
+	level: Enums.LanguageLevel;
+	certificationUrl?: string;
+}
+
+export type SortResumeLanguagePayload = {
+	languageId: string;
 	sortOrder: number;
 };

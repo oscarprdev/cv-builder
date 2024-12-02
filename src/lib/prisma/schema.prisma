@@ -15,6 +15,13 @@ enum ResumeTheme {
   HARVARD
 }
 
+enum LanguageLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  NATIVE
+}
+
 model User {
   id       String   @id @unique @default(uuid())
   password String
@@ -31,6 +38,7 @@ model Resume {
   experienceInfo ResumeExperienceInformation[] @relation()
   educationInfo  ResumeEducationInformation[]  @relation()
   skillInfo      ResumeSkillInformation[]      @relation()
+  languageInfo   ResumeLanguageInformation[]   @relation()
   resumeMeta     ResumeMeta?                   @relation()
 }
 
@@ -104,4 +112,14 @@ model ResumeSkillInformation {
   level     Int
   sortOrder Int     @default(autoincrement())
   resume    Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+}
+
+model ResumeLanguageInformation {
+  id               String        @id @unique @default(uuid())
+  resumeId         String
+  language         String
+  level            LanguageLevel
+  certificationUrl String?
+  sortOrder        Int           @default(autoincrement())
+  resume           Resume?       @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
