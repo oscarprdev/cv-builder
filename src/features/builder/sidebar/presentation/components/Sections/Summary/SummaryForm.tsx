@@ -7,7 +7,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import { updateSummaryAction } from '~/app/actions/update-summary.action';
+import { updateSummaryAction } from '~/app/actions/summary/update-summary.action';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import Editor from '~/features/shared/presentation/components/ui/editor/editor';
 import { isError } from '~/lib/utils/either';

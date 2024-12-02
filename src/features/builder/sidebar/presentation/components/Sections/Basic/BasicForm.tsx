@@ -7,7 +7,7 @@ import React, { startTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import { updateBasicInfoAction } from '~/app/actions/update-basic-info.action';
+import { updateBasicInfoAction } from '~/app/actions/basic/update-basic-info.action';
 import { ResumeBasicPresenter } from '~/features/builder/sidebar/presentation/presenter/resume-basic.presenter';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
