@@ -1,9 +1,15 @@
 'use client';
 
+import { EducationPresenter } from '../../../presenter/resume-education.presenter';
+import { SkillPresenter } from '../../../presenter/resume-skill.presenter';
+import EducationForm from '../Education/EducationForm';
 import ExperienceForm from '../Experience/ExperienceForm';
+import SkillForm from '../Skill/SkillForm';
 import { Pencil } from 'lucide-react';
 import React from 'react';
+import { editEducationAction } from '~/app/actions/education/edit-education.action';
 import { editNewExperienceAction } from '~/app/actions/experience/edit-experience.action';
+import { editNewSkillAction } from '~/app/actions/skill/edit-skill.action';
 import {
 	CustomFieldDataCommon,
 	CustomFieldKind,
@@ -21,6 +27,14 @@ function EditDialog<T extends CustomFieldDataCommon>({ kind, data }: EditDialogP
 		return 'company' in data;
 	}, []);
 
+	const isEducationData = React.useCallback((data: T): data is T & EducationPresenter => {
+		return 'institution' in data;
+	}, []);
+
+	const isSkillData = React.useCallback((data: T): data is T & SkillPresenter => {
+		return 'level' in data;
+	}, []);
+
 	const content = React.useMemo(() => {
 		switch (kind) {
 			case CustomFieldKind.EXPERIENCE:
@@ -34,10 +48,32 @@ function EditDialog<T extends CustomFieldDataCommon>({ kind, data }: EditDialogP
 						/>
 					)
 				);
+			case CustomFieldKind.EDUCATION:
+				return (
+					isEducationData(data) && (
+						<EducationForm
+							submitText="Edit education"
+							resumeId={data.resumeId}
+							educationInfo={data}
+							action={editEducationAction}
+						/>
+					)
+				);
+			case CustomFieldKind.SKILLS:
+				return (
+					isSkillData(data) && (
+						<SkillForm
+							submitText="Edit skill"
+							resumeId={data.resumeId}
+							skillInfo={data}
+							action={editNewSkillAction}
+						/>
+					)
+				);
 			default:
 				return <p>Invalid field kind</p>;
 		}
-	}, [kind, data, isExperienceData]);
+	}, [kind, data, isExperienceData, isEducationData, isSkillData]);
 
 	return (
 		<Dialog
