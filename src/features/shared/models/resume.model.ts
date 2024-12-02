@@ -10,13 +10,15 @@ import {
 } from '@prisma/client';
 
 export interface ResumeModel extends Resume {
-	resumeMeta: ResumeMetaModel;
-	basicInfo: ResumeBasicInfoModel;
-	summaryInfo: ResumeSummaryInfoModel;
-	experienceInfo: ResumeExperienceInfoModel;
-	educationInfo: ResumeEducationInfoModel;
-	skillInfo: ResumeSkillInfoModel;
-	languageInfo: ResumeLanguageInfoModel;
+	id: string;
+	userId: string;
+	resumeMeta: ResumeMetaModel | null;
+	basicInfo: ResumeBasicInfoModel | null;
+	summaryInfo: ResumeSummaryInfoModel | null;
+	experienceInfo: ResumeExperienceInfoModel[];
+	educationInfo: ResumeEducationInfoModel[];
+	skillInfo: ResumeSkillInfoModel[];
+	languageInfo: ResumeLanguageInfoModel[];
 }
 
 export interface ResumeBasicInfoModel extends ResumeBasicInformation {}
