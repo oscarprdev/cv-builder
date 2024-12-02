@@ -20,7 +20,7 @@ const Viewer = async ({ resumeId }: { resumeId: string }) => {
 	};
 
 	return (
-		<section className="grid w-full place-items-center overflow-y-scroll p-10">
+		<section id="viewer" className="grid w-full place-items-center overflow-y-scroll p-10">
 			{resumeTemplate(resume.theme)}
 		</section>
 	);

@@ -70,7 +70,6 @@ body {
 	ul,
 	ol {
 		list-style: revert;
-		padding-inline-start: 1.6em;
 	}
 
 	body {
@@ -89,6 +88,10 @@ body {
 	input:invalid:not(:placeholder-shown) + p {
 		@apply block;
 		@apply text-destructive;
+	}
+
+	#viewer ul {
+		padding-inline-start: 1.6em;
 	}
 }
 
