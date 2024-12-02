@@ -70,7 +70,7 @@ const ExperienceForm = ({ resumeId, experienceInfo, submitText, action }: Experi
 					<Input
 						{...register('role')}
 						disabled={formState.isSubmitting}
-						id="position"
+						id="role"
 						type="text"
 						name="role"
 						placeholder="Software Engineer"
