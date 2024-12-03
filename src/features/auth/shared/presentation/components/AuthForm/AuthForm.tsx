@@ -2,13 +2,13 @@
 
 import { AuthFormProps, CHARACTERS_ERROR_MESSAGE, LENTGH_ERROR_MESSAGE, authSchema } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CircleCheck, Eye, EyeOff } from 'lucide-react';
+import { CircleCheck, Eye, EyeOff, LoaderCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import SubmitButton from '~/features/shared/presentation/components/SubmitButton/SubmitButton';
+import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Input } from '~/features/shared/presentation/components/ui/input/input';
 import { cn } from '~/lib/utils/cn';
 import { isError } from '~/lib/utils/either';
@@ -122,8 +122,13 @@ const AuthForm = ({ action, header, subHeader, submitText, successRoute }: AuthF
 					</label>
 				</div>
 			</div>
-
-			<SubmitButton text={submitText} isPending={formState.isSubmitting} disabled={false} />
+			<Button type="submit" disabled={formState.isSubmitting}>
+				{formState.isSubmitting ? (
+					<LoaderCircle data-testid="loader-icon" className="animate-spin" />
+				) : (
+					<>{submitText}</>
+				)}
+			</Button>
 		</form>
 	);
 };

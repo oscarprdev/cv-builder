@@ -1,3 +1,4 @@
+import { ResumeTheme } from '@prisma/client';
 import React from 'react';
 import { IListResumesUseCase } from '~/features/dashboard/home/application/list-resumes/list-resumes.usecase';
 import ResumeCard from '~/features/dashboard/home/presentation/components/ResumeCard/ResumeCard';
@@ -18,8 +19,8 @@ const DashboardResumesList = async ({
 			{result.success.map(resume => (
 				<ResumeCard
 					key={resume.id}
-					theme={resume.resumeMeta.theme}
-					basicInfo={resume.basicInfo}
+					theme={resume.resumeMeta?.theme ?? ResumeTheme.DEFAULT}
+					basicInfo={resume.basicInfo || undefined}
 				/>
 			))}
 		</>

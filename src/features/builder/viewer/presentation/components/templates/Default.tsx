@@ -1,3 +1,5 @@
+'use client';
+
 import { ResumePresenter } from '../../presenter/resume.presenter';
 import { Link, Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
@@ -5,7 +7,9 @@ import React from 'react';
 
 const Default = ({ resume }: { resume: ResumePresenter }) => {
 	return (
-		<article className="box-content flex h-max min-h-[842px] w-[595px] flex-col gap-5 bg-white p-10 text-black">
+		<article
+			id="resume-viewer"
+			className="box-content flex h-max min-h-[842px] w-[595px] flex-col gap-5 bg-white p-10 text-black">
 			<section id="basic-info" className="relative flex flex-col gap-1">
 				<h1 className="text-2xl font-bold text-stone-900">{resume.basicInfo.fullName}</h1>
 				<p className="-mt-2 text-lg">{resume.basicInfo.headline}</p>
@@ -55,7 +59,9 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 							<h4 className="text-sm">{experience.role}</h4>
 							<div
 								className="mt-2 w-full text-xs"
-								dangerouslySetInnerHTML={{ __html: experience.description }}></div>
+								dangerouslySetInnerHTML={{
+									__html: experience.description,
+								}}></div>
 							<div className="absolute right-0 top-1 flex items-center gap-2">
 								<span className="text-xs">{experience.startDate}</span>
 								<span className="text-xs">{experience.endDate}</span>
@@ -75,7 +81,9 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 							<h4 className="text-sm">{education.study}</h4>
 							<div
 								className="mt-2 w-full px-2 text-xs"
-								dangerouslySetInnerHTML={{ __html: education.description }}></div>
+								dangerouslySetInnerHTML={{
+									__html: education.description,
+								}}></div>
 							<div className="absolute right-0 top-1 flex items-center gap-2">
 								<span className="text-xs">{education.startDate}</span>
 								<span className="text-xs">{education.endDate}</span>

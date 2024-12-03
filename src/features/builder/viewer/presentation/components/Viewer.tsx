@@ -1,6 +1,7 @@
 'use server';
 
 import { resumePresenter } from '../presenter/resume.presenter';
+import DownloadButton from './DownloadButton';
 import Default from './templates/Default';
 import React from 'react';
 import { Enums } from '~/features/shared/models/resume.model';
@@ -20,8 +21,11 @@ const Viewer = async ({ resumeId }: { resumeId: string }) => {
 	};
 
 	return (
-		<section id="viewer" className="grid w-full place-items-center overflow-y-scroll p-10">
+		<section
+			id="viewer"
+			className="relative grid w-full place-items-center overflow-y-scroll p-10">
 			{resumeTemplate(resume.theme)}
+			<DownloadButton resumeId={resumeId} />
 		</section>
 	);
 };

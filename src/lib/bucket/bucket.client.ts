@@ -23,7 +23,7 @@ export class BucketClient implements IBucketClient {
 	}
 
 	async upload(file: File, entityId: string, fileId: string): Promise<string> {
-		const buffer = (await file.arrayBuffer()) as Buffer;
+		const buffer = (await file.arrayBuffer()) as unknown as Buffer;
 
 		const result = await this.bucket.uploadFile({
 			id: fileId,
