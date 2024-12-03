@@ -1,15 +1,10 @@
 import authConfig from './auth.config';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import NextAuth, { NextAuthResult } from 'next-auth';
+import prisma from '~/lib/prisma/db';
 
 const nextAuth = NextAuth({
 	callbacks: {
-		async session({ session, token }) {
-			if (token && session.user) {
-				session.user.id = token.id as string;
-			}
-
-			return session;
-		},
 		async jwt({ token, user }) {
 			if (user) {
 				token.id = user.id;
@@ -17,13 +12,20 @@ const nextAuth = NextAuth({
 
 			return token;
 		},
-	},
+		session({ session, token }) {
+			if (token && session.user) {
+				session.user.id = token.id as string;
+			}
 
+			return session;
+		},
+	},
 	session: { strategy: 'jwt' },
+	adapter: PrismaAdapter(prisma),
 	...authConfig,
 });
 
 export const signIn: NextAuthResult['signIn'] = nextAuth.signIn;
 export const auth: NextAuthResult['auth'] = nextAuth.auth;
-export const handlers: NextAuthResult['handlers'] = nextAuth.handlers;
+export const { GET, POST }: NextAuthResult['handlers'] = nextAuth.handlers;
 export const signOut: NextAuthResult['signOut'] = nextAuth.signOut;
