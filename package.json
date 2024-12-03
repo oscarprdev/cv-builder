@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build",
+		"build": "prisma generate && next build",
 		"start": "next start",
 		"lint": "next lint",
 		"type-check": "tsc --noEmit",
@@ -12,7 +12,8 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"test:unit": "vitest",
-		"test:e2e": "npx playwright test tests/e2e"
+		"test:e2e": "npx playwright test tests/e2e",
+		"postinstall": "prisma generate"
 	},
 	"prisma": {
 		"schema": "./src/lib/prisma/schema.prisma"
