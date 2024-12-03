@@ -56,10 +56,10 @@ export const printPdfAction = async (resumeId: string) => {
 			pdf.addPage(copiedPage);
 		}
 
-		const screenshot = await page.screenshot();
-		const bufferScreenshot = Buffer.from(screenshot);
+		// const screenshot = await page.screenshot();
+		// const bufferScreenshot = Buffer.from(screenshot);
 
-		// const buffer = Buffer.from(await pdf.save());
+		const buffer = Buffer.from(await pdf.save());
 
 		const bucket = new Bucket({
 			endpoint: BUCKET_URL,
@@ -68,15 +68,17 @@ export const printPdfAction = async (resumeId: string) => {
 			bucketName: BUCKET_NAME,
 		});
 
-		await bucket.uploadFile({
-			id: 'test',
-			file: bufferScreenshot,
-			contentType: 'type/png',
+		const pdfUrl = await bucket.uploadFile({
+			id: 'test-pdf',
+			file: buffer,
+			contentType: 'application/pdf',
 			project: 'test-id',
 		});
 
 		await page.close();
 		await browser.disconnect();
+
+		return pdfUrl;
 	} catch (error) {
 		console.log('print PDF error', error);
 	}

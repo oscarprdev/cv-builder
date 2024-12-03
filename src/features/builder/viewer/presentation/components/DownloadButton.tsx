@@ -1,12 +1,22 @@
 'use client';
 
 import React from 'react';
+import { toast } from 'sonner';
 import { printPdfAction } from '~/app/actions/print-pdf.action';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 
 const DownloadButton = ({ resumeId }: { resumeId: string }) => {
 	const onDownloadClick = async () => {
-		await printPdfAction(resumeId);
+		const pdfUrl = await printPdfAction(resumeId);
+
+		if (!pdfUrl) return toast.error('Error printing pdf');
+
+		const a = document.createElement('a');
+		a.href = pdfUrl;
+		a.download = 'resume.pdf';
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
 	};
 
 	return (
