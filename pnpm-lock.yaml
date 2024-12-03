@@ -56,6 +56,9 @@ dependencies:
   '@radix-ui/react-tooltip':
     specifier: ^1.1.4
     version: 1.1.4(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
+  '@sparticuz/chromium-min':
+    specifier: 126.0.0
+    version: 126.0.0
   '@tailwindcss/typography':
     specifier: ^0.5.15
     version: 0.5.15(tailwindcss@3.4.15)
@@ -113,6 +116,9 @@ dependencies:
   puppeteer:
     specifier: ^23.9.0
     version: 23.9.0(typescript@5.7.2)
+  puppeteer-core:
+    specifier: ^23.9.0
+    version: 23.9.0
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -4606,6 +4612,16 @@ packages:
       tslib: 2.8.1
     dev: false
 
+  /@sparticuz/chromium-min@126.0.0:
+    resolution: {integrity: sha512-Wn51LRKXHwBEfm6OWnZmcMVkzWg1TQvSMsG0H5p6UFrOcM6GUjGLxty9Er863EuJC2gwIEc6kNr8h/mhT893oA==}
+    engines: {node: '>= 16'}
+    dependencies:
+      follow-redirects: 1.15.9
+      tar-fs: 3.0.6
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@storybook/addon-actions@8.4.5(storybook@8.4.5):
     resolution: {integrity: sha512-rbB19uiGJ61XHbKIbS1a9bUS6re5L8rT5NMNeEJhCxXRpFUPrlTXMSoD/Pgcn3ENeEMVZsm8/eCzxAVgAP3Mgg==}
     peerDependencies:
@@ -8198,6 +8214,16 @@ packages:
   /flatted@3.3.2:
     resolution: {integrity: sha512-AiwGJM8YcNOaobumgtng+6NHuOqC3A7MixFeDafM3X9cIUM+xUXoS5Vfgf+OihAYe20fxqNM9yPBXJzRtZ/4eA==}
     dev: true
+
+  /follow-redirects@1.15.9:
+    resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
 
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}

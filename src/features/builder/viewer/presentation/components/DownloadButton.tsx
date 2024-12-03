@@ -13,6 +13,7 @@ const DownloadButton = ({ resumeId }: { resumeId: string }) => {
 			if (!pdfUrl) return toast.error('PDF not uploaded');
 
 			const a = document.createElement('a');
+			a.target = '_blank';
 			a.href = pdfUrl;
 			a.download = 'resume.pdf';
 			document.body.appendChild(a);
