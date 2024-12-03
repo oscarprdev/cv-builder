@@ -5,10 +5,15 @@ import { Button } from '~/features/shared/presentation/components/ui/button/butt
 
 const DownloadButton = ({ resumeId }: { resumeId: string }) => {
 	const onDownloadClick = async () => {
-		const response = await fetch('https://opapi.netlify.app/print', {
+		const response = await fetch('http://localhost:8080/print', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				origin: 'https://cv-builder-teal.vercel.app',
+				'ALLOW-CONTROL-ALLOW-ORIGIN': '*',
+				'ACCESS-CONTROL-ALLOW-ORIGIN': '*',
+				'ACCESS-CONTROL-ALLOW-METHODS': 'GET, POST, OPTIONS',
+				'ACCESS-CONTROL-ALLOW-HEADERS': '*',
 			},
 			body: JSON.stringify({
 				resumeId,
