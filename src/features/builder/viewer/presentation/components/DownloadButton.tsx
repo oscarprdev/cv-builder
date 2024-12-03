@@ -5,7 +5,7 @@ import { Button } from '~/features/shared/presentation/components/ui/button/butt
 
 const DownloadButton = ({ resumeId }: { resumeId: string }) => {
 	const onDownloadClick = async () => {
-		const response = await fetch('http://localhost:8080/print', {
+		const response = await fetch('https://opapi.netlify.app/print', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
