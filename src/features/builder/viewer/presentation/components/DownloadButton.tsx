@@ -1,28 +1,31 @@
 'use client';
 
 import React from 'react';
-import { toast } from 'sonner';
-import { printPdfAction } from '~/app/actions/print-pdf.action';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 
 const DownloadButton = ({ resumeId }: { resumeId: string }) => {
 	const onDownloadClick = async () => {
-		try {
-			const pdfUrl = await printPdfAction(resumeId);
+		const response = await fetch('https://opapi.netlify.app/print', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				resumeId,
+			}),
+		});
+		const data = await response.json();
 
-			if (!pdfUrl) return toast.error('PDF not uploaded');
+		const url = data.url;
+		const a = document.createElement('a');
+		a.target = '_blank';
+		a.href = url;
+		a.download = 'resume.pdf';
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
 
-			const a = document.createElement('a');
-			a.target = '_blank';
-			a.href = pdfUrl;
-			a.download = 'resume.pdf';
-			document.body.appendChild(a);
-			a.click();
-			document.body.removeChild(a);
-		} catch (error) {
-			console.log(error);
-			toast.error('Error printing pdf');
-		}
+		console.log(data);
 	};
 
 	return (
