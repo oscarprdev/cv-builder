@@ -7,16 +7,21 @@ import { Button } from '~/features/shared/presentation/components/ui/button/butt
 
 const DownloadButton = ({ resumeId }: { resumeId: string }) => {
 	const onDownloadClick = async () => {
-		const pdfUrl = await printPdfAction(resumeId);
+		try {
+			const pdfUrl = await printPdfAction(resumeId);
 
-		if (!pdfUrl) return toast.error('Error printing pdf');
+			if (!pdfUrl) return toast.error('PDF not uploaded');
 
-		const a = document.createElement('a');
-		a.href = pdfUrl;
-		a.download = 'resume.pdf';
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
+			const a = document.createElement('a');
+			a.href = pdfUrl;
+			a.download = 'resume.pdf';
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+		} catch (error) {
+			console.log(error);
+			toast.error('Error printing pdf');
+		}
 	};
 
 	return (

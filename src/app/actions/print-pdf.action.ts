@@ -11,75 +11,71 @@ const BUCKET_NAME = process.env.BUCKET || '';
 const APP_URL = process.env.APP_URL || '';
 
 export const printPdfAction = async (resumeId: string) => {
-	try {
-		const url = `${APP_URL}/${resumeId}`;
-		const browser = await puppeteer.launch({
-			headless: true,
-			defaultViewport: null,
-			args: ['--window-size=800,600'],
-		});
+	const url = `${APP_URL}/${resumeId}`;
+	const browser = await puppeteer.launch({
+		headless: true,
+		defaultViewport: null,
+		args: ['--window-size=800,600'],
+	});
 
-		const page = await browser.newPage();
-		await page.setUserAgent(
-			'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'
-		);
+	const page = await browser.newPage();
+	await page.setUserAgent(
+		'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'
+	);
 
-		await page.goto(url, {
-			waitUntil: 'networkidle2',
-		});
+	await page.goto(url, {
+		waitUntil: 'networkidle2',
+	});
 
-		const data = await page.evaluate(() => {
-			const pageElement = document.getElementById('theme-app');
+	const data = await page.evaluate(() => {
+		const pageElement = document.getElementById('theme-app');
 
-			if (!pageElement) throw new Error('Failed to get resume viewer');
+		if (!pageElement) throw new Error('Failed to get resume viewer');
 
-			const width = pageElement?.scrollWidth ?? 0;
-			const height = pageElement?.scrollHeight ?? 0;
+		const width = pageElement?.scrollWidth ?? 0;
+		const height = pageElement?.scrollHeight ?? 0;
 
-			return { width, height };
-		}, page);
+		return { width, height };
+	}, page);
 
-		if (!data) throw new Error('Failed to get data');
+	if (!data) throw new Error('Failed to get data');
 
-		const { width, height } = data;
+	const { width, height } = data;
 
-		const pagesBuffer: Buffer[] = [];
+	const pagesBuffer: Buffer[] = [];
 
-		const uint8array = await page.pdf({ width, height, printBackground: true });
-		pagesBuffer.push(Buffer.from(uint8array));
+	const uint8array = await page.pdf({ width, height, printBackground: true });
+	pagesBuffer.push(Buffer.from(uint8array));
 
-		const pdf = await PDFDocument.create();
+	const pdf = await PDFDocument.create();
 
-		for (const element of pagesBuffer) {
-			const page = await PDFDocument.load(element);
-			const [copiedPage] = await pdf.copyPages(page, [0]);
-			pdf.addPage(copiedPage);
-		}
-
-		// const screenshot = await page.screenshot();
-		// const bufferScreenshot = Buffer.from(screenshot);
-
-		const buffer = Buffer.from(await pdf.save());
-
-		const bucket = new Bucket({
-			endpoint: BUCKET_URL,
-			accessKeyId: BUCKET_KEY_ID,
-			secretAccessKey: BUCKET_ACCES_KEY,
-			bucketName: BUCKET_NAME,
-		});
-
-		const pdfUrl = await bucket.uploadFile({
-			id: 'test-pdf',
-			file: buffer,
-			contentType: 'application/pdf',
-			project: 'test-id',
-		});
-
-		await page.close();
-		await browser.disconnect();
-
-		return pdfUrl;
-	} catch (error) {
-		console.log('print PDF error', error);
+	for (const element of pagesBuffer) {
+		const page = await PDFDocument.load(element);
+		const [copiedPage] = await pdf.copyPages(page, [0]);
+		pdf.addPage(copiedPage);
 	}
+
+	const screenshot = await page.screenshot();
+	const bufferScreenshot = Buffer.from(screenshot);
+
+	// const buffer = Buffer.from(await pdf.save());
+
+	const bucket = new Bucket({
+		endpoint: BUCKET_URL,
+		accessKeyId: BUCKET_KEY_ID,
+		secretAccessKey: BUCKET_ACCES_KEY,
+		bucketName: BUCKET_NAME,
+	});
+
+	const pdfUrl = await bucket.uploadFile({
+		id: 'test-img',
+		file: bufferScreenshot,
+		contentType: 'image/png',
+		project: 'test-id',
+	});
+
+	await page.close();
+	await browser.disconnect();
+
+	return pdfUrl;
 };
