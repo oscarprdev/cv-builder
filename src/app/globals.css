@@ -93,6 +93,19 @@ body {
 	#viewer ul {
 		padding-inline-start: 1.6em;
 	}
+
+	picture {
+		display: grid;
+		place-items: center;
+		overflow: hidden;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover !important;
+		aspect-ratio: 16 / 9;
+	}
 }
 
 strong {
