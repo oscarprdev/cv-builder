@@ -1,8 +1,20 @@
 import EducationSection from './Education/EducationSection';
 import LanguageSection from './Language/LanguageSection';
+import SettingsSection from './Settings/SettingsSection';
+import ShareSection from './Share/ShareSection';
 import SkillSection from './Skill/SkillSection';
-import { Briefcase, DraftingCompass, GraduationCap, Languages, Text, User } from 'lucide-react';
+import {
+	Briefcase,
+	DraftingCompass,
+	GraduationCap,
+	Languages,
+	Rss,
+	Text,
+	Usb,
+	User,
+} from 'lucide-react';
 import React, { Suspense } from 'react';
+import { shareAction } from '~/app/actions/share/share.action';
 import {
 	BasicSection,
 	BasicSectionFallback,
@@ -27,7 +39,13 @@ const SectionsList = ({
 }) => {
 	return (
 		<section data-testid="aside-forms-container" className="w-full flex-col p-5">
-			{section === 'summary' ? (
+			{section === 'basic' ? (
+				<SectionContainer opened={opened} title="Basic" icon={<User size={20} />}>
+					<Suspense key={crypto.randomUUID()} fallback={<BasicSectionFallback />}>
+						<BasicSection resumeId={resumeId} />
+					</Suspense>
+				</SectionContainer>
+			) : section === 'summary' ? (
 				<SectionContainer opened={opened} title="Summary" icon={<Text size={20} />}>
 					<Suspense key={crypto.randomUUID()} fallback={<SummarySectionFallback />}>
 						<SummarySection resumeId={resumeId} />
@@ -63,11 +81,13 @@ const SectionsList = ({
 						<LanguageSection resumeId={resumeId} />
 					</Suspense>
 				</SectionContainer>
+			) : section === 'share' ? (
+				<SectionContainer opened={opened} title="Share" icon={<Rss size={20} />}>
+					<ShareSection resumeId={resumeId} action={shareAction} />
+				</SectionContainer>
 			) : (
-				<SectionContainer opened={opened} title="Basic" icon={<User size={20} />}>
-					<Suspense key={crypto.randomUUID()} fallback={<BasicSectionFallback />}>
-						<BasicSection resumeId={resumeId} />
-					</Suspense>
+				<SectionContainer opened={opened} title="Settings" icon={<Usb size={20} />}>
+					<SettingsSection resumeId={resumeId} />
 				</SectionContainer>
 			)}
 		</section>

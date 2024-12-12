@@ -35,9 +35,9 @@ const EducationForm = ({ resumeId, educationInfo, submitText, action }: Educatio
 		if (isError(response)) {
 			toast.error(response.error);
 		} else {
-			toast.success(response.success);
-
 			update(resumeId);
+
+			toast.success(response.success);
 		}
 	};
 
