@@ -86,3 +86,14 @@ export type SortResumeLanguagePayload = {
 	languageId: string;
 	sortOrder: number;
 };
+
+// Share resume types
+export interface UpdatePublicFieldsPayload {
+	resumeId: string;
+	isNamePublic: boolean;
+	isEmailPublic: boolean;
+	isPhonePublic: boolean;
+	isLocationPublic: boolean;
+	isWebsitePublic: boolean;
+	isImagePublic: boolean;
+}

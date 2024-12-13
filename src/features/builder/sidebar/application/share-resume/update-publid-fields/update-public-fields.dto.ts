@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const publicFieldsSchema = z.object({
+export const updatePublicFieldsDto = z.object({
 	resumeId: z.string(),
 	isNamePublic: z.boolean(),
 	isEmailPublic: z.boolean(),
@@ -10,4 +10,4 @@ export const publicFieldsSchema = z.object({
 	isImagePublic: z.boolean(),
 });
 
-export type PublicFieldsFormValues = z.infer<typeof publicFieldsSchema>;
+export type UpdatePublicFieldsDto = z.infer<typeof updatePublicFieldsDto>;

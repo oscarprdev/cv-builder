@@ -14,7 +14,6 @@ import {
 	User,
 } from 'lucide-react';
 import React, { Suspense } from 'react';
-import { shareAction } from '~/app/actions/share/share.action';
 import {
 	BasicSection,
 	BasicSectionFallback,
@@ -83,7 +82,7 @@ const SectionsList = ({
 				</SectionContainer>
 			) : section === 'share' ? (
 				<SectionContainer opened={opened} title="Share" icon={<Rss size={20} />}>
-					<ShareSection resumeId={resumeId} action={shareAction} />
+					<ShareSection resumeId={resumeId} />
 				</SectionContainer>
 			) : (
 				<SectionContainer opened={opened} title="Settings" icon={<Usb size={20} />}>

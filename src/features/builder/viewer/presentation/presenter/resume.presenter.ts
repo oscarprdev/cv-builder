@@ -19,11 +19,11 @@ export const resumePresenter = async (resumeId: string) => {
 		resumeId: response.success?.id,
 		theme: response.success?.resumeMeta?.theme,
 		basicInfo: response.success?.basicInfo,
-		summaryInfo: response.success?.summaryInfo,
-		experienceInfo: response.success?.experienceInfo,
-		educationInfo: response.success?.educationInfo,
-		skillInfo: response.success?.skillInfo,
-		languageInfo: response.success?.languageInfo,
+		summaryInfo: response.success?.summaryInfo ?? undefined,
+		experienceInfo: response.success?.experienceInfo ?? undefined,
+		educationInfo: response.success?.educationInfo ?? undefined,
+		skillInfo: response.success?.skillInfo ?? undefined,
+		languageInfo: response.success?.languageInfo ?? undefined,
 	};
 
 	const validResponse = resumePresenterDto.safeParse(responseToParse);
@@ -42,11 +42,11 @@ export const resumePresenterDto = z.object({
 	resumeId: z.string(),
 	theme: z.enum(resumeThemes),
 	basicInfo: resumeBasicPresenterDto,
-	summaryInfo: resumeSummaryPresenterDto,
-	experienceInfo: resumeExperiencePresenterDto,
-	educationInfo: resumeEducationPresenterDto,
-	skillInfo: resumeSkillPresenterDto,
-	languageInfo: resumeLanguagePresenterDto,
+	summaryInfo: resumeSummaryPresenterDto.optional(),
+	experienceInfo: resumeExperiencePresenterDto.optional(),
+	educationInfo: resumeEducationPresenterDto.optional(),
+	skillInfo: resumeSkillPresenterDto.optional(),
+	languageInfo: resumeLanguagePresenterDto.optional(),
 });
 
 export type ResumePresenter = z.infer<typeof resumePresenterDto>;

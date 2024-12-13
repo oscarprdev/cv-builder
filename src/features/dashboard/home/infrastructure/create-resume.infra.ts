@@ -35,6 +35,16 @@ export class CreateResumeInfra implements ICreateResumeInfra {
 							},
 						},
 					},
+					resumePublicFields: {
+						create: {
+							isEmailPublic: false,
+							isPhonePublic: false,
+							isLocationPublic: false,
+							isWebsitePublic: false,
+							isImagePublic: false,
+							isNamePublic: false,
+						},
+					},
 				},
 				include: {
 					resumeMeta: true,
