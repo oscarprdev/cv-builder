@@ -11,7 +11,8 @@ export const languageSchema = z.object({
 			z.literal(''),
 			z.undefined(),
 		])
-		.optional(),
+		.optional()
+		.nullable(),
 });
 
 export type LanguageFormValues = z.infer<typeof languageSchema>;

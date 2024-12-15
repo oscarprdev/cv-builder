@@ -5,5 +5,5 @@ export interface LanguageActionInput {
 	resumeId: string;
 	language: string;
 	level: Enums.LanguageLevel;
-	certificationUrl?: string;
+	certificationUrl?: string | null;
 }

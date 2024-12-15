@@ -16,7 +16,8 @@ export const createResumeLanguageDto = z.object({
 			z.literal(''),
 			z.undefined(),
 		])
-		.optional(),
+		.optional()
+		.nullable(),
 });
 
 export type CreateResumeLanguageDto = z.infer<typeof createResumeLanguageDto>;

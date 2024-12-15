@@ -16,6 +16,6 @@ export const editResumeLanguageDto = z.object({
 			z.literal(''),
 			z.undefined(),
 		])
-		.optional(),
+		.nullable(),
 });
 export type EditResumeLanguageDto = z.infer<typeof editResumeLanguageDto>;

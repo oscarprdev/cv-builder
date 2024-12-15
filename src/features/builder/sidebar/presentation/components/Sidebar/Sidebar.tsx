@@ -1,4 +1,4 @@
-import { PanelLeft } from 'lucide-react';
+import { PanelLeftClose, PanelRightClose } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import SectionsList from '~/features/builder/sidebar/presentation/components/Sections/SectionsList';
@@ -21,8 +21,18 @@ const Sidebar = ({ resumeId, section, opened, reload }: SidebarProps) => {
 			)}>
 			<Link
 				href={`/builder/${resumeId}?section=${section}&opened=${opened ? 'false' : 'true'}`}
-				className={cn('group absolute -right-8 top-2 flex w-fit')}>
-				<PanelLeft size={22} className="text-muted duration-200 group-hover:text-white" />
+				className={cn('group absolute -right-8 top-2 z-50 flex w-fit')}>
+				{opened ? (
+					<PanelLeftClose
+						size={22}
+						className="text-muted duration-200 group-hover:text-white"
+					/>
+				) : (
+					<PanelRightClose
+						size={22}
+						className="text-muted duration-200 group-hover:text-white"
+					/>
+				)}
 			</Link>
 			<SidebarNav resumeId={resumeId} section={section} opened={opened} />
 			<SectionsList resumeId={resumeId} section={section} opened={opened} reload={reload} />

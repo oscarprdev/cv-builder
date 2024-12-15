@@ -1,5 +1,4 @@
 import { DescribeResumeExperienceInfraOutput } from './resume-experience.types';
-import { ResumeExperienceInfoModel } from '~/features/shared/models/resume.model';
 import prisma from '~/lib/prisma/db';
 
 export interface IDescribeResumeExperienceInfra {

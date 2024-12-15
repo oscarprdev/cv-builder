@@ -9,8 +9,6 @@ export const resumeEducationPresenter = async ({ resumeId }: { resumeId: string 
 
 	if (isError(response)) return response.error;
 
-	console.log(response.success);
-
 	const validResponse = resumeEducationPresenterDto.safeParse(response.success);
 
 	if (!validResponse.success) return 'Invalid resume education info';

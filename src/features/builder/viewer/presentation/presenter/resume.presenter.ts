@@ -14,8 +14,6 @@ export const resumePresenter = async (resumeId: string) => {
 
 	if (isError(response)) return response.error;
 
-	console.log(response.success);
-
 	const responseToParse = {
 		resumeId: response.success?.id,
 		resumeMeta: {

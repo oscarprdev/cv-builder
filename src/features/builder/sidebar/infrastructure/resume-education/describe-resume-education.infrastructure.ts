@@ -1,5 +1,4 @@
 import { DescribeResumeEducationInfraOutput } from './resume-education.types';
-import { ResumeEducationInfoModel } from '~/features/shared/models/resume.model';
 import prisma from '~/lib/prisma/db';
 
 export interface IDescribeResumeEducationInfra {

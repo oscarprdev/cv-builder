@@ -17,7 +17,7 @@ export class CreateResumeLanguageInfra implements ICreateResumeLanguageInfra {
 			data: {
 				resumeId: payload.resumeId,
 				language: payload.language,
-				certificationUrl: payload.certificationUrl,
+				certificationUrl: payload.certificationUrl ?? null,
 				level: payload.level,
 				sortOrder: nextOrder,
 			},

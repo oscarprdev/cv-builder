@@ -79,7 +79,7 @@ export interface CreateResumeLanguagePayload {
 	resumeId: string;
 	language: string;
 	level: Enums.LanguageLevel;
-	certificationUrl?: string;
+	certificationUrl?: string | null;
 }
 
 export type SortResumeLanguagePayload = {
