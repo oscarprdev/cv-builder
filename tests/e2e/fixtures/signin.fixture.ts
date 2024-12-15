@@ -12,7 +12,7 @@ export const test = base.extend<SigninFixture>({
 	},
 	navigateToSigninPage: async ({ page }, use) => {
 		await use(async (): Promise<void> => {
-			await page.goto(`/signin`);
+			await page.goto(`signin`);
 		});
 	},
 });
