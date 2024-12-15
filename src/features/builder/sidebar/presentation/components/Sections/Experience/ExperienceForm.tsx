@@ -1,6 +1,6 @@
 'use client';
 
-import { useBuilderReload } from '../../../hook/useBuilderReload';
+import { useBuilderReload } from '../../../hooks/useBuilderReload';
 import { ExperienceFormValues, experienceSchema } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoaderCircle } from 'lucide-react';

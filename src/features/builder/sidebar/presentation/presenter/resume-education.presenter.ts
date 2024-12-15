@@ -1,3 +1,4 @@
+import { educationDto } from '../../application/resume-education/describe/describe-resume-education.dto';
 import { z } from 'zod';
 import { provideDescribeResumeEducationUsecase } from '~/features/builder/sidebar/provider/resume-education/describe-resume-education.provider';
 import { isError } from '~/lib/utils/either';
@@ -8,6 +9,8 @@ export const resumeEducationPresenter = async ({ resumeId }: { resumeId: string 
 
 	if (isError(response)) return response.error;
 
+	console.log(response.success);
+
 	const validResponse = resumeEducationPresenterDto.safeParse(response.success);
 
 	if (!validResponse.success) return 'Invalid resume education info';
@@ -15,18 +18,10 @@ export const resumeEducationPresenter = async ({ resumeId }: { resumeId: string 
 	return validResponse.data;
 };
 
-export const educationDto = z.object({
-	id: z.string(),
-	resumeId: z.string(),
-	institution: z.string(),
-	study: z.string(),
-	description: z.string(),
-	startDate: z.string(),
-	endDate: z.string(),
-	sortOrder: z.number(),
+export const resumeEducationPresenterDto = z.object({
+	educationInfo: z.array(educationDto),
+	sectionTitle: z.string(),
 });
-
-export const resumeEducationPresenterDto = z.array(educationDto);
 
 export type EducationPresenter = z.infer<typeof educationDto>;
 export type ResumeEducationPresenter = z.infer<typeof resumeEducationPresenterDto>;

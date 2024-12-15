@@ -7,7 +7,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { LanguageActionInput } from '~/app/actions/language/shared/types';
-import { useBuilderReload } from '~/features/builder/sidebar/presentation/hook/useBuilderReload';
+import { useBuilderReload } from '~/features/builder/sidebar/presentation/hooks/useBuilderReload';
 import { languageLevels } from '~/features/builder/sidebar/presentation/presenter/resume-language.presenter';
 import { Enums } from '~/features/shared/models/resume.model';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';

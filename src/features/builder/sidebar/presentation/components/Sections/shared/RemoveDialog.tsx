@@ -1,6 +1,6 @@
 'use client';
 
-import { useBuilderReload } from '../../../hook/useBuilderReload';
+import { useBuilderReload } from '../../../hooks/useBuilderReload';
 import { CustomFieldKind } from './ReorderGroup/types';
 import { useMutation } from '@tanstack/react-query';
 import { LoaderCircle, Trash } from 'lucide-react';

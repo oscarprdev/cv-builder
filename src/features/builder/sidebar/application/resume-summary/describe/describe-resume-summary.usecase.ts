@@ -1,13 +1,17 @@
-import { DescribeResumeSummaryDto, describeResumeSummaryDto } from './describe-resume-summary.dto';
+import {
+	DescribeResumeSummaryDto,
+	DescribeResumeSummaryResponseDto,
+	describeResumeSummaryDto,
+	describeResumeSummaryResponseDto,
+} from './describe-resume-summary.dto';
 import { DescribeResumeSummaryPort } from './describe-resume-summary.port';
 import { UseCase } from '~/features/shared/application/usecase';
-import { ResumeSummaryInfoModel } from '~/features/shared/models/resume.model';
 import { Either } from '~/lib/utils/either';
 
 export interface IDescribeResumeSummaryUseCase {
 	execute(
 		input: DescribeResumeSummaryDto
-	): Promise<Either<string, ResumeSummaryInfoModel | null>>;
+	): Promise<Either<string, DescribeResumeSummaryResponseDto>>;
 }
 
 export class DescribeResumeSummaryUseCase extends UseCase implements IDescribeResumeSummaryUseCase {
@@ -17,16 +21,23 @@ export class DescribeResumeSummaryUseCase extends UseCase implements IDescribeRe
 
 	async execute(
 		input: DescribeResumeSummaryDto
-	): Promise<Either<string, ResumeSummaryInfoModel | null>> {
+	): Promise<Either<string, DescribeResumeSummaryResponseDto>> {
 		try {
-			const validInput = this.parseInput<DescribeResumeSummaryDto>(
+			const validInput = this.parseValue<DescribeResumeSummaryDto>(
+				'input',
 				describeResumeSummaryDto,
 				input
 			);
 
 			const response = await this.ports.describe(validInput);
 
-			return this.successResponse(response);
+			const validOutput = this.parseValue<DescribeResumeSummaryResponseDto>(
+				'output',
+				describeResumeSummaryResponseDto,
+				response
+			);
+
+			return this.successResponse(validOutput);
 		} catch (error: unknown) {
 			return this.errorResponse(error, 'Error describing resume summary');
 		}

@@ -10,15 +10,15 @@ export abstract class UseCase {
 		return errorResponse(error instanceof Error ? error.message : errorMessage);
 	}
 
-	protected parseInput<T>(schema: ZodSchema<T>, input: unknown): T {
+	protected parseValue<T>(kind: 'input' | 'output', schema: ZodSchema<T>, value: unknown): T {
 		try {
-			return schema.parse(input);
+			return schema.parse(value);
 		} catch (error) {
 			if (error instanceof ZodError) {
-				throw new Error('Invalid input: ' + error.errors.map(e => e.message).join(', '));
+				throw new Error(`Invalid ${kind}: ` + error.errors.map(e => e.message).join(', '));
 			}
 
-			throw new Error('Unexpected error occurred during input parsing');
+			throw new Error(`Unexpected error occurred during usecase ${kind} parsing`);
 		}
 	}
 }

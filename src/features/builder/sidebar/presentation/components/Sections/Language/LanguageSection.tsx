@@ -1,5 +1,6 @@
 'use server';
 
+import UpdateTitleSection from '../shared/UpdateTitleSection';
 import LanguageForm from './LanguageForm';
 import { LanguageFormValues } from './types';
 import React from 'react';
@@ -34,7 +35,7 @@ const LanguageSection = async ({ resumeId }: LanguageSectionProps) => {
 
 	if (typeof response === 'string') return <div>{response}</div>;
 
-	const languageCustomFields = response.map(
+	const languageCustomFields = response.languageInfo.map(
 		language =>
 			({
 				field: {
@@ -48,11 +49,19 @@ const LanguageSection = async ({ resumeId }: LanguageSectionProps) => {
 	);
 
 	return (
-		<div>
-			<ReorderGroup<LanguagePresenter>
-				fields={languageCustomFields}
-				onReorderAction={sortLanguageAction}
+		<section className="flex flex-col gap-2">
+			<UpdateTitleSection
+				resumeId={resumeId}
+				title={response.sectionTitle}
+				sectionKind={Enums.resumeSection.LANGUAGES}
 			/>
+			<p className="text-sm text-muted">Languages</p>
+			<div className="max-h-[420px] overflow-y-scroll">
+				<ReorderGroup<LanguagePresenter>
+					fields={languageCustomFields}
+					onReorderAction={sortLanguageAction}
+				/>
+			</div>
 			<Dialog
 				trigger={<Button className="mt-5 w-full">Add new language</Button>}
 				title="New language">
@@ -63,7 +72,7 @@ const LanguageSection = async ({ resumeId }: LanguageSectionProps) => {
 					submitText="Create new language"
 				/>
 			</Dialog>
-		</div>
+		</section>
 	);
 };
 

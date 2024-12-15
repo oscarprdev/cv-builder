@@ -33,8 +33,6 @@ export const resumePresenter = async (resumeId: string) => {
 		languageInfo: response.success?.languageInfo ?? undefined,
 	};
 
-	console.log(responseToParse);
-
 	const validResponse = resumePresenterDto.safeParse(responseToParse);
 
 	if (!validResponse.success) return 'Invalid resume info';

@@ -1,11 +1,15 @@
-import { DescribeResumeSkillDto, describeResumeSkillDto } from './describe-resume-skill.dto';
+import {
+	DescribeResumeSkillDto,
+	DescribeResumeSkillResponseDto,
+	describeResumeSkillDto,
+	describeResumeSkillResponseDto,
+} from './describe-resume-skill.dto';
 import { DescribeResumeSkillPort } from './describe-resume-skill.port';
 import { UseCase } from '~/features/shared/application/usecase';
-import { ResumeSkillInfoModel } from '~/features/shared/models/resume.model';
 import { Either } from '~/lib/utils/either';
 
 export interface IDescribeResumeSkillUsecase {
-	execute(input: DescribeResumeSkillDto): Promise<Either<string, ResumeSkillInfoModel[]>>;
+	execute(input: DescribeResumeSkillDto): Promise<Either<string, DescribeResumeSkillResponseDto>>;
 }
 
 export class DescribeResumeSkillUsecase extends UseCase implements IDescribeResumeSkillUsecase {
@@ -13,18 +17,25 @@ export class DescribeResumeSkillUsecase extends UseCase implements IDescribeResu
 		super();
 	}
 
-	async execute(input: DescribeResumeSkillDto): Promise<Either<string, ResumeSkillInfoModel[]>> {
+	async execute(
+		input: DescribeResumeSkillDto
+	): Promise<Either<string, DescribeResumeSkillResponseDto>> {
 		try {
-			const validInput = this.parseInput<DescribeResumeSkillDto>(
+			const validInput = this.parseValue<DescribeResumeSkillDto>(
+				'input',
 				describeResumeSkillDto,
 				input
 			);
 
 			const response = await this.ports.describe(validInput);
 
-			if (!response) throw new Error('Resume Skill Info not found');
+			const validOutput = this.parseValue<DescribeResumeSkillResponseDto>(
+				'output',
+				describeResumeSkillResponseDto,
+				response
+			);
 
-			return this.successResponse(response);
+			return this.successResponse(validOutput);
 		} catch (error) {
 			return this.errorResponse(error, 'Error describing resume');
 		}

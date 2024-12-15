@@ -54,4 +54,14 @@ export namespace Enums {
 	} as const;
 
 	export type LanguageLevel = (typeof languageLevel)[keyof typeof languageLevel];
+
+	export const resumeSection = {
+		SUMMARY: 'SUMMARY',
+		EXPERIENCE: 'EXPERIENCE',
+		EDUCATION: 'EDUCATION',
+		LANGUAGES: 'LANGUAGES',
+		SKILLS: 'SKILLS',
+	} as const;
+
+	export type ResumeSection = (typeof resumeSection)[keyof typeof resumeSection];
 }

@@ -1,5 +1,5 @@
-import { ResumeEducationInfoModel } from '~/features/shared/models/resume.model';
+import { DescribeResumeEducationResponseDto } from './describe-resume-education.dto';
 
 export interface DescribeResumeEducationPort {
-	describe(input: { resumeId: string }): Promise<ResumeEducationInfoModel[]>;
+	describe(input: { resumeId: string }): Promise<DescribeResumeEducationResponseDto>;
 }

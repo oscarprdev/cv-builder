@@ -1,5 +1,6 @@
 'use server';
 
+import UpdateTitleSection from '../shared/UpdateTitleSection';
 import ExperienceForm from './ExperienceForm';
 import { ExperienceFormValues } from './types';
 import React from 'react';
@@ -14,6 +15,7 @@ import {
 	ExperiencePresenter,
 	resumeExperiencePresenter,
 } from '~/features/builder/sidebar/presentation/presenter/resume-experience.presenter';
+import { Enums } from '~/features/shared/models/resume.model';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
 import { capitalizeStr } from '~/lib/utils/str';
@@ -36,7 +38,7 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 
 	if (typeof response === 'string') return <div>{response}</div>;
 
-	const experienceCustomFields = response.map(
+	const experienceCustomFields = response.experienceInfo.map(
 		experience =>
 			({
 				field: {
@@ -50,11 +52,19 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 	);
 
 	return (
-		<div>
-			<ReorderGroup<ExperiencePresenter>
-				fields={experienceCustomFields}
-				onReorderAction={sortExperienceAction}
+		<section className="flex flex-col gap-2">
+			<UpdateTitleSection
+				resumeId={resumeId}
+				title={response.sectionTitle}
+				sectionKind={Enums.resumeSection.EXPERIENCE}
 			/>
+			<p className="text-sm text-muted">Experience</p>
+			<div className="max-h-[420px] overflow-y-scroll">
+				<ReorderGroup<ExperiencePresenter>
+					fields={experienceCustomFields}
+					onReorderAction={sortExperienceAction}
+				/>
+			</div>
 			<Dialog
 				trigger={<Button className="mt-5 w-full">Add new experience</Button>}
 				title="New experience">
@@ -65,7 +75,7 @@ const ExperienceSection = async ({ resumeId }: ExperienceSectionProps) => {
 					submitText="Create new experience"
 				/>
 			</Dialog>
-		</div>
+		</section>
 	);
 };
 
