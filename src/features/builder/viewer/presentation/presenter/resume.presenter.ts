@@ -1,11 +1,10 @@
 import { describeResumeProvider } from '../../provider/describe-resume.provider';
 import { z } from 'zod';
+import { educationDto } from '~/features/builder/sidebar/application/resume-education/describe/describe-resume-education.dto';
+import { experienceDto } from '~/features/builder/sidebar/application/resume-experience/describe/describe-resume-experience.dto';
+import { languageDto } from '~/features/builder/sidebar/application/resume-language/describe/describe-resume-language.dto';
+import { skillDto } from '~/features/builder/sidebar/application/resume-skill/describe/describe-resume-skill.dto';
 import { resumeBasicPresenterDto } from '~/features/builder/sidebar/presentation/presenter/resume-basic.presenter';
-import { resumeEducationPresenterDto } from '~/features/builder/sidebar/presentation/presenter/resume-education.presenter';
-import { resumeExperiencePresenterDto } from '~/features/builder/sidebar/presentation/presenter/resume-experience.presenter';
-import { resumeLanguagePresenterDto } from '~/features/builder/sidebar/presentation/presenter/resume-language.presenter';
-import { resumeSkillPresenterDto } from '~/features/builder/sidebar/presentation/presenter/resume-skill.presenter';
-import { resumeSummaryPresenterDto } from '~/features/builder/sidebar/presentation/presenter/resume-summary.presenter';
 import { Enums } from '~/features/shared/models/resume.model';
 import { isError } from '~/lib/utils/either';
 
@@ -14,6 +13,8 @@ export const resumePresenter = async (resumeId: string) => {
 	const response = await usecase.execute({ resumeId });
 
 	if (isError(response)) return response.error;
+
+	console.log(response.success);
 
 	const responseToParse = {
 		resumeId: response.success?.id,
@@ -26,11 +27,11 @@ export const resumePresenter = async (resumeId: string) => {
 			languagesTitle: response.success?.resumeMeta?.languagesTitle,
 		},
 		basicInfo: response.success?.basicInfo,
-		summaryInfo: response.success?.summaryInfo ?? undefined,
-		experienceInfo: response.success?.experienceInfo ?? undefined,
-		educationInfo: response.success?.educationInfo ?? undefined,
-		skillInfo: response.success?.skillInfo ?? undefined,
-		languageInfo: response.success?.languageInfo ?? undefined,
+		summaryInfo: response.success?.summaryInfo?.summary ?? undefined,
+		experienceInfo: response.success?.experienceInfo ?? [],
+		educationInfo: response.success?.educationInfo ?? [],
+		skillInfo: response.success?.skillInfo ?? [],
+		languageInfo: response.success?.languageInfo ?? [],
 	};
 
 	const validResponse = resumePresenterDto.safeParse(responseToParse);
@@ -55,12 +56,12 @@ export const resumePresenterDto = z.object({
 		languagesTitle: z.string(),
 		theme: z.enum(resumeThemes),
 	}),
-	basicInfo: resumeBasicPresenterDto,
-	summaryInfo: resumeSummaryPresenterDto.optional(),
-	experienceInfo: resumeExperiencePresenterDto.optional(),
-	educationInfo: resumeEducationPresenterDto.optional(),
-	skillInfo: resumeSkillPresenterDto.optional(),
-	languageInfo: resumeLanguagePresenterDto.optional(),
+	basicInfo: resumeBasicPresenterDto.optional(),
+	summaryInfo: z.string().optional(),
+	experienceInfo: z.array(experienceDto).optional(),
+	educationInfo: z.array(educationDto).optional(),
+	skillInfo: z.array(skillDto).optional(),
+	languageInfo: z.array(languageDto).optional(),
 });
 
 export type ResumePresenter = z.infer<typeof resumePresenterDto>;

@@ -24,7 +24,7 @@ const Viewer = async ({ resumeId }: { resumeId: string }) => {
 		<section
 			id="viewer"
 			className="relative grid w-full place-items-center overflow-y-scroll p-10">
-			{resumeTemplate(resume.theme)}
+			{resumeTemplate(resume.resumeMeta.theme)}
 			<DownloadButton />
 		</section>
 	);

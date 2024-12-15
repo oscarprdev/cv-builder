@@ -9,38 +9,42 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 		<article
 			id="resume-template"
 			className="box-content flex h-max min-h-[842px] w-[595px] flex-col gap-3 bg-white p-10 text-black">
-			<section id="basic-info" className="relative flex flex-col gap-1">
-				<h1 className="text-2xl font-bold text-stone-900">{resume.basicInfo.fullName}</h1>
-				<p className="-mt-2 text-lg">{resume.basicInfo.headline}</p>
-				<div className="flex w-full items-center gap-2">
+			{resume.basicInfo && (
+				<section id="basic-info" className="relative flex flex-col gap-1">
+					<h1 className="text-2xl font-bold text-stone-900">
+						{resume.basicInfo.fullName}
+					</h1>
+					<p className="-mt-2 text-lg">{resume.basicInfo.headline}</p>
+					<div className="flex w-full items-center gap-2">
+						<span id="icon" className="flex items-center gap-1 text-xs">
+							<Mail size={14} />
+							{resume.basicInfo.email}
+						</span>
+						<span id="icon" className="flex items-center gap-1 text-xs">
+							<Phone size={14} />
+							{resume.basicInfo.phone}
+						</span>
+						<span id="icon" className="flex items-center gap-1 text-xs">
+							<MapPin size={14} />
+							{resume.basicInfo.location}
+						</span>
+					</div>
 					<span id="icon" className="flex items-center gap-1 text-xs">
-						<Mail size={14} />
-						{resume.basicInfo.email}
+						<Link size={14} />
+						{resume.basicInfo.website}
 					</span>
-					<span id="icon" className="flex items-center gap-1 text-xs">
-						<Phone size={14} />
-						{resume.basicInfo.phone}
-					</span>
-					<span id="icon" className="flex items-center gap-1 text-xs">
-						<MapPin size={14} />
-						{resume.basicInfo.location}
-					</span>
-				</div>
-				<span id="icon" className="flex items-center gap-1 text-xs">
-					<Link size={14} />
-					{resume.basicInfo.website}
-				</span>
-				{resume.basicInfo.imageUrl && (
-					<picture className="absolute right-0 size-[100px]">
-						<img
-							src={resume.basicInfo.imageUrl}
-							alt="resume-image"
-							className="rounded-md"
-							crossOrigin="anonymous"
-						/>
-					</picture>
-				)}
-			</section>
+					{resume.basicInfo.imageUrl && (
+						<picture className="absolute right-0 size-[100px]">
+							<img
+								src={resume.basicInfo.imageUrl}
+								alt="resume-image"
+								className="rounded-md"
+								crossOrigin="anonymous"
+							/>
+						</picture>
+					)}
+				</section>
+			)}
 			{resume.summaryInfo && (
 				<section id="summary" className="relative flex flex-col gap-1">
 					<h2 className="text-xl font-semibold text-stone-800">
@@ -49,7 +53,7 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 					<div
 						id="editable-content"
 						className="w-full text-xs"
-						dangerouslySetInnerHTML={{ __html: resume.summaryInfo.summary }}></div>
+						dangerouslySetInnerHTML={{ __html: resume.summaryInfo }}></div>
 				</section>
 			)}
 			{resume.experienceInfo && (
