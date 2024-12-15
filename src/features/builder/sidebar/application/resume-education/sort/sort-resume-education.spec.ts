@@ -38,7 +38,7 @@ describe('Sort Resume Education Use Case', () => {
 	});
 
 	it('Should return error response', async () => {
-		spySort.mockImplementationOnce(() => Promise.reject());
+		spySort.mockImplementationOnce(() => new Error());
 		const response = await usecase.execute(input);
 
 		if (!isError(response)) return;

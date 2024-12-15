@@ -19,7 +19,7 @@ export class SortResumeLanguageUseCase extends UseCase implements ISortResumeLan
 			Promise.all(validInput.map(language => this.port.sort(language)));
 
 			return this.successResponse('Sort Resume Language has been successfully');
-		} catch (error) {
+		} catch (error: unknown) {
 			return this.errorResponse(error, 'Sort Resume Language has failed');
 		}
 	}
