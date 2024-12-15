@@ -17,7 +17,14 @@ export const resumePresenter = async (resumeId: string) => {
 
 	const responseToParse = {
 		resumeId: response.success?.id,
-		theme: response.success?.resumeMeta?.theme,
+		resumeMeta: {
+			theme: response.success?.resumeMeta?.theme,
+			summaryTitle: response.success?.resumeMeta?.summaryTitle,
+			experienceTitle: response.success?.resumeMeta?.experienceTitle,
+			educationTitle: response.success?.resumeMeta?.educationTitle,
+			skillsTitle: response.success?.resumeMeta?.skillsTitle,
+			languagesTitle: response.success?.resumeMeta?.languagesTitle,
+		},
 		basicInfo: response.success?.basicInfo,
 		summaryInfo: response.success?.summaryInfo ?? undefined,
 		experienceInfo: response.success?.experienceInfo ?? undefined,
@@ -25,6 +32,8 @@ export const resumePresenter = async (resumeId: string) => {
 		skillInfo: response.success?.skillInfo ?? undefined,
 		languageInfo: response.success?.languageInfo ?? undefined,
 	};
+
+	console.log(responseToParse);
 
 	const validResponse = resumePresenterDto.safeParse(responseToParse);
 
@@ -40,7 +49,14 @@ export const resumeThemes = Object.values(Enums.resumeTheme) as [
 
 export const resumePresenterDto = z.object({
 	resumeId: z.string(),
-	theme: z.enum(resumeThemes),
+	resumeMeta: z.object({
+		summaryTitle: z.string(),
+		experienceTitle: z.string(),
+		educationTitle: z.string(),
+		skillsTitle: z.string(),
+		languagesTitle: z.string(),
+		theme: z.enum(resumeThemes),
+	}),
 	basicInfo: resumeBasicPresenterDto,
 	summaryInfo: resumeSummaryPresenterDto.optional(),
 	experienceInfo: resumeExperiencePresenterDto.optional(),

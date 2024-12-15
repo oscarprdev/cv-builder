@@ -8,8 +8,8 @@ import {
 	GraduationCap,
 	Languages,
 	Palette,
+	Settings,
 	Text,
-	Usb,
 	User,
 } from 'lucide-react';
 import React, { Suspense } from 'react';
@@ -84,7 +84,7 @@ const SectionsList = ({
 					<p>Coming soon...</p>
 				</SectionContainer>
 			) : (
-				<SectionContainer opened={opened} title="Settings" icon={<Usb size={20} />}>
+				<SectionContainer opened={opened} title="Settings" icon={<Settings size={20} />}>
 					<SettingsSection resumeId={resumeId} />
 				</SectionContainer>
 			)}

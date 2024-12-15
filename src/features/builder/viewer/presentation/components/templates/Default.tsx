@@ -43,7 +43,9 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 			</section>
 			{resume.summaryInfo && (
 				<section id="summary" className="relative flex flex-col gap-1">
-					<h2 className="text-xl font-semibold text-stone-800">Summary</h2>
+					<h2 className="text-xl font-semibold text-stone-800">
+						{resume.resumeMeta.summaryTitle}
+					</h2>
 					<div
 						id="editable-content"
 						className="w-full text-xs"
@@ -52,7 +54,9 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 			)}
 			{resume.experienceInfo && (
 				<section id="experience" className="relative flex flex-col gap-1">
-					<h2 className="text-xl font-semibold text-stone-800">Experience</h2>
+					<h2 className="text-xl font-semibold text-stone-800">
+						{resume.resumeMeta.experienceTitle}
+					</h2>
 					{resume.experienceInfo
 						.sort((a, b) => a.sortOrder - b.sortOrder)
 						.map(experience => (
@@ -77,7 +81,9 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 			)}
 			{resume.educationInfo && (
 				<section id="education" className="relative flex flex-col gap-1">
-					<h2 className="text-xl font-semibold text-stone-800">Education</h2>
+					<h2 className="text-xl font-semibold text-stone-800">
+						{resume.resumeMeta.educationTitle}
+					</h2>
 					{resume.educationInfo
 						.sort((a, b) => a.sortOrder - b.sortOrder)
 						.map(education => (
@@ -102,7 +108,9 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 			)}
 			{resume.skillInfo && (
 				<section id="skills">
-					<h2 className="text-xl font-semibold text-stone-800">Skills</h2>
+					<h2 className="text-xl font-semibold text-stone-800">
+						{resume.resumeMeta.skillsTitle}
+					</h2>
 					<div className="mt-2 flex w-full flex-wrap items-center gap-3 text-xs">
 						{resume.skillInfo
 							.sort((a, b) => a.sortOrder - b.sortOrder)
@@ -119,7 +127,9 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 			)}
 			{resume.languageInfo && (
 				<section id="languages">
-					<h2 className="text-xl font-semibold text-stone-800">Languages</h2>
+					<h2 className="text-xl font-semibold text-stone-800">
+						{resume.resumeMeta.languagesTitle}
+					</h2>
 					<div className="mt-2 flex w-full flex-wrap items-center gap-3 text-xs">
 						{resume.languageInfo
 							.sort((a, b) => a.sortOrder - b.sortOrder)

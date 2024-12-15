@@ -28,6 +28,11 @@ export interface ResumeEducationInfoModel extends ResumeEducationInformation {}
 export interface ResumeSkillInfoModel extends ResumeSkillInformation {}
 export interface ResumeLanguageInfoModel extends ResumeLanguageInformation {}
 export interface ResumeMetaModel extends ResumeMeta {
+	summaryTitle: string;
+	experienceTitle: string;
+	educationTitle: string;
+	skillsTitle: string;
+	languagesTitle: string;
 	theme: Enums.ResumeTheme;
 }
 
