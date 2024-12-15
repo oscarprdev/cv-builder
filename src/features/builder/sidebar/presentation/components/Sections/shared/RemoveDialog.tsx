@@ -65,7 +65,7 @@ const RemoveDialog = ({
 			</p>
 
 			<div className="mt-3 flex w-full flex-col justify-center gap-3 px-10">
-				<Button onClick={onRemoveDialogConfirm}>
+				<Button variant={'destructive'} onClick={onRemoveDialogConfirm}>
 					{isPending ? (
 						<LoaderCircle data-testid="loader-icon" className="animate-spin" />
 					) : (
