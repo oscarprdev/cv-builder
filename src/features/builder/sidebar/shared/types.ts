@@ -86,3 +86,9 @@ export type SortResumeLanguagePayload = {
 	languageId: string;
 	sortOrder: number;
 };
+
+// Update title types
+export interface UpdateTitlePayload {
+	resumeId: string;
+	title: string;
+}
