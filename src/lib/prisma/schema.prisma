@@ -30,17 +30,16 @@ model User {
 }
 
 model Resume {
-  id                 String                        @id @unique @default(uuid())
-  userId             String
-  user               User                          @relation(fields: [userId], references: [id])
-  basicInfo          ResumeBasicInformation?       @relation()
-  summaryInfo        ResumeSummaryInformation?     @relation()
-  experienceInfo     ResumeExperienceInformation[] @relation()
-  educationInfo      ResumeEducationInformation[]  @relation()
-  skillInfo          ResumeSkillInformation[]      @relation()
-  languageInfo       ResumeLanguageInformation[]   @relation()
-  resumeMeta         ResumeMeta?                   @relation()
-  resumePublicFields ResumePublicFields?           @relation()
+  id             String                        @id @unique @default(uuid())
+  userId         String
+  user           User                          @relation(fields: [userId], references: [id])
+  basicInfo      ResumeBasicInformation?       @relation()
+  summaryInfo    ResumeSummaryInformation?     @relation()
+  experienceInfo ResumeExperienceInformation[] @relation()
+  educationInfo  ResumeEducationInformation[]  @relation()
+  skillInfo      ResumeSkillInformation[]      @relation()
+  languageInfo   ResumeLanguageInformation[]   @relation()
+  resumeMeta     ResumeMeta?                   @relation()
 }
 
 model ResumeMeta {
@@ -65,18 +64,6 @@ model ResumeBasicInformation {
   imageUrl     String?
   resume       Resume?                   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   customFields ResumeBasicCustomFields[]
-}
-
-model ResumePublicFields {
-  id               String  @id @unique @default(uuid())
-  resumeId         String  @unique
-  isNamePublic     Boolean
-  isEmailPublic    Boolean
-  isPhonePublic    Boolean
-  isLocationPublic Boolean
-  isWebsitePublic  Boolean
-  isImagePublic    Boolean
-  resume           Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeBasicCustomFields {

@@ -1,14 +1,13 @@
 import EducationSection from './Education/EducationSection';
 import LanguageSection from './Language/LanguageSection';
 import SettingsSection from './Settings/SettingsSection';
-import ShareSection from './Share/ShareSection';
 import SkillSection from './Skill/SkillSection';
 import {
 	Briefcase,
 	DraftingCompass,
 	GraduationCap,
 	Languages,
-	Rss,
+	Palette,
 	Text,
 	Usb,
 	User,
@@ -80,9 +79,9 @@ const SectionsList = ({
 						<LanguageSection resumeId={resumeId} />
 					</Suspense>
 				</SectionContainer>
-			) : section === 'share' ? (
-				<SectionContainer opened={opened} title="Share" icon={<Rss size={20} />}>
-					<ShareSection resumeId={resumeId} />
+			) : section === 'themes' ? (
+				<SectionContainer opened={opened} title="Themes" icon={<Palette size={20} />}>
+					<p>Coming soon...</p>
 				</SectionContainer>
 			) : (
 				<SectionContainer opened={opened} title="Settings" icon={<Usb size={20} />}>

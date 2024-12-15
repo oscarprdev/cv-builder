@@ -4,7 +4,6 @@ import {
 	GraduationCap,
 	Languages,
 	Palette,
-	Rss,
 	Settings,
 	Sparkle,
 	Text,
@@ -85,17 +84,10 @@ const SidebarNav = ({ resumeId, section, opened }: SidebarNavProps) => {
 			<div className="mt-auto flex w-full flex-col items-center border-t border-dashed border-background-hover pt-5">
 				<NavTooltip
 					resumeId={resumeId}
-					section="Themes"
+					section="themes"
 					icon={<Palette size={ICON_SIZE} />}
 					content="Themes"
 					isActive={section === 'themes'}
-				/>
-				<NavTooltip
-					resumeId={resumeId}
-					section="share"
-					icon={<Rss size={ICON_SIZE} />}
-					content="Share"
-					isActive={section === 'share'}
 				/>
 				<NavTooltip
 					resumeId={resumeId}
