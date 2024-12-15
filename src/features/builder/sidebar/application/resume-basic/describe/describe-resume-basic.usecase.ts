@@ -15,7 +15,8 @@ export class DescribeResumeBasicUseCase extends UseCase implements IDescribeResu
 
 	async execute(input: DescribeResumeBasicDto): Promise<Either<string, ResumeBasicInfoModel>> {
 		try {
-			const validInput = this.parseInput<DescribeResumeBasicDto>(
+			const validInput = this.parseValue<DescribeResumeBasicDto>(
+				'input',
 				describeResumeBasicDto,
 				input
 			);

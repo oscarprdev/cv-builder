@@ -14,7 +14,7 @@ export class SortResumeEducationUseCase extends UseCase implements ISortResumeEd
 
 	async execute(input: SortResumeEducationDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput(sortResumeEducationDto, input);
+			const validInput = this.parseValue('input', sortResumeEducationDto, input);
 
 			Promise.all(validInput.map(education => this.port.sort(education)));
 

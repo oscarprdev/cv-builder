@@ -14,7 +14,7 @@ export class SortResumeLanguageUseCase extends UseCase implements ISortResumeLan
 
 	async execute(input: SortResumeLanguageDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput(sortResumeLanguageDto, input);
+			const validInput = this.parseValue('input', sortResumeLanguageDto, input);
 
 			Promise.all(validInput.map(language => this.port.sort(language)));
 

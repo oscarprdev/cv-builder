@@ -14,7 +14,7 @@ export class CreateResumeUseCase extends UseCase implements ICreateResumeUseCase
 
 	async execute(input: CreateResumeDto): Promise<Either<string, { id: string }>> {
 		try {
-			const payload = this.parseInput<CreateResumeDto>(createResumeDto, input);
+			const payload = this.parseValue<CreateResumeDto>('input', createResumeDto, input);
 
 			const result = await this.ports.createResume(payload);
 

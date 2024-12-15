@@ -21,7 +21,7 @@ export class LoginUsecase extends UseCase implements ILoginUsecase {
 
 	async execute(input: LoginDto): Promise<Output> {
 		try {
-			const { email, password } = this.parseInput<LoginDto>(loginDto, input);
+			const { email, password } = this.parseValue<LoginDto>('input', loginDto, input);
 
 			const user = await this.ports.getUserByEmail(email);
 			if (!user) throw new Error(this.invalidCredentialsErrorMessage);

@@ -14,7 +14,7 @@ export class EditResumeSkillUsecase extends UseCase implements IEditResumeSkillU
 
 	async execute(input: EditResumeSkillDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput(editResumeSkillDto, input);
+			const validInput = this.parseValue('input', editResumeSkillDto, input);
 
 			await this.port.edit(validInput);
 

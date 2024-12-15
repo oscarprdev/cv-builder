@@ -14,7 +14,8 @@ export class UpdateResumeBasicUseCase extends UseCase implements IUpdateResumeBa
 
 	async execute(input: UpdateResumeBasicDto): Promise<Either<string, string>> {
 		try {
-			const { imageFile, imageUrl, ...validInput } = this.parseInput<UpdateResumeBasicDto>(
+			const { imageFile, imageUrl, ...validInput } = this.parseValue<UpdateResumeBasicDto>(
+				'input',
 				updateResumeBasicDto,
 				input
 			);

@@ -14,7 +14,7 @@ export class SortResumeExperienceUseCase extends UseCase implements ISortResumeE
 
 	async execute(input: SortResumeExperienceDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput(sortResumeExperienceDto, input);
+			const validInput = this.parseValue('input', sortResumeExperienceDto, input);
 
 			Promise.all(validInput.map(experience => this.port.sort(experience)));
 

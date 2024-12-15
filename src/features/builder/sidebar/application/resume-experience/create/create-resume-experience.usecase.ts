@@ -20,7 +20,8 @@ export class CreateResumeExperienceUsecase
 
 	async execute(input: CreateResumeExperienceDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput<CreateResumeExperienceDto>(
+			const validInput = this.parseValue<CreateResumeExperienceDto>(
+				'input',
 				createResumeExperienceDto,
 				input
 			);

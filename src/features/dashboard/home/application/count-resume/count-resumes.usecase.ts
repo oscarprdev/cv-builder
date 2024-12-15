@@ -14,7 +14,7 @@ export class CountResumesUseCase extends UseCase implements ICountResumesUseCase
 
 	async execute(input: CountResumesDto): Promise<Either<string, number>> {
 		try {
-			const validInput = this.parseInput<CountResumesDto>(countResumesDto, input);
+			const validInput = this.parseValue<CountResumesDto>('input', countResumesDto, input);
 
 			const response = await this.ports.countResumes(validInput);
 

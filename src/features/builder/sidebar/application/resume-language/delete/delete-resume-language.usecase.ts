@@ -14,7 +14,8 @@ export class DeleteResumeLanguageUsecase extends UseCase implements IDeleteResum
 
 	async execute(input: DeleteResumeLanguageDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput<DeleteResumeLanguageDto>(
+			const validInput = this.parseValue<DeleteResumeLanguageDto>(
+				'input',
 				deleteResumeLanguageDto,
 				input
 			);

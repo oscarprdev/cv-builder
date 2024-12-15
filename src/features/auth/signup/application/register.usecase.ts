@@ -20,7 +20,7 @@ export class RegisterUsecase extends UseCase implements IRegisterUsecase {
 
 	async execute(input: RegisterDto): Promise<Output> {
 		try {
-			const { password, email } = this.parseInput<RegisterDto>(registerDto, input);
+			const { password, email } = this.parseValue<RegisterDto>('input', registerDto, input);
 
 			const user = await this.ports.getUserByEmail(email);
 			if (user) throw new Error(this.userAlreadyExistErrorMessage);

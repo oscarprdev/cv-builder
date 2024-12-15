@@ -14,7 +14,7 @@ export class DeleteResumeUsecase extends UseCase implements IDeleteResumeUsecase
 
 	async execute(input: DeleteResumeDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput(deleteResumeDtoSchema, input);
+			const validInput = this.parseValue('input', deleteResumeDtoSchema, input);
 
 			await this.ports.deleteResume(validInput.resumeId);
 
