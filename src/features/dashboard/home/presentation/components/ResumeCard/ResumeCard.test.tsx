@@ -19,6 +19,7 @@ describe('ResumeCard', () => {
 					email: 'john.doe@example.com',
 					website: 'https://example.com',
 					imageUrl: null,
+					imageDisabled: false,
 				}}
 			/>
 		);
