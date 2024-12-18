@@ -165,6 +165,32 @@ strong {
 	transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.bg-gradient {
+	background: linear-gradient(
+		-45deg,
+		var(--background),
+		#111906 20%,
+		var(--background) 70%,
+		#111906 80%,
+		var(--background)
+	);
+	z-index: -1;
+	background-size: 200% 100%;
+	animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 @keyframes shimmer {
 	0% {
 		left: calc(0% - 1rem);
