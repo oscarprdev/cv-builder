@@ -165,7 +165,7 @@ strong {
 	transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.bg-gradient {
+/* .bg-gradient {
 	background: linear-gradient(
 		-45deg,
 		var(--background),
@@ -189,7 +189,7 @@ strong {
 	100% {
 		background-position: 0% 50%;
 	}
-}
+} */
 
 @keyframes shimmer {
 	0% {

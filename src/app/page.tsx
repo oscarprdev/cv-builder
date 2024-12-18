@@ -10,12 +10,16 @@ import { ArrowUpRight, Github } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { Opulento } from 'uvcanvas';
 
 function page() {
 	return (
 		<main className="relative flex flex-col overflow-hidden p-10">
 			<section className="relative grid h-screen w-full grid-cols-8 items-center">
-				<div className="bg-gradient absolute left-0 top-0 h-[200vh] w-full"></div>
+				<div className="absolute left-0 top-0 z-[-1] h-[200vh] w-full">
+					<div className="absolute left-0 top-0 size-full bg-black/90"></div>
+					<Opulento />
+				</div>
 				<div className="absolute left-2 top-2 mb-20 h-1/2">
 					<h2 className="ml-2 mt-2 font-bold">Summo.</h2>
 				</div>
