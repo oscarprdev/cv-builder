@@ -22,6 +22,7 @@ const nextAuth = NextAuth({
 	},
 	session: { strategy: 'jwt' },
 	adapter: PrismaAdapter(prisma),
+
 	...authConfig,
 });
 

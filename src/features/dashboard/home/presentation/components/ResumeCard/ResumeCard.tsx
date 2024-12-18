@@ -41,7 +41,7 @@ const ResumeCard = ({
 	return basicInfo ? (
 		<Link
 			data-testid="resume-card-link"
-			href={`/builder/${basicInfo.resumeId}`}
+			href={`/builder/${basicInfo.resumeId}?section=basic&opened=true&reload=0`}
 			className={cardClassNames}>
 			{themeContent[theme](basicInfo)}
 		</Link>
