@@ -31,7 +31,7 @@ const SummaryForm = ({ summaryInfo }: { summaryInfo: ResumeSummaryPresenter }) =
 
 		const values = getValues();
 		const response = await updateSummaryAction({
-			summary: values.summary,
+			summary: values.summary ?? '',
 			resumeId: summaryInfo.resumeId,
 		});
 

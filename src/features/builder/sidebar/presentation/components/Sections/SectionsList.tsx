@@ -1,7 +1,17 @@
 import EducationSection from './Education/EducationSection';
 import LanguageSection from './Language/LanguageSection';
+import SettingsSection from './Settings/SettingsSection';
 import SkillSection from './Skill/SkillSection';
-import { Briefcase, DraftingCompass, GraduationCap, Languages, Text, User } from 'lucide-react';
+import {
+	Briefcase,
+	DraftingCompass,
+	GraduationCap,
+	Languages,
+	Palette,
+	Settings,
+	Text,
+	User,
+} from 'lucide-react';
 import React, { Suspense } from 'react';
 import {
 	BasicSection,
@@ -27,7 +37,13 @@ const SectionsList = ({
 }) => {
 	return (
 		<section data-testid="aside-forms-container" className="w-full flex-col p-5">
-			{section === 'summary' ? (
+			{section === 'basic' ? (
+				<SectionContainer opened={opened} title="Basic" icon={<User size={20} />}>
+					<Suspense key={crypto.randomUUID()} fallback={<BasicSectionFallback />}>
+						<BasicSection resumeId={resumeId} />
+					</Suspense>
+				</SectionContainer>
+			) : section === 'summary' ? (
 				<SectionContainer opened={opened} title="Summary" icon={<Text size={20} />}>
 					<Suspense key={crypto.randomUUID()} fallback={<SummarySectionFallback />}>
 						<SummarySection resumeId={resumeId} />
@@ -63,11 +79,13 @@ const SectionsList = ({
 						<LanguageSection resumeId={resumeId} />
 					</Suspense>
 				</SectionContainer>
+			) : section === 'themes' ? (
+				<SectionContainer opened={opened} title="Themes" icon={<Palette size={20} />}>
+					<p>Coming soon...</p>
+				</SectionContainer>
 			) : (
-				<SectionContainer opened={opened} title="Basic" icon={<User size={20} />}>
-					<Suspense key={crypto.randomUUID()} fallback={<BasicSectionFallback />}>
-						<BasicSection resumeId={resumeId} />
-					</Suspense>
+				<SectionContainer opened={opened} title="Settings" icon={<Settings size={20} />}>
+					<SettingsSection resumeId={resumeId} />
 				</SectionContainer>
 			)}
 		</section>

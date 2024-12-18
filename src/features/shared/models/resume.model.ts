@@ -28,6 +28,11 @@ export interface ResumeEducationInfoModel extends ResumeEducationInformation {}
 export interface ResumeSkillInfoModel extends ResumeSkillInformation {}
 export interface ResumeLanguageInfoModel extends ResumeLanguageInformation {}
 export interface ResumeMetaModel extends ResumeMeta {
+	summaryTitle: string;
+	experienceTitle: string;
+	educationTitle: string;
+	skillsTitle: string;
+	languagesTitle: string;
 	theme: Enums.ResumeTheme;
 }
 
@@ -49,4 +54,14 @@ export namespace Enums {
 	} as const;
 
 	export type LanguageLevel = (typeof languageLevel)[keyof typeof languageLevel];
+
+	export const resumeSection = {
+		SUMMARY: 'SUMMARY',
+		EXPERIENCE: 'EXPERIENCE',
+		EDUCATION: 'EDUCATION',
+		LANGUAGES: 'LANGUAGES',
+		SKILLS: 'SKILLS',
+	} as const;
+
+	export type ResumeSection = (typeof resumeSection)[keyof typeof resumeSection];
 }

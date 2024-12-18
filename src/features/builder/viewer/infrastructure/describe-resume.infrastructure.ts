@@ -25,7 +25,7 @@ export class DescribeResumeInfrastructure implements IDescribeResumeInfrastructu
 				},
 			});
 
-			if (!response || !response.resumeMeta || !response.basicInfo || !response.summaryInfo) {
+			if (!response || !response.resumeMeta || !response.basicInfo) {
 				return null;
 			}
 

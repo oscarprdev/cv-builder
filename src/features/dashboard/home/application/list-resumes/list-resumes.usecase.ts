@@ -15,7 +15,7 @@ export class ListResumesUseCase extends UseCase implements IListResumesUseCase {
 
 	async execute(input: ListResumesDto): Promise<Either<string, ResumeModel[]>> {
 		try {
-			const validInput = this.parseInput<ListResumesDto>(listResumesDto, input);
+			const validInput = this.parseValue<ListResumesDto>('input', listResumesDto, input);
 
 			const response = await this.ports.listResumes(validInput);
 

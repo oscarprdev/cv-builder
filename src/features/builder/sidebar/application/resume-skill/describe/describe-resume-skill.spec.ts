@@ -1,4 +1,7 @@
-import { DescribeResumeSkillDto } from './describe-resume-skill.dto';
+import {
+	DescribeResumeSkillDto,
+	DescribeResumeSkillResponseDto,
+} from './describe-resume-skill.dto';
 import { DescribeResumeSkillPort } from './describe-resume-skill.port';
 import { DescribeResumeSkillUsecase } from './describe-resume-skill.usecase';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -7,8 +10,19 @@ import { isError } from '~/lib/utils/either';
 
 class MockDescribeResumeSkillRepository implements DescribeResumeSkillPort {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async describe(input: { resumeId: string }): Promise<ResumeSkillInfoModel[]> {
-		return [];
+	async describe(input: { resumeId: string }): Promise<DescribeResumeSkillResponseDto> {
+		return {
+			skillInfo: [
+				{
+					id: '1',
+					resumeId: 'resumeId',
+					name: 'Google',
+					level: 5,
+					sortOrder: 1,
+				},
+			],
+			sectionTitle: 'Skills',
+		};
 	}
 }
 
@@ -25,14 +39,10 @@ describe('Describe resume skillusecase', () => {
 	it('Should return the proper resume skill info', async () => {
 		const resumeSkill: ResumeSkillInfoModel[] = [
 			{
-				id: '1',
-				resumeId: 'resumeId',
-				company: 'Google',
-				role: 'Software Engineer',
-				website: 'https://google.com',
-				startDate: '2022-01-01',
-				endDate: '2022-12-31',
-				description: 'Software Engineer at Google',
+				id: 'a3a99d81-889d-47d2-8057-8f07ad3d932c',
+				resumeId: 'ace5a9e3-18c1-4037-a594-39012e9b7371',
+				name: 'Javascript',
+				level: 4,
 				sortOrder: 1,
 			},
 		];
@@ -74,6 +84,8 @@ describe('Describe resume skillusecase', () => {
 		if (!isError(response)) return;
 
 		expect(isError(response)).toBe(true);
-		expect(response.error).toBe('Resume Skill Info not found');
+		expect(response.error).toBe(
+			'Invalid output: Skill Info and sectionTitle fields are required'
+		);
 	});
 });

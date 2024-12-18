@@ -3,6 +3,8 @@ import {
 	DraftingCompass,
 	GraduationCap,
 	Languages,
+	Palette,
+	Settings,
 	Sparkle,
 	Text,
 	User,
@@ -79,6 +81,22 @@ const SidebarNav = ({ resumeId, section, opened }: SidebarNavProps) => {
 				content="Languages"
 				isActive={section === 'languages'}
 			/>
+			<div className="mt-auto flex w-full flex-col items-center border-t border-dashed border-background-hover pt-5">
+				<NavTooltip
+					resumeId={resumeId}
+					section="themes"
+					icon={<Palette size={ICON_SIZE} />}
+					content="Themes"
+					isActive={section === 'themes'}
+				/>
+				<NavTooltip
+					resumeId={resumeId}
+					section="settings"
+					icon={<Settings size={ICON_SIZE} />}
+					content="Settings"
+					isActive={section === 'settings'}
+				/>
+			</div>
 		</nav>
 	);
 };
@@ -102,7 +120,7 @@ const NavTooltip = ({ resumeId, section, icon, content, isActive }: NavTooltipPr
 						isActive
 							? 'bg-background-hover text-accent'
 							: 'text-muted hover:text-white',
-						'rounded-full p-2 duration-200 hover:bg-background-hover'
+						'w-full rounded-full p-2 duration-200 hover:bg-background-hover'
 					)}>
 					<Link href={`/builder/${resumeId}?section=${section}&opened=true&reload=0`}>
 						{icon}

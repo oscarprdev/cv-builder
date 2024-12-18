@@ -14,7 +14,8 @@ export class DeleteResumeEducationUsecase extends UseCase implements IDeleteResu
 
 	async execute(input: DeleteResumeEducationDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput<DeleteResumeEducationDto>(
+			const validInput = this.parseValue<DeleteResumeEducationDto>(
+				'input',
 				deleteResumeEducationDto,
 				input
 			);

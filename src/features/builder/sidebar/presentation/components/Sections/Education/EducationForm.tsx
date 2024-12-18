@@ -1,6 +1,6 @@
 'use client';
 
-import { useBuilderReload } from '../../../hook/useBuilderReload';
+import { useBuilderReload } from '../../../hooks/useBuilderReload';
 import { EducationFormValues, educationSchema } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoaderCircle } from 'lucide-react';
@@ -35,9 +35,9 @@ const EducationForm = ({ resumeId, educationInfo, submitText, action }: Educatio
 		if (isError(response)) {
 			toast.error(response.error);
 		} else {
-			toast.success(response.success);
-
 			update(resumeId);
+
+			toast.success(response.success);
 		}
 	};
 

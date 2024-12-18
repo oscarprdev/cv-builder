@@ -9,8 +9,9 @@ export const resumeSummaryPresenter = async ({ resumeId }: { resumeId: string })
 	if (isError(response)) return response.error;
 
 	const responseToParse = {
-		resumeId: response.success?.resumeId || resumeId,
-		summary: response.success?.summary || '',
+		resumeId: response.success?.summaryInfo?.resumeId || resumeId,
+		summary: response.success?.summaryInfo?.summary || '',
+		sectionTitle: response.success?.sectionTitle,
 	};
 
 	const validResponse = resumeSummaryPresenterDto.safeParse(responseToParse);
@@ -20,12 +21,14 @@ export const resumeSummaryPresenter = async ({ resumeId }: { resumeId: string })
 	return {
 		resumeId: validResponse.data.resumeId,
 		summary: validResponse.data.summary,
+		sectionTitle: validResponse.data.sectionTitle,
 	};
 };
 
 export const resumeSummaryPresenterDto = z.object({
 	resumeId: z.string(),
-	summary: z.string(),
+	summary: z.string().optional(),
+	sectionTitle: z.string(),
 });
 
 export type ResumeSummaryPresenter = z.infer<typeof resumeSummaryPresenterDto>;

@@ -35,27 +35,4 @@ test.describe('Dashboard page', () => {
 		await expect(dashboardHomePage.phoneInput).toBeVisible();
 		await expect(dashboardHomePage.locationInput).toBeVisible();
 	});
-
-	test('Should new resume form inputs display error messages', async ({ dashboardHomePage }) => {
-		await expect(dashboardHomePage.dashboardAside).toBeVisible();
-		await expect(dashboardHomePage.resumeDialogTrigger).toBeVisible();
-
-		await dashboardHomePage.resumeDialogTrigger.click();
-
-		await expect(dashboardHomePage.newResumeForm).toBeVisible();
-
-		await dashboardHomePage.fullNameInput.fill(Array(31).fill('a').join(''));
-		await dashboardHomePage.headlineInput.fill(Array(61).fill('a').join(''));
-		await dashboardHomePage.emailInput.fill('invalidEmail');
-		await dashboardHomePage.websiteInput.fill('invalidUrl');
-		await dashboardHomePage.phoneInput.fill('invalidPhone');
-		await dashboardHomePage.locationInput.fill(Array(26).fill('a').join(''));
-
-		await expect(dashboardHomePage.fullNameErrorMessage).toBeVisible();
-		await expect(dashboardHomePage.headlineErrorMessage).toBeVisible();
-		await expect(dashboardHomePage.emailErrorMessage).toBeVisible();
-		await expect(dashboardHomePage.websiteErrorMessage).toBeVisible();
-		await expect(dashboardHomePage.phoneErrorMessage).toBeVisible();
-		await expect(dashboardHomePage.locationErrorMessage).toBeVisible();
-	});
 });

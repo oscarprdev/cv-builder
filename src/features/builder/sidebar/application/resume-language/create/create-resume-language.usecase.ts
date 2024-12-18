@@ -14,7 +14,8 @@ export class CreateResumeLanguageUsecase extends UseCase implements ICreateResum
 
 	async execute(input: CreateResumeLanguageDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput<CreateResumeLanguageDto>(
+			const validInput = this.parseValue<CreateResumeLanguageDto>(
+				'input',
 				createResumeLanguageDto,
 				input
 			);

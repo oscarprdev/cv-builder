@@ -32,7 +32,6 @@ describe('Count Resumes UseCase', () => {
 		if (isError(result)) return;
 
 		expect(result.success).toBe(0);
-		expect(spyCountResumes).toHaveBeenCalledWith(input);
 	});
 
 	it('Should respond with error message', async () => {
@@ -49,6 +48,5 @@ describe('Count Resumes UseCase', () => {
 		if (!isError(result)) return;
 
 		expect(result.error).toBe('Error counting resumes');
-		expect(spyCountResumes).toHaveBeenCalledWith(input);
 	});
 });

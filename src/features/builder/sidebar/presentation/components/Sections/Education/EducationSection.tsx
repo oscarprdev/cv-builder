@@ -4,6 +4,7 @@ import {
 	EducationPresenter,
 	resumeEducationPresenter,
 } from '../../../presenter/resume-education.presenter';
+import UpdateTitleSection from '../shared/UpdateTitleSection';
 import EducationForm from './EducationForm';
 import { EducationFormValues } from './types';
 import React from 'react';
@@ -14,6 +15,7 @@ import {
 	CustomFieldKind,
 	ICustomField,
 } from '~/features/builder/sidebar/presentation/components/Sections/shared/ReorderGroup/types';
+import { Enums } from '~/features/shared/models/resume.model';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
 import { capitalizeStr } from '~/lib/utils/str';
@@ -35,7 +37,7 @@ const EducationSection = async ({ resumeId }: EducationSectionProps) => {
 
 	if (typeof response === 'string') return <div>{response}</div>;
 
-	const educationCustomFields = response.map(
+	const educationCustomFields = response.educationInfo.map(
 		education =>
 			({
 				field: {
@@ -49,11 +51,19 @@ const EducationSection = async ({ resumeId }: EducationSectionProps) => {
 	);
 
 	return (
-		<div>
-			<ReorderGroup<EducationPresenter>
-				fields={educationCustomFields}
-				onReorderAction={sortEducationAction}
+		<section className="flex flex-col gap-2">
+			<UpdateTitleSection
+				resumeId={resumeId}
+				title={response.sectionTitle}
+				sectionKind={Enums.resumeSection.EDUCATION}
 			/>
+			<p className="text-sm text-muted">Education</p>
+			<div className="max-h-[420px] overflow-y-scroll">
+				<ReorderGroup<EducationPresenter>
+					fields={educationCustomFields}
+					onReorderAction={sortEducationAction}
+				/>
+			</div>
 			<Dialog
 				trigger={<Button className="mt-5 w-full">Add new education</Button>}
 				title="New education">
@@ -64,7 +74,7 @@ const EducationSection = async ({ resumeId }: EducationSectionProps) => {
 					submitText="Create new education"
 				/>
 			</Dialog>
-		</div>
+		</section>
 	);
 };
 

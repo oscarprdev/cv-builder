@@ -43,26 +43,33 @@ model Resume {
 }
 
 model ResumeMeta {
-  id        String      @id @unique @default(uuid())
-  resumeId  String      @unique
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @default(now())
-  theme     ResumeTheme
-  resume    Resume      @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  id              String      @id @unique @default(uuid())
+  resumeId        String      @unique
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now())
+  isPublic        Boolean     @default(false)
+  summaryTitle    String      @default("Summary")
+  experienceTitle String      @default("Experience")
+  educationTitle  String      @default("Education")
+  skillsTitle     String      @default("Skills")
+  languagesTitle  String      @default("Languages")
+  theme           ResumeTheme
+  resume          Resume      @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeBasicInformation {
-  id           String                    @id @unique @default(uuid())
-  resumeId     String                    @unique
-  fullName     String
-  headline     String
-  email        String
-  website      String
-  phone        String
-  location     String
-  imageUrl     String?
-  resume       Resume?                   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
-  customFields ResumeBasicCustomFields[]
+  id            String                    @id @unique @default(uuid())
+  resumeId      String                    @unique
+  fullName      String
+  headline      String
+  email         String
+  website       String
+  phone         String
+  location      String
+  imageUrl      String?
+  imageDisabled Boolean                   @default(false)
+  resume        Resume?                   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  customFields  ResumeBasicCustomFields[]
 }
 
 model ResumeBasicCustomFields {

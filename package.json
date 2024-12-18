@@ -12,7 +12,7 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"test:unit": "vitest",
-		"test:e2e": "npx playwright test tests/e2e",
+		"test:e2e": "npx playwright test",
 		"postinstall": "prisma generate"
 	},
 	"prisma": {
@@ -23,7 +23,6 @@
 		"@hookform/resolvers": "^3.9.1",
 		"@neondatabase/serverless": "^0.10.3",
 		"@oprdev/cloudflare-r2-storage": "^1.0.3",
-		"@playwright/test": "^1.49.0",
 		"@prisma/adapter-neon": "^5.22.0",
 		"@prisma/client": "^5.22.0",
 		"@radix-ui/react-dialog": "^1.1.2",
@@ -34,6 +33,7 @@
 		"@radix-ui/react-separator": "^1.1.0",
 		"@radix-ui/react-slider": "^1.2.1",
 		"@radix-ui/react-slot": "^1.1.0",
+		"@radix-ui/react-switch": "^1.1.1",
 		"@radix-ui/react-toggle": "^1.1.0",
 		"@radix-ui/react-tooltip": "^1.1.4",
 		"@tailwindcss/typography": "^0.5.15",
@@ -65,6 +65,7 @@
 	},
 	"devDependencies": {
 		"@chromatic-com/storybook": "^1.9.0",
+		"@playwright/test": "^1.49.1",
 		"@storybook/addon-essentials": "^8.4.5",
 		"@storybook/addon-interactions": "^8.4.5",
 		"@storybook/addon-links": "^8.4.5",

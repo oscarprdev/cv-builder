@@ -1,4 +1,7 @@
-import { DescribeResumeEducationDto } from './describe-resume-education.dto';
+import {
+	DescribeResumeEducationDto,
+	DescribeResumeEducationResponseDto,
+} from './describe-resume-education.dto';
 import { DescribeResumeEducationPort } from './describe-resume-education.port';
 import { DescribeResumeEducationUsecase } from './describe-resume-education.usecase';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -7,8 +10,22 @@ import { isError } from '~/lib/utils/either';
 
 class MockDescribeResumeEducationRepository implements DescribeResumeEducationPort {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async describe(input: { resumeId: string }): Promise<ResumeEducationInfoModel[]> {
-		return [];
+	async describe(input: { resumeId: string }): Promise<DescribeResumeEducationResponseDto> {
+		return {
+			educationInfo: [
+				{
+					id: '1',
+					resumeId: 'resumeId',
+					institution: 'Oxford',
+					study: 'Software Engineering',
+					startDate: '2022-01-01',
+					endDate: '2022-12-31',
+					description: 'Software Engineering at Oxford',
+					sortOrder: 1,
+				},
+			],
+			sectionTitle: 'Education',
+		};
 	}
 }
 
@@ -73,6 +90,8 @@ describe('Describe resume educationusecase', () => {
 		if (!isError(response)) return;
 
 		expect(isError(response)).toBe(true);
-		expect(response.error).toBe('Resume Education Info not found');
+		expect(response.error).toBe(
+			'Invalid output: Education Info and sectionTitle fields are required'
+		);
 	});
 });

@@ -1,16 +1,17 @@
 import {
 	DescribeResumeExperienceDto,
+	DescribeResumeExperienceResponseDto,
 	describeResumeExperienceDto,
+	describeResumeExperienceResponseDto,
 } from './describe-resume-experience.dto';
 import { DescribeResumeExperiencePort } from './describe-resume-experience.port';
 import { UseCase } from '~/features/shared/application/usecase';
-import { ResumeExperienceInfoModel } from '~/features/shared/models/resume.model';
 import { Either } from '~/lib/utils/either';
 
 export interface IDescribeResumeExperienceUsecase {
 	execute(
 		input: DescribeResumeExperienceDto
-	): Promise<Either<string, ResumeExperienceInfoModel[]>>;
+	): Promise<Either<string, DescribeResumeExperienceResponseDto>>;
 }
 
 export class DescribeResumeExperienceUsecase
@@ -23,18 +24,23 @@ export class DescribeResumeExperienceUsecase
 
 	async execute(
 		input: DescribeResumeExperienceDto
-	): Promise<Either<string, ResumeExperienceInfoModel[]>> {
+	): Promise<Either<string, DescribeResumeExperienceResponseDto>> {
 		try {
-			const validInput = this.parseInput<DescribeResumeExperienceDto>(
+			const validInput = this.parseValue<DescribeResumeExperienceDto>(
+				'input',
 				describeResumeExperienceDto,
 				input
 			);
 
 			const response = await this.ports.describe(validInput);
 
-			if (!response) throw new Error('Resume Experience Info not found');
+			const validOutput = this.parseValue<DescribeResumeExperienceResponseDto>(
+				'output',
+				describeResumeExperienceResponseDto,
+				response
+			);
 
-			return this.successResponse(response);
+			return this.successResponse(validOutput);
 		} catch (error) {
 			return this.errorResponse(error, 'Error describing resume');
 		}

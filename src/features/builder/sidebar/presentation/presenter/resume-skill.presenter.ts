@@ -1,3 +1,4 @@
+import { skillDto } from '../../application/resume-skill/describe/describe-resume-skill.dto';
 import { z } from 'zod';
 import { provideDescribeResumeSkillUsecase } from '~/features/builder/sidebar/provider/resume-skill/describe-resume-skill.provider';
 import { isError } from '~/lib/utils/either';
@@ -15,15 +16,10 @@ export const resumeSkillPresenter = async ({ resumeId }: { resumeId: string }) =
 	return validResponse.data;
 };
 
-export const skillDto = z.object({
-	id: z.string(),
-	resumeId: z.string(),
-	name: z.string(),
-	level: z.number(),
-	sortOrder: z.number(),
+export const resumeSkillPresenterDto = z.object({
+	skillInfo: z.array(skillDto),
+	sectionTitle: z.string(),
 });
-
-export const resumeSkillPresenterDto = z.array(skillDto);
 
 export type SkillPresenter = z.infer<typeof skillDto>;
 export type ResumeSkillPresenter = z.infer<typeof resumeSkillPresenterDto>;

@@ -14,7 +14,11 @@ export class DeleteResumeSkillUsecase extends UseCase implements IDeleteResumeSk
 
 	async execute(input: DeleteResumeSkillDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput<DeleteResumeSkillDto>(deleteResumeSkillDto, input);
+			const validInput = this.parseValue<DeleteResumeSkillDto>(
+				'input',
+				deleteResumeSkillDto,
+				input
+			);
 
 			await this.port.delete(validInput.skillId);
 

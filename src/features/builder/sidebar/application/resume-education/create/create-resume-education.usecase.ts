@@ -14,7 +14,8 @@ export class CreateResumeEducationUsecase extends UseCase implements ICreateResu
 
 	async execute(input: CreateResumeEducationDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput<CreateResumeEducationDto>(
+			const validInput = this.parseValue<CreateResumeEducationDto>(
+				'input',
 				createResumeEducationDto,
 				input
 			);

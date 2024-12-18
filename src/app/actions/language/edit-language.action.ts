@@ -18,7 +18,7 @@ export const editNewLanguageAction = async (input: LanguageActionInput) => {
 		id: input.id,
 		language: input.language,
 		level: input.level,
-		certificationUrl: input.certificationUrl,
+		certificationUrl: input.certificationUrl ?? null,
 	};
 
 	const usecase = provideEditResumeLanguageUsecase();

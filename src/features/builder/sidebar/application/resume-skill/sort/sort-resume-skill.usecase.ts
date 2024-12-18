@@ -14,7 +14,7 @@ export class SortResumeSkillUseCase extends UseCase implements ISortResumeSkillU
 
 	async execute(input: SortResumeSkillDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput(sortResumeSkillDto, input);
+			const validInput = this.parseValue('input', sortResumeSkillDto, input);
 
 			Promise.all(validInput.map(skill => this.port.sort(skill)));
 

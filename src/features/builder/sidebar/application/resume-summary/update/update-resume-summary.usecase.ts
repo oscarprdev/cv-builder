@@ -14,7 +14,7 @@ export class UpdateResumeSummaryUsecase extends UseCase implements IUpdateResume
 
 	async execute(payload: UpdateResumeSummaryDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput(updateResumeSummaryDto, payload);
+			const validInput = this.parseValue('input', updateResumeSummaryDto, payload);
 
 			await this.ports.update(validInput);
 

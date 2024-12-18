@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { languageLevels } from '~/features/builder/sidebar/presentation/presenter/resume-language.presenter';
+import { languageLevels } from '~/features/builder/sidebar/application/resume-language/describe/describe-resume-language.dto';
 
 export const languageSchema = z.object({
 	id: z.string().optional(),
@@ -11,7 +11,8 @@ export const languageSchema = z.object({
 			z.literal(''),
 			z.undefined(),
 		])
-		.optional(),
+		.optional()
+		.nullable(),
 });
 
 export type LanguageFormValues = z.infer<typeof languageSchema>;

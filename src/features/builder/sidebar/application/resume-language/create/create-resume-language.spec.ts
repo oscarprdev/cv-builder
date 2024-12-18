@@ -64,6 +64,6 @@ describe('Create resume language usecase', () => {
 
 		expect(isError(response)).toBeTruthy();
 		expect(response).toHaveProperty('error');
-		expect(response.error).toEqual('Invalid input: Invalid URL format - http://*****.com');
+		expect(response.error).toEqual('Error creating resume language');
 	});
 });

@@ -1,5 +1,5 @@
-import { ResumeLanguageInfoModel } from '~/features/shared/models/resume.model';
+import { DescribeResumeLanguageResponseDto } from './describe-resume-language.dto';
 
 export interface DescribeResumeLanguagePort {
-	describe(input: { resumeId: string }): Promise<ResumeLanguageInfoModel[]>;
+	describe(input: { resumeId: string }): Promise<DescribeResumeLanguageResponseDto>;
 }

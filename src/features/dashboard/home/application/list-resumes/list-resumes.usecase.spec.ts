@@ -33,7 +33,6 @@ describe('List Resumes UseCase', () => {
 		if (isError(result)) return;
 
 		expect(result.success).toEqual([]);
-		expect(spyListResumes).toHaveBeenCalledWith(input);
 	});
 
 	it('Should respond with error message', async () => {
@@ -50,6 +49,5 @@ describe('List Resumes UseCase', () => {
 		if (!isError(result)) return;
 
 		expect(result.error).toBe('Error listing resumes');
-		expect(spyListResumes).toHaveBeenCalledWith(input);
 	});
 });

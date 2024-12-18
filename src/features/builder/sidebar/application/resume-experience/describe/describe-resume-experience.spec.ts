@@ -1,4 +1,7 @@
-import { DescribeResumeExperienceDto } from './describe-resume-experience.dto';
+import {
+	DescribeResumeExperienceDto,
+	DescribeResumeExperienceResponseDto,
+} from './describe-resume-experience.dto';
 import { DescribeResumeExperiencePort } from './describe-resume-experience.port';
 import { DescribeResumeExperienceUsecase } from './describe-resume-experience.usecase';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -7,8 +10,23 @@ import { isError } from '~/lib/utils/either';
 
 class MockDescribeResumeExperienceRepository implements DescribeResumeExperiencePort {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async describe(input: { resumeId: string }): Promise<ResumeExperienceInfoModel[]> {
-		return [];
+	async describe(input: { resumeId: string }): Promise<DescribeResumeExperienceResponseDto> {
+		return {
+			experienceInfo: [
+				{
+					id: '1',
+					resumeId: 'resumeId',
+					company: 'Google',
+					role: 'Software Engineer',
+					website: 'https://google.com',
+					startDate: '2022-01-01',
+					endDate: '2022-12-31',
+					description: 'Software Engineer at Google',
+					sortOrder: 1,
+				},
+			],
+			sectionTitle: 'Experience',
+		};
 	}
 }
 
@@ -74,6 +92,8 @@ describe('Describe resume experienceusecase', () => {
 		if (!isError(response)) return;
 
 		expect(isError(response)).toBe(true);
-		expect(response.error).toBe('Resume Experience Info not found');
+		expect(response.error).toBe(
+			'Invalid output: Experience Info and sectionTitle fields are required'
+		);
 	});
 });

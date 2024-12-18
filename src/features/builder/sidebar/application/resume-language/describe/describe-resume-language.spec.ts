@@ -1,4 +1,7 @@
-import { DescribeResumeLanguageDto } from './describe-resume-language.dto';
+import {
+	DescribeResumeLanguageDto,
+	DescribeResumeLanguageResponseDto,
+} from './describe-resume-language.dto';
 import { DescribeResumeLanguagePort } from './describe-resume-language.port';
 import { DescribeResumeLanguageUsecase } from './describe-resume-language.usecase';
 import { MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -7,8 +10,20 @@ import { isError } from '~/lib/utils/either';
 
 class MockDescribeResumeLanguageRepository implements DescribeResumeLanguagePort {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async describe(input: { resumeId: string }): Promise<ResumeLanguageInfoModel[]> {
-		return [];
+	async describe(input: { resumeId: string }): Promise<DescribeResumeLanguageResponseDto> {
+		return {
+			languageInfo: [
+				{
+					id: '1',
+					resumeId: 'resumeId',
+					language: 'English',
+					level: Enums.languageLevel.ADVANCED,
+					certificationUrl: 'https://cambridge.com',
+					sortOrder: 1,
+				},
+			],
+			sectionTitle: 'Languages',
+		};
 	}
 }
 
@@ -71,6 +86,8 @@ describe('Describe resume languageusecase', () => {
 		if (!isError(response)) return;
 
 		expect(isError(response)).toBe(true);
-		expect(response.error).toBe('Resume Language Info not found');
+		expect(response.error).toBe(
+			'Invalid output: Language Info and sectionTitle fields are required'
+		);
 	});
 });

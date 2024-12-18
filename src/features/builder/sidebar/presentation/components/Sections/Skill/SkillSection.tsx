@@ -1,5 +1,6 @@
 'use server';
 
+import UpdateTitleSection from '../shared/UpdateTitleSection';
 import SkillForm from './SkillForm';
 import { SkillFormValues } from './types';
 import React from 'react';
@@ -14,6 +15,7 @@ import {
 	SkillPresenter,
 	resumeSkillPresenter,
 } from '~/features/builder/sidebar/presentation/presenter/resume-skill.presenter';
+import { Enums } from '~/features/shared/models/resume.model';
 import { Button } from '~/features/shared/presentation/components/ui/button/button';
 import { Dialog } from '~/features/shared/presentation/components/ui/dialog/dialog';
 
@@ -31,7 +33,7 @@ const SkillSection = async ({ resumeId }: SkillSectionProps) => {
 
 	if (typeof response === 'string') return <div>{response}</div>;
 
-	const skillCustomFields = response.map(
+	const skillCustomFields = response.skillInfo.map(
 		skill =>
 			({
 				field: {
@@ -45,11 +47,19 @@ const SkillSection = async ({ resumeId }: SkillSectionProps) => {
 	);
 
 	return (
-		<div>
-			<ReorderGroup<SkillPresenter>
-				fields={skillCustomFields}
-				onReorderAction={sortSkillAction}
+		<section className="flex flex-col gap-2">
+			<UpdateTitleSection
+				resumeId={resumeId}
+				title={response.sectionTitle}
+				sectionKind={Enums.resumeSection.SKILLS}
 			/>
+			<p className="text-sm text-muted">Skills</p>
+			<div className="max-h-[420px] overflow-y-scroll">
+				<ReorderGroup<SkillPresenter>
+					fields={skillCustomFields}
+					onReorderAction={sortSkillAction}
+				/>
+			</div>
 			<Dialog
 				trigger={<Button className="mt-5 w-full">Add new skill</Button>}
 				title="New skill">
@@ -60,7 +70,7 @@ const SkillSection = async ({ resumeId }: SkillSectionProps) => {
 					submitText="Create new skill"
 				/>
 			</Dialog>
-		</div>
+		</section>
 	);
 };
 

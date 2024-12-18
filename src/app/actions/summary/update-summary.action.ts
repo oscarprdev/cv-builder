@@ -1,10 +1,14 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { ResumeSummaryPresenter } from '~/features/builder/sidebar/presentation/presenter/resume-summary.presenter';
 import { provideUpdateResumeSummaryUsecase } from '~/features/builder/sidebar/provider/resume-summary/update-resume-summary.provider';
 
-export const updateSummaryAction = async (formState: ResumeSummaryPresenter) => {
+export interface UpdateSummaryActionInput {
+	summary: string;
+	resumeId: string;
+}
+
+export const updateSummaryAction = async (formState: UpdateSummaryActionInput) => {
 	const usecase = provideUpdateResumeSummaryUsecase();
 	const response = await usecase.execute(formState);
 

@@ -14,7 +14,11 @@ export class CreateResumeSkillUsecase extends UseCase implements ICreateResumeSk
 
 	async execute(input: CreateResumeSkillDto): Promise<Either<string, string>> {
 		try {
-			const validInput = this.parseInput<CreateResumeSkillDto>(createResumeSkillDto, input);
+			const validInput = this.parseValue<CreateResumeSkillDto>(
+				'input',
+				createResumeSkillDto,
+				input
+			);
 
 			await this.port.create(validInput);
 

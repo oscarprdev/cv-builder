@@ -15,7 +15,7 @@ export class DescribeResumeUseCase extends UseCase implements IDescribeResumeUse
 
 	async execute(input: DescribeResumeDto): Promise<Either<string, ResumeModel>> {
 		try {
-			const validInput = this.parseInput(describeResumeDto, input);
+			const validInput = this.parseValue('input', describeResumeDto, input);
 
 			const response = await this.port.describe(validInput.resumeId);
 			if (!response) throw new Error('Resume not found');

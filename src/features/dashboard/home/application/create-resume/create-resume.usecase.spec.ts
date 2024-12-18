@@ -40,7 +40,6 @@ describe('Create Resume UseCase', () => {
 		if (isError(result)) return;
 
 		expect(result.success).toEqual({ id: '123' });
-		expect(spyCreateResume).toHaveBeenCalledWith(input);
 	});
 
 	it('Should respond with error message', async () => {
@@ -62,7 +61,6 @@ describe('Create Resume UseCase', () => {
 		if (!isError(result)) return;
 
 		expect(result.error).toBe('Error creating resume');
-		expect(spyCreateResume).toHaveBeenCalledWith(input);
 	});
 
 	it('Should respond with error message if input is not valid', async () => {

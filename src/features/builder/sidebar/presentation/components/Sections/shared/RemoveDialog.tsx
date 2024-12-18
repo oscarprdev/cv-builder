@@ -1,6 +1,6 @@
 'use client';
 
-import { useBuilderReload } from '../../../hook/useBuilderReload';
+import { useBuilderReload } from '../../../hooks/useBuilderReload';
 import { CustomFieldKind } from './ReorderGroup/types';
 import { useMutation } from '@tanstack/react-query';
 import { LoaderCircle, Trash } from 'lucide-react';
@@ -65,7 +65,7 @@ const RemoveDialog = ({
 			</p>
 
 			<div className="mt-3 flex w-full flex-col justify-center gap-3 px-10">
-				<Button onClick={onRemoveDialogConfirm}>
+				<Button variant={'destructive'} onClick={onRemoveDialogConfirm}>
 					{isPending ? (
 						<LoaderCircle data-testid="loader-icon" className="animate-spin" />
 					) : (

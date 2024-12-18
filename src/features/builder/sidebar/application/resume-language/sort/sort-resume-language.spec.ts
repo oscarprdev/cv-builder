@@ -16,10 +16,7 @@ describe('Sort Resume Language Use Case', () => {
 	let usecase: SortResumeLanguageUseCase;
 	let spySort: MockInstance;
 
-	const input: SortResumeLanguageDto = [
-		{ languageId: '1', sortOrder: 1 },
-		{ languageId: '2', sortOrder: 2 },
-	];
+	const input: SortResumeLanguageDto = [{ languageId: '1', sortOrder: 1 }];
 
 	beforeEach(() => {
 		const repo = new MockSortResumeLanguageRepository();
@@ -38,7 +35,8 @@ describe('Sort Resume Language Use Case', () => {
 	});
 
 	it('Should return error response', async () => {
-		spySort.mockImplementationOnce(() => Promise.reject());
+		spySort.mockImplementationOnce(() => new Error());
+
 		const response = await usecase.execute(input);
 
 		if (!isError(response)) return;

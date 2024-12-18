@@ -19,7 +19,7 @@ describe('Edit Resume Experience usecase', () => {
 	const input: EditResumeExperienceDto = {
 		id: '1',
 		company: 'Company',
-		position: 'Position',
+		role: 'Position',
 		description: 'Description',
 		startDate: '2023-01-01',
 		endDate: '2023-01-01',
