@@ -39,7 +39,6 @@ const Default = ({ resume }: { resume: ResumePresenter }) => {
 								src={resume.basicInfo.imageUrl}
 								alt="resume-image"
 								className="rounded-md"
-								crossOrigin="anonymous"
 							/>
 						</picture>
 					)}
