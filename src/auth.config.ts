@@ -12,7 +12,6 @@ export default {
 		}),
 		Credentials({
 			async authorize(credentials) {
-				console.log(credentials);
 				const loginUsecase = provideLoginUsecase();
 				const response = await loginUsecase.execute({
 					email: credentials.email as string,

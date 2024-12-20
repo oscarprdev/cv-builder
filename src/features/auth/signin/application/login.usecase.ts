@@ -4,7 +4,16 @@ import { UseCase } from '~/features/shared/application/usecase';
 import { UserModel } from '~/features/shared/models/user.model';
 import { Either } from '~/lib/utils/either';
 
-type Output = Either<string, { data: Omit<UserModel, 'password'>; message: string }>;
+type Output = Either<
+	string,
+	{
+		data: Omit<
+			UserModel,
+			'password' | 'createdAt' | 'updatedAt' | 'emailVerified' | 'email' | 'image'
+		>;
+		message: string;
+	}
+>;
 
 export interface ILoginUsecase {
 	execute(input: LoginDto): Promise<Output>;
