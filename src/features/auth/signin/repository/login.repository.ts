@@ -1,12 +1,12 @@
 import bcrypt from 'bcryptjs';
-import { LoginPort } from '~/features/auth/signin/application/login.port';
+import { GetUserByEmailOutput, LoginPort } from '~/features/auth/signin/application/login.port';
 import { LoginInfra } from '~/features/auth/signin/infrastructure/login.infra';
 import { UserModel } from '~/features/shared/models/user.model';
 
 export class LoginRepository implements LoginPort {
 	constructor(private readonly infra: LoginInfra) {}
 
-	async getUserByEmail(email: string): Promise<UserModel | null> {
+	async getUserByEmail(email: string): Promise<GetUserByEmailOutput | null> {
 		const infraUser = await this.infra.getUserByEmail(email);
 		if (!infraUser) return null;
 
@@ -17,7 +17,7 @@ export class LoginRepository implements LoginPort {
 		return await bcrypt.compare(incomingPassword, hashedPassword);
 	}
 
-	private mapUserInfraToApplicationLayer(infraUser: UserModel): UserModel {
+	private mapUserInfraToApplicationLayer(infraUser: UserModel): GetUserByEmailOutput {
 		return {
 			id: infraUser.id,
 			email: infraUser.email,

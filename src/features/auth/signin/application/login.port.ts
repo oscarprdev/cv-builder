@@ -1,6 +1,10 @@
-import { UserModel } from '~/features/shared/models/user.model';
-
 export interface LoginPort {
-	getUserByEmail(email: string): Promise<UserModel | null>;
+	getUserByEmail(email: string): Promise<GetUserByEmailOutput | null>;
 	comparePassword(incomingPassword: string, hashedPassword: string): Promise<boolean>;
 }
+
+export type GetUserByEmailOutput = {
+	id: string;
+	email: string;
+	password: string;
+};
