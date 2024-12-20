@@ -6,7 +6,10 @@ import GitHub from 'next-auth/providers/github';
 
 export default {
 	providers: [
-		GitHub,
+		GitHub({
+			clientId: process.env.AUTH_GITHUB_ID,
+			clientSecret: process.env.AUTH_GITHUB_SECRET,
+		}),
 		Credentials({
 			async authorize(credentials) {
 				const loginUsecase = provideLoginUsecase();
