@@ -12,9 +12,13 @@ const nextAuth = NextAuth({
 
 			return token;
 		},
-		session({ session, token }) {
+		session({ session, token, user }) {
 			if (token && session.user) {
 				session.user.id = token.id as string;
+			}
+
+			if (user) {
+				session.user = user;
 			}
 
 			return session;

@@ -10,18 +10,6 @@ datasource db {
   directUrl = env("DATABASE_URL")
 }
 
-enum ResumeTheme {
-  DEFAULT
-  HARVARD
-}
-
-enum LanguageLevel {
-  BEGINNER
-  INTERMEDIATE
-  ADVANCED
-  NATIVE
-}
-
 model User {
   id       String   @id @unique @default(uuid())
   password String
@@ -33,27 +21,27 @@ model Resume {
   id             String                        @id @unique @default(uuid())
   userId         String
   user           User                          @relation(fields: [userId], references: [id])
-  basicInfo      ResumeBasicInformation?       @relation()
-  summaryInfo    ResumeSummaryInformation?     @relation()
-  experienceInfo ResumeExperienceInformation[] @relation()
-  educationInfo  ResumeEducationInformation[]  @relation()
-  skillInfo      ResumeSkillInformation[]      @relation()
-  languageInfo   ResumeLanguageInformation[]   @relation()
-  resumeMeta     ResumeMeta?                   @relation()
+  basicInfo      ResumeBasicInformation?
+  educationInfo  ResumeEducationInformation[]
+  experienceInfo ResumeExperienceInformation[]
+  languageInfo   ResumeLanguageInformation[]
+  resumeMeta     ResumeMeta?
+  skillInfo      ResumeSkillInformation[]
+  summaryInfo    ResumeSummaryInformation?
 }
 
 model ResumeMeta {
   id              String      @id @unique @default(uuid())
   resumeId        String      @unique
   createdAt       DateTime    @default(now())
+  theme           ResumeTheme
   updatedAt       DateTime    @default(now())
   isPublic        Boolean     @default(false)
-  summaryTitle    String      @default("Summary")
-  experienceTitle String      @default("Experience")
   educationTitle  String      @default("Education")
-  skillsTitle     String      @default("Skills")
+  experienceTitle String      @default("Experience")
   languagesTitle  String      @default("Languages")
-  theme           ResumeTheme
+  skillsTitle     String      @default("Skills")
+  summaryTitle    String      @default("Summary")
   resume          Resume      @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
@@ -68,8 +56,8 @@ model ResumeBasicInformation {
   location      String
   imageUrl      String?
   imageDisabled Boolean                   @default(false)
-  resume        Resume?                   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
   customFields  ResumeBasicCustomFields[]
+  resume        Resume                    @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeBasicCustomFields {
@@ -81,52 +69,64 @@ model ResumeBasicCustomFields {
 }
 
 model ResumeSummaryInformation {
-  id       String  @id @unique @default(uuid())
-  resumeId String  @unique
+  id       String @id @unique @default(uuid())
+  resumeId String @unique
   summary  String
-  resume   Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeExperienceInformation {
-  id          String  @id @unique @default(uuid())
-  resumeId    String
-  company     String
-  role        String
+  id          String @id @unique @default(uuid())
   description String
   startDate   String
   endDate     String
+  company     String
   website     String
-  sortOrder   Int     @default(autoincrement())
-  resume      Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  resumeId    String
+  role        String
+  sortOrder   Int    @default(autoincrement())
+  resume      Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeEducationInformation {
-  id          String  @id @unique @default(uuid())
+  id          String @id @unique @default(uuid())
   resumeId    String
   institution String
   study       String
   description String
   startDate   String
   endDate     String
-  sortOrder   Int     @default(autoincrement())
-  resume      Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  sortOrder   Int    @default(autoincrement())
+  resume      Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeSkillInformation {
-  id        String  @id @unique @default(uuid())
+  id        String @id @unique @default(uuid())
   resumeId  String
   name      String
   level     Int
-  sortOrder Int     @default(autoincrement())
-  resume    Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  sortOrder Int    @default(autoincrement())
+  resume    Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model ResumeLanguageInformation {
   id               String        @id @unique @default(uuid())
   resumeId         String
   language         String
+  sortOrder        Int           @default(autoincrement())
   level            LanguageLevel
   certificationUrl String?
-  sortOrder        Int           @default(autoincrement())
-  resume           Resume?       @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  resume           Resume        @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+}
+
+enum ResumeTheme {
+  DEFAULT
+  HARVARD
+}
+
+enum LanguageLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  NATIVE
 }
