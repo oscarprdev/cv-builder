@@ -12,15 +12,10 @@ export default {
 		}),
 		Credentials({
 			async authorize(credentials) {
-				const email = credentials.email as string;
-				const password = credentials.password as string;
-
-				if (!password) return { id: email };
-
 				const loginUsecase = provideLoginUsecase();
 				const response = await loginUsecase.execute({
 					email: credentials.email as string,
-					password: credentials.password as string,
+					password: credentials.email as string,
 				});
 
 				if (isError(response)) {
